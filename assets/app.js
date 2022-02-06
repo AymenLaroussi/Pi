@@ -12,3 +12,11 @@ import { Tooltip, Toast, Popover } from 'bootstrap';
 
 // start the Stimulus application
 import './bootstrap';
+import './js/vendor/jquery-1.12.4.min.js';
+import './js/ajax-mail';
+import './js/main';
+import './js/map';
+import './js/vs-cursor.min.js';
+import './js/vscustom-carousel.min.js';
+import './js/vsmenu.min.js';
+
