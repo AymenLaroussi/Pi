@@ -1,0 +1,34 @@
+ <div class="col-sm-6">
+                <div class="vs-product">
+                  <div class="product-img">
+                    <a href="shop-details.html">
+                      <img src="{{produit.image}}" class="w-100" alt="Image du produit">
+                    </a>
+                    <div class="cart-btn-group">
+                      <a href="#" class="icon-btn3">
+                        <i class="far fa-heart"></i>
+                      </a>
+                      <a href="#" class="vs-btn">Ajouter au panier</a>
+                      <a href="#" class="icon-btn3">
+                        <i class="far fa-search"></i>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="product-content">
+                    <div class="text-yellow fs-xs mb-2">
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="far fa-star"></i>
+                      <i class="far fa-star"></i>
+                    </div>
+                    <h3 class="product-name text-normal font-theme fs-20 lh-base mb-2">
+                      <a class="text-inherit" href="shop-details.html">{{produit.nom}}</a>
+                    </h3>
+                    
+                       <strong class="fs-18 text-theme2" style="text-decoration: line-through;">au lieu de {{produit.prix}} DT</strong>
+                       <br>
+                    <strong class="fs-18 text-theme2">Vous l'auras à {{produit.prix}} DT</strong>
+                  </div>
+                </div>
+              </div>

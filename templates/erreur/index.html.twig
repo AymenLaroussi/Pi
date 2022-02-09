@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ErreurController!{% endblock %}
+
+{% block body %}
+<div class="breadcumb-wrapper breadcumb-layout1 pt-200 pb-50" data-bg-src="assets/img/breadcumb/breadcumb-1.jpg" data-overlay>
+      <div class="container z-index-common">
+        <div class="breadcumb-content text-center">
+          <h1 class="breadcumb-title h1 text-white my-0">Page not found</h1>
+          <h2 class="breadcumb-bg-title">Error</h2>
+          <ul class="breadcumb-menu-style1 text-white mx-auto fs-xs">
+            <li>
+              <a href="index.html">
+                <i class="fal fa-home"></i>Home </a>
+            </li>
+            <li class="active">Error 404</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <section class="vs-error-wrapper space-top newsletter-pb">
+      <div class="container">
+        <div class="row text-center justify-content-center">
+          <div class="col-12 mb-3 mb-xl-5">
+            <img src="assets/img/error/error-1.png" alt="Error Image">
+          </div>
+          <div class="col-lg-10 col-xl-8 mb-30">
+            <h2 class="text-normal">Oops! That page can't be found.</h2>
+            <p class="px-xl-5 mx-lg-5 pb-2 mb-xl-4">Unfortunately, something went wrong and this page does not exist. Try using the search or return to the previous page.</p>
+            <a href="index.html" class="vs-btn gradient-btn">Back To Home</a>
+          </div>
+        </div>
+      </div>
+    </section>
+   
+{% endblock %}
