@@ -1,38 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello JoueurController!{% endblock %}
+{% block title %}Hello EquipeController!{% endblock %}
 
 {% block body %}
-   <div class="breadcumb-wrapper breadcumb-layout1 pt-200 pb-50" data-bg-src="assets/img/breadcumb/breadcumb-1.jpg" data-overlay>
+<div class="breadcumb-wrapper breadcumb-layout1 pt-200 pb-50" data-bg-src="assets/img/breadcumb/breadcumb-1.jpg" data-overlay>
       <div class="container z-index-common">
         <div class="breadcumb-content text-center">
-          <h1 class="breadcumb-title h1 text-white my-0">David Smith</h1>
+          <h1 class="breadcumb-title h1 text-white my-0">Angry Power</h1>
           <h2 class="breadcumb-bg-title">Gamers</h2>
           <ul class="breadcumb-menu-style1 text-white mx-auto fs-xs">
             <li>
               <a href="index.html">
                 <i class="fal fa-home"></i>Home </a>
             </li>
-            <li class="active">Players Details</li>
+            <li class="active">Team Details</li>
           </ul>
         </div>
       </div>
     </div>
-    <section class="vs-player-wrapper space-top newsletter-pb">
+    <section class="vs-team-wrapper space-top newsletter-pb">
       <div class="container">
         <div class="row">
           <div class="col-lg-8">
-            <div class="vs-box1 d-md-flex mb-30 info-box4 align-items-center">
+            <div class="vs-box1 d-md-flex mb-20 info-box4 align-items-center">
               <div class="pro-tag position-absolute end-0 top-0 bg-gradient text-white">
                 <i class="fas fa-check-circle"></i> pro
               </div>
               <div class="inner-img1">
-                <img src="assets/img/member/member-d-1.jpg" alt="Member Image">
+                <img src="assets/img/team/team-d-1.jpg" alt="Team Image">
               </div>
               <div class="media-body ml-lg-30">
-                <h2 class="h4 mb-0">David Smith</h2>
-                <span class="text-theme2">Pro-Player</span>
-                <table class="info-table mt-2 mb-0">
+                <table class="info-table mb-0">
                   <tr>
                     <td>Founded:</td>
                     <td>2021</td>
@@ -42,14 +40,102 @@
                     <td>Public</td>
                   </tr>
                   <tr>
-                    <td>Headquarters:</td>
-                    <td>Berlin, Germany</td>
+                    <td>Website:</td>
+                    <td>
+                      <a href="#">www.angrypower.com</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Members:</td>
+                    <td>14</td>
                   </tr>
                   <tr>
                     <td>Address:</td>
                     <td>Neuss Nordrhe-Westfa</td>
                   </tr>
                 </table>
+              </div>
+            </div>
+            <div class="vs-member mb-20-layout3">
+              <div class="row">
+                <div class="col-sm-6">
+                  <h3 class="h4">Players</h3>
+                </div>
+                <div class="col-sm-6 pt-2 text-end d-none d-sm-block">
+                  <button class="icon1 mr-10 text-theme-hover" type="button" data-slick-prev="#memberslide3">
+                    <i class="far fa-angle-left"></i>
+                  </button>
+                  <button class="icon1 text-theme-hover" type="button" data-slick-next="#memberslide3">
+                    <i class="far fa-angle-right"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="row link-inherit vs-carousel" id="memberslide3" data-slide-show="4" data-lg-slide-show="3" data-md-slide-show="3" data-sm-slide-show="2" data-xs-slide-show="1">
+                <div class="col-xl-3">
+                  <div class="vs-member mb-25">
+                    <div class="member-img image-scale-hover mb-15">
+                      <a href="player-details.html">
+                        <img src="assets/img/member/member-3-1.jpg" alt="Member Image" class="w-100">
+                      </a>
+                    </div>
+                    <h4 class="member-name font-theme mb-0 text-normal h5">
+                      <a href="player-details.html">David Smith</a>
+                    </h4>
+                    <span class="degi fs-xs">Pro-Player</span>
+                  </div>
+                </div>
+                <div class="col-xl-3">
+                  <div class="vs-member mb-25">
+                    <div class="member-img image-scale-hover mb-15">
+                      <a href="player-details.html">
+                        <img src="assets/img/member/member-3-2.jpg" alt="Member Image" class="w-100">
+                      </a>
+                    </div>
+                    <h4 class="member-name font-theme mb-0 text-normal h5">
+                      <a href="player-details.html">Robert Broos</a>
+                    </h4>
+                    <span class="degi fs-xs">Pro-Player</span>
+                  </div>
+                </div>
+                <div class="col-xl-3">
+                  <div class="vs-member mb-25">
+                    <div class="member-img image-scale-hover mb-15">
+                      <a href="player-details.html">
+                        <img src="assets/img/member/member-3-3.jpg" alt="Member Image" class="w-100">
+                      </a>
+                    </div>
+                    <h4 class="member-name font-theme mb-0 text-normal h5">
+                      <a href="player-details.html">Carlos Mark</a>
+                    </h4>
+                    <span class="degi fs-xs">Pro-Player</span>
+                  </div>
+                </div>
+                <div class="col-xl-3">
+                  <div class="vs-member mb-25">
+                    <div class="member-img image-scale-hover mb-15">
+                      <a href="player-details.html">
+                        <img src="assets/img/member/member-3-4.jpg" alt="Member Image" class="w-100">
+                      </a>
+                    </div>
+                    <h4 class="member-name font-theme mb-0 text-normal h5">
+                      <a href="player-details.html">Vivi Marian</a>
+                    </h4>
+                    <span class="degi fs-xs">Pro-Player</span>
+                  </div>
+                </div>
+                <div class="col-xl-3">
+                  <div class="vs-member mb-25">
+                    <div class="member-img image-scale-hover mb-15">
+                      <a href="player-details.html">
+                        <img src="assets/img/member/member-3-5.jpg" alt="Member Image" class="w-100">
+                      </a>
+                    </div>
+                    <h4 class="member-name font-theme mb-0 text-normal h5">
+                      <a href="player-details.html">Peter Parker</a>
+                    </h4>
+                    <span class="degi fs-xs">Pro-Player</span>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="vs-box1 p-0 mb-30">
@@ -220,7 +306,7 @@
                 </div>
               </div>
             </div>
-            <div class="vs-box1 mb-30">
+            <div class="vs-box1 mb-25">
               <h4 class="h5 mb-25 mt-n1">Live Stream</h4>
               <div class="hover-shape position-relative">
                 <span class="bg-gradient text-white post-time d-none d-sm-inline-block">12 Hour Ago</span>
@@ -259,6 +345,21 @@
                   </div>
                 </div>
               </div>
+            </div>
+            <h3 class="h4 font-theme">Social Links</h3>
+            <div class="d-inline-flex gap-2 mb-25">
+              <a class="icon-btn3 size-40" href="#">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a class="icon-btn3 size-40" href="#">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a class="icon-btn3 size-40" href="#">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a class="icon-btn3 size-40" href="#">
+                <i class="fab fa-instagram"></i>
+              </a>
             </div>
           </div>
           <div class="col-lg-4">

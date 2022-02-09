@@ -185,6 +185,22 @@ h1 {
 	font-size: 48px
 }
 
+.bg-light-gray py-2 py-sm-3 py-lg-0 {
+	border-style:solid;
+	border-width:1px;
+	display:block;
+	width:100px;
+	height:100px;
+	background-color:#0000FF;
+	-webkit-transition:background-color 2s;
+	transition:background-color 2s;
+ }
+ 
+ .bg-light-gray py-2 py-sm-3 py-lg-0:hover {
+	background-color:#FFCCCC;
+ }
+
+
 .h2,
 h2 {
 	font-size: 36px
