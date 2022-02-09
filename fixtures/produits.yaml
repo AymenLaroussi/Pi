@@ -1,3 +1,0 @@
-App\Entity\Category:
-  category_{1..10}:
-    nom: <creature()>
