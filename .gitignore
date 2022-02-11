@@ -84,5 +84,4 @@ yarn-error.log
 # Embedded web-server pid file
 /.web-server-pid
 
-yarn.lock
-package.json
+
