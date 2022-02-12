@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block title %}Hello TournoiController!{% endblock %}
+{% block body %}
+    <section class="vs-events-wrapper events-layout1 space-top space-md-bottom">
+        <h2 class="text-center"><span class="sub-title2 mt-5 ">Ajouter une tournoi</span></h2>
+        <h4 class="align-content-center"> Merci de remplir le formulaire ci-dessous avant de lancer le tournoi :</h4>
+        <div class="container center">
+            {{ form(formTournoi) }}
+
+        </div>
+    </section>
+
+
+{% endblock %}

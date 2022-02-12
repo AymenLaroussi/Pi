@@ -2,9 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="15642978-c11c-42c6-95ae-5b44b3bd4d3d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20220211202250.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/TournoiType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/tournoi/add-tournoi.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/tournoi/tournament-details.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/PI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PI.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/TournoiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TournoiController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Tournoi.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Tournoi.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/TournoiRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/TournoiRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/tournoi/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tournoi/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +28,13 @@
     <execution>
       <executable path="composer" />
     </execution>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -160,6 +179,7 @@
       <path value="$PROJECT_DIR$/vendor/mbezhanov/faker-provider-collection" />
       <path value="$PROJECT_DIR$/vendor/fakerphp/faker" />
       <path value="$PROJECT_DIR$/vendor/symfony/webpack-encore-pack" />
+      <path value="$PROJECT_DIR$/vendor/twig/intl-extra" />
     </include_path>
   </component>
   <component name="ProjectId" id="24LQDjUbNxlayTmgi4M9c4zfjye" />
@@ -172,6 +192,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -198,6 +219,7 @@
       <workItem from="1643924176216" duration="390000" />
       <workItem from="1644317481366" duration="1294000" />
       <workItem from="1644591255710" duration="2041000" />
+      <workItem from="1644672184775" duration="315000" />
     </task>
     <servers />
   </component>
@@ -214,6 +236,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />

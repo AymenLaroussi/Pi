@@ -591,7 +591,6 @@
             "ref": "dae9b39fd6717970be7601101ce5aa960bf53d9a"
         }
     },
-
     "symfony/webpack-encore-bundle": {
         "version": "1.13",
         "recipe": {
@@ -614,7 +613,6 @@
             "./webpack.config.js"
         ]
     },
-
     "symfony/yaml": {
         "version": "v4.4.37"
     },
@@ -623,6 +621,9 @@
     },
     "twig/extra-bundle": {
         "version": "v3.3.7"
+    },
+    "twig/intl-extra": {
+        "version": "v3.3.5"
     },
     "twig/twig": {
         "version": "v3.3.7"
