@@ -45,9 +45,26 @@ class Tournoi
     private $image;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $discord_channel;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $time;
+
+    /**
      * @ORM\OneToMany(targetEntity=Equipe::class, mappedBy="tournoi", orphanRemoval=true)
      */
     private $equipes;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $jeu;
+
+
 
     public function __construct()
     {
@@ -145,6 +162,42 @@ class Tournoi
                 $equipe->setTournoi(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDiscordChannel(): ?string
+    {
+        return $this->discord_channel;
+    }
+
+    public function setDiscordChannel(string $discord_channel): self
+    {
+        $this->discord_channel = $discord_channel;
+
+        return $this;
+    }
+
+    public function getTime(): ?\DateTimeInterface
+    {
+        return $this->time;
+    }
+
+    public function setTime(?\DateTimeInterface $time): self
+    {
+        $this->time = $time;
+
+        return $this;
+    }
+
+    public function getJeu(): ?string
+    {
+        return $this->jeu;
+    }
+
+    public function setJeu(string $jeu): self
+    {
+        $this->jeu = $jeu;
 
         return $this;
     }

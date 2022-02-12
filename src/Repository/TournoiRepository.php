@@ -19,6 +19,7 @@ class TournoiRepository extends ServiceEntityRepository
         parent::__construct($registry, Tournoi::class);
     }
 
+
     // /**
     //  * @return Tournoi[] Returns an array of Tournoi objects
     //  */
@@ -36,15 +37,15 @@ class TournoiRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Tournoi
+
+    public function findOneById($value): ?Tournoi
     {
         return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
+            ->andWhere('t.id = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
+
 }
