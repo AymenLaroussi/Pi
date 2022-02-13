@@ -44,12 +44,21 @@ class TournoiController extends AbstractController
         return $this->render("tournoi/add-tournoi.html.twig",array("formTournoi"=>$form->createView()));
     }
     /**
-     * @Route("/sdfsdTournoi",name="listTournoi")
+     * @Route("/showTournoi{id}",name="showTournoi")
      */
-    public function listTournoi()
-    {
-
+    public function show($id){
+        $tournoi= $this->getDoctrine()->getRepository(Tournoi::class)->find($id);
+        return $this->render("tournoi/tournament-details.html.twig",array("tournoi"=>$tournoi));
     }
-    
+    /**
+     * @Route("/removeTournoi{id}",name="removeTournoi")
+     */
+    public function delete($id){
+        $tournoi= $this->getDoctrine()->getRepository(Tournoi::class)->find($id);
+        $em= $this->getDoctrine()->getManager();
+        $em->remove($tournoi);
+        $em->flush();
+        return $this->redirectToRoute("tournoi");
+    }
 
 }
