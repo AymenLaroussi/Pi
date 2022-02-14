@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\CategorieRepository;
+use App\Repository\CategoriesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=CategorieRepository::class)
+ * @ORM\Entity(repositoryClass=CategoriesRepository::class)
  */
-class Categorie
+class Categories
 {
     /**
      * @ORM\Id
@@ -25,7 +25,7 @@ class Categorie
     private $nom;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Produits::class, mappedBy="categories")
+     * @ORM\ManyToMany(targetEntity=Produits::class, mappedBy="categorie")
      */
     private $produits;
 
@@ -63,7 +63,7 @@ class Categorie
     {
         if (!$this->produits->contains($produit)) {
             $this->produits[] = $produit;
-            $produit->addCategory($this);
+            $produit->addCategorie($this);
         }
 
         return $this;
@@ -72,7 +72,7 @@ class Categorie
     public function removeProduit(Produits $produit): self
     {
         if ($this->produits->removeElement($produit)) {
-            $produit->removeCategory($this);
+            $produit->removeCategorie($this);
         }
 
         return $this;

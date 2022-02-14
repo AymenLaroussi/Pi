@@ -22,12 +22,7 @@ class Produits
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $nom;
-
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $prix;
+    private $titre;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -35,14 +30,14 @@ class Produits
     private $description;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="integer")
      */
-    private $contenu;
+    private $stock;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="float")
      */
-    private $image;
+    private $prix;
 
     /**
      * @ORM\Column(type="boolean")
@@ -50,13 +45,18 @@ class Produits
     private $promo;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Categorie::class, inversedBy="produits")
+     * @ORM\Column(type="string", length=255)
      */
-    private $categories;
+    private $ref;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Categories::class, inversedBy="produits")
+     */
+    private $categorie;
 
     public function __construct()
     {
-        $this->categories = new ArrayCollection();
+        $this->categorie = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -64,26 +64,14 @@ class Produits
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getTitre(): ?string
     {
-        return $this->nom;
+        return $this->titre;
     }
 
-    public function setNom(string $nom): self
+    public function setTitre(string $titre): self
     {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    public function getPrix(): ?float
-    {
-        return $this->prix;
-    }
-
-    public function setPrix(float $prix): self
-    {
-        $this->prix = $prix;
+        $this->titre = $titre;
 
         return $this;
     }
@@ -100,26 +88,26 @@ class Produits
         return $this;
     }
 
-    public function getContenu(): ?string
+    public function getStock(): ?int
     {
-        return $this->contenu;
+        return $this->stock;
     }
 
-    public function setContenu(string $contenu): self
+    public function setStock(int $stock): self
     {
-        $this->contenu = $contenu;
+        $this->stock = $stock;
 
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getPrix(): ?float
     {
-        return $this->image;
+        return $this->prix;
     }
 
-    public function setImage(string $image): self
+    public function setPrix(float $prix): self
     {
-        $this->image = $image;
+        $this->prix = $prix;
 
         return $this;
     }
@@ -136,26 +124,38 @@ class Produits
         return $this;
     }
 
-    /**
-     * @return Collection|Categorie[]
-     */
-    public function getCategories(): Collection
+    public function getRef(): ?string
     {
-        return $this->categories;
+        return $this->ref;
     }
 
-    public function addCategory(Categorie $category): self
+    public function setRef(string $ref): self
     {
-        if (!$this->categories->contains($category)) {
-            $this->categories[] = $category;
+        $this->ref = $ref;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Categories[]
+     */
+    public function getCategorie(): Collection
+    {
+        return $this->categorie;
+    }
+
+    public function addCategorie(Categories $categorie): self
+    {
+        if (!$this->categorie->contains($categorie)) {
+            $this->categorie[] = $categorie;
         }
 
         return $this;
     }
 
-    public function removeCategory(Categorie $category): self
+    public function removeCategorie(Categories $categorie): self
     {
-        $this->categories->removeElement($category);
+        $this->categorie->removeElement($categorie);
 
         return $this;
     }

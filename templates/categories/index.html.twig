@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<title>Géstion Catégories</title>
+
+{% block body %}
+    <h1>Liste des catégories</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.nom }}</td>
+                <td>
+                    <a href="{{ path('voir_categories', {'id': category.id}) }}">Voir</a>
+                    <a href="{{ path('modifier_categories', {'id': category.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucune catégorie trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ajout_categories') }}">Nouvelle catégorie</a>
+{% endblock %}
