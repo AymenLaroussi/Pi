@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Tournoi;
+use App\Repository\TournoiRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,10 +21,13 @@ class TournoiController extends AbstractController
        /* return $this->render('tournoi/index.html.twig', [
             'controller_name' => 'TournoiController',
         ]);*/
+
         $tournois= $this->getDoctrine()
             ->getRepository(Tournoi::class)->findAll();
+        $mestournois=$this->getDoctrine()
+            ->getRepository(Tournoi::class)->findAll();
         return $this->render("tournoi/index.html.twig",
-            array("tournois"=>$tournois));
+            array("tournois"=>$tournois,"mestournois"=>$mestournois));
     }
     /**
      * @Route("/addtournoi", name="addtournoi")
@@ -34,6 +38,7 @@ class TournoiController extends AbstractController
 
         $form= $this->createForm(TournoiType::class,$tournoi);
         $form->handleRequest($request);
+        $type="ajouter";
         if($form->isSubmitted()){
             
             $em= $this->getDoctrine()->getManager();
@@ -41,7 +46,7 @@ class TournoiController extends AbstractController
             $em->flush();
             return $this->redirectToRoute("tournoi");
         }
-        return $this->render("tournoi/add-tournoi.html.twig",array("formTournoi"=>$form->createView()));
+        return $this->render("tournoi/add-tournoi.html.twig",array("formTournoi"=>$form->createView(),"type"=>$type));
     }
     /**
      * @Route("/showTournoi{id}",name="showTournoi")
@@ -60,5 +65,23 @@ class TournoiController extends AbstractController
         $em->flush();
         return $this->redirectToRoute("tournoi");
     }
+    /**
+     * @Route("/tournoiUpdate/{id}",name="tournoiUpdate")
+     */
+    public function updateStudent(TournoiRepository $s,$id,Request $request)
+    {
+        $tournoi= $s->find($id);
+        //var_dump($student).die();
+        $formTournoi= $this->createForm(TournoiType::class,$tournoi);
+        $formTournoi->handleRequest($request);
+        $type="modifier";
+        if($formTournoi->isSubmitted()){
+            $em= $this->getDoctrine()->getManager();
+            $em->flush();
+            return $this->redirectToRoute("tournoi");
+        }
+        return $this->render("tournoi/add-tournoi.html.twig",array("formTournoi"=>$formTournoi->createView(),"type"=>$type,"tournoi"=>$tournoi));
+    }
+
 
 }

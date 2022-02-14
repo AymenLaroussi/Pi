@@ -2,12 +2,33 @@
 {% block title %}Hello TournoiController!{% endblock %}
 {% block body %}
     <section class="vs-events-wrapper events-layout1 space-top space-md-bottom">
+        {% if type !="modifier" %}
         <h2 class="text-center"><span class="sub-title2 mt-5 ">Ajouter une tournoi</span></h2>
         <h4 class="align-content-center"> Merci de remplir le formulaire ci-dessous avant de lancer le tournoi :</h4>
         <div class="container center">
             {{ form(formTournoi) }}
 
         </div>
+        {% endif %}
+
+        {% if type =="modifier"  %}
+        {% if ('now'|date('U') < tournoi.time|date('U'))  %}
+            <h2 class="text-center"><span class="sub-title2 mt-5 ">Modifier le tournoi {{ tournoi.nom }}</span></h2>
+            <h4 class="align-content-center"> Merci de remplir le formulaire ci-dessous avant de lancer le tournoi :</h4>
+            <div class="container center">
+                {{ form(formTournoi) }}
+
+            </div>
+        {% endif %}
+            {% if ('now'|date('U') > tournoi.time|date('U'))  %}
+
+                <h4 style="text-align: center"> Le tournoi à déja commencé vous ne pouvez plus le modifié </h4>
+                <div style="text-align: center">
+                    <img src="https://www.pngitem.com/pimgs/m/255-2550411_404-error-images-free-png-transparent-png.png" alt="Tournament Image">
+                </div>
+            {% endif %}
+
+        {% endif %}
     </section>
 
 
