@@ -221,7 +221,11 @@
                            <li><a href="/tournoi">TOURNOI</a></li>
                            <li><a href="/boutique">BOUTIQUE</a></li>
                            <li><a href="/actualite">ACTUALITE</a></li>
-                           <li><a href="/contact">CONTACT</a></li>
+                           {% if app.user %}
+                              <li><a href="/deconnexion">Déconnexion</a></li>
+                           {% else %}
+                              <li><a href="/login">Connexion</a></li>
+                           {% endif %}
                      </nav>
                      <button type="button" class="vs-menu-toggle text-white d-inline-block d-lg-none"><i class="far fa-bars"></i></button>
                   </div>
