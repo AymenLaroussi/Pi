@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+
+<title>Ajout d'une catégorie</title>
+
+{% block body %}
+    <h1>Nouvelle catégorie</h1>
+
+    {{ include('categories/_form.html.twig') }}
+
+    <a href="{{ path('list_categories') }}">Voir la liste</a>
+{% endblock %}

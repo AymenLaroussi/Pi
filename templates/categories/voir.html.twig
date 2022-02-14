@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<title>{{category.nom}}</title>
+
+{% block body %}
+    <h1>Détails catégorie</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ category.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ category.nom }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('list_categories') }}">Retour</a>
+
+    <a href="{{ path('modifier_categories', {'id': category.id}) }}">Modifier</a>
+
+    {{ include('categories/_supprimer_form.html.twig') }}
+{% endblock %}
