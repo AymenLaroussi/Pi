@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="15642978-c11c-42c6-95ae-5b44b3bd4d3d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/css/app.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/css/app.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/TournoiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TournoiController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/tournoi/add-tournoi.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tournoi/add-tournoi.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/tournoi/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tournoi/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/tournoi/tournament-details.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tournoi/tournament-details.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,7 +208,7 @@
       <workItem from="1644591255710" duration="2041000" />
       <workItem from="1644672184775" duration="315000" />
       <workItem from="1644838576989" duration="4829000" />
-      <workItem from="1644856914274" duration="6507000" />
+      <workItem from="1644856914274" duration="8887000" />
     </task>
     <servers />
   </component>
