@@ -3,11 +3,11 @@
 namespace App\Controller;
 
 use App\Form\UserType;
-use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use App\Entity\Users;
 
 class InscriptionController extends Controller
 {
@@ -16,25 +16,23 @@ class InscriptionController extends Controller
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
-        // 1) build the form
-        $user = new User();
-        $form = $this->createForm(UserType::class, $user);
+        $utilisateur=$this->getUser();
+        if($utilisateur) {
+            return $this->redirectToRoute('home');
+        }
 
-        // 2) handle the submit (will only happen on POST)
+        $users = new Users();
+        $form = $this->createForm(UserType::class, $users);
+
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // 3) Encode the password (you could also do this via Doctrine listener)
-            $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
-            $user->setPassword($password);
+            $password = $passwordEncoder->encodePassword($users, $users->getPlainPassword());
+            $users->setPassword($password);
 
-            // 4) save the User!
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
+            $entityManager->persist($users);
             $entityManager->flush();
-
-            // ... do any other work - like sending them an email, etc
-            // maybe set a "flash" success message for the user
 
             return $this->redirectToRoute('user_registration');
         }

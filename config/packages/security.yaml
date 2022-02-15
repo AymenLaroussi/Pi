@@ -1,9 +1,17 @@
 security:
     encoders:
         App\Entity\User: bcrypt
+        App\Entity\Users:
+            algorithm: auto
+
     providers:
         user_db:
             entity: { class: App\Entity\User, property: username }
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
+            entity:
+                class: App\Entity\Users
+                property: username
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -14,9 +22,16 @@ security:
             form_login:
                 login_path: login
                 check_path: login
+                default_target_path: home
             logout:
                 path: app_logout
+                target: home
 
     access_control:
-    # - { path: ^/admin, roles: ROLE_ADMIN }
+    # - { path: ^/admin/login, roles: PUBLIC_ACCESS }
+    - { path: ^/admin, roles: ROLE_ADMIN }
     - { path: ^/profile, roles: ROLE_USER }
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
+        ROLE_SUPER_ADMIN: [ ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH ]

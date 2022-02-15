@@ -1,90 +1,146 @@
-<!DOCTYPE html>
-<html lang="zxx">
+{% extends 'dashboard.html.twig' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Connxion</title>
+{% block body %}
 
-    <link rel="shortcut icon" href="images/fav.png" type="image/x-icon">
-    <link rel="stylesheet" href="{{asset('assets/admin/login/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/admin/login/css/fontawesome.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/admin/login/css/slick.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/admin/login/css/nice-select.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/admin/login/css/animate.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/admin/login/css/style.css')}}">
-</head>
-
-<body>
-
-    <!-- start preloader -->
-    <div class="preloader" id="preloader"></div>
-    <!-- end preloader -->
-
-    <!-- Login Reg In start -->
-    <section id="login-reg">
-        <div class="overlay pb-120">
-            <div class="container">
-                <div class="top-area">
-                    <div class="row d-flex align-items-center">
-                        <div class="col-sm-5 col">
-                            <a class="back-home" href="/home">
-                                <img src="{{asset('assets/admin/login/images/left-icon.png')}}" alt="image">
-                                Retourner l'accueil
-                            </a>
-                        </div>
-                        <div class="col-sm-5 col">
-                            <a href="#">
-                                <img src="{{asset('assets/img/logo.png')}}" style="margin-left: -74px; width: 323px; position: absolute; z-index: 1;" alt="image">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="row pt-120 d-flex justify-content-center">
-                    <div class="col-lg-6">
-                        <div class="login-reg-main text-center">
-                            <h4>CONNEXION</h4>
-                            <div class="form-area">
-                                <form action="#">
-                                    <div class="form-group">
-                                        <label>Email</label>
-                                        <input placeholder="Enter your Email" type="email">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Password</label>
-                                        <input placeholder="Enter your password" type="password">
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="cmn-btn">Connexion</button>
-                                    </div>
-                                </form>
-                                <div class="or">
-                                    <p>OU</p>
-                                </div>
-                                <div class="account">
-                                    <p>Vous n'avez pas encore un compte, <a href="registration.html">inscrivez-vous</a></p>
-                                 </div>
-                            </div>
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row ">
+            <div class="col-12 grid-margin">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Order Status</h4>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        <div class="form-check form-check-muted m-0">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" class="form-check-input">
+                                            </label>
+                                        </div>
+                                    </th>
+                                    <th> Client Name </th>
+                                    <th> Order No </th>
+                                    <th> Product Cost </th>
+                                    <th> Project </th>
+                                    <th> Payment Mode </th>
+                                    <th> Start Date </th>
+                                    <th> Payment Status </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="form-check form-check-muted m-0">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" class="form-check-input">
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <img src="assets/images/faces/face1.jpg" alt="image" />
+                                        <span class="ps-2">Henry Klein</span>
+                                    </td>
+                                    <td> 02312 </td>
+                                    <td> $14,500 </td>
+                                    <td> Dashboard </td>
+                                    <td> Credit card </td>
+                                    <td> 04 Dec 2019 </td>
+                                    <td>
+                                        <div class="badge badge-outline-success">Approved</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check form-check-muted m-0">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" class="form-check-input">
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <img src="assets/images/faces/face2.jpg" alt="image" />
+                                        <span class="ps-2">Estella Bryan</span>
+                                    </td>
+                                    <td> 02312 </td>
+                                    <td> $14,500 </td>
+                                    <td> Website </td>
+                                    <td> Cash on delivered </td>
+                                    <td> 04 Dec 2019 </td>
+                                    <td>
+                                        <div class="badge badge-outline-warning">Pending</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check form-check-muted m-0">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" class="form-check-input">
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <img src="assets/images/faces/face5.jpg" alt="image" />
+                                        <span class="ps-2">Lucy Abbott</span>
+                                    </td>
+                                    <td> 02312 </td>
+                                    <td> $14,500 </td>
+                                    <td> App design </td>
+                                    <td> Credit card </td>
+                                    <td> 04 Dec 2019 </td>
+                                    <td>
+                                        <div class="badge badge-outline-danger">Rejected</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check form-check-muted m-0">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" class="form-check-input">
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <img src="assets/images/faces/face3.jpg" alt="image" />
+                                        <span class="ps-2">Peter Gill</span>
+                                    </td>
+                                    <td> 02312 </td>
+                                    <td> $14,500 </td>
+                                    <td> Development </td>
+                                    <td> Online Payment </td>
+                                    <td> 04 Dec 2019 </td>
+                                    <td>
+                                        <div class="badge badge-outline-success">Approved</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check form-check-muted m-0">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" class="form-check-input">
+                                            </label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <img src="assets/images/faces/face4.jpg" alt="image" />
+                                        <span class="ps-2">Sallie Reyes</span>
+                                    </td>
+                                    <td> 02312 </td>
+                                    <td> $14,500 </td>
+                                    <td> Website </td>
+                                    <td> Credit card </td>
+                                    <td> 04 Dec 2019 </td>
+                                    <td>
+                                        <div class="badge badge-outline-success">Approved</div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Login Reg In end -->
-
-    <script src="{{asset('assets/admin/login/js/jquery-3.5.1.min.js')}}"></script>
-    <script src="{{asset('assets/admin/login/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('assets/admin/login/js/slick.js')}}"></script>
-    <script src="{{asset('assets/admin/login/js/jquery.nice-select.min.js')}}"></script>
-    <script src="{{asset('assets/admin/login/js/fontawesome.js')}}"></script>
-    <script src="{{asset('assets/admin/login/js/jquery.counterup.min.js')}}"></script>
-    <script src="{{asset('assets/admin/login/js/jquery.waypoints.min.js')}}"></script>
-    <script src="{{asset('assets/admin/login/js/wow.js')}}"></script>
-    <script src="{{asset('assets/admin/login/js/main.js')}}"></script>
-
-</body>
-
-</html>
+    </div>
+    {% endblock %}

@@ -12,7 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @UniqueEntity(fields="email", message="Email déjà existant")
  * @UniqueEntity(fields="username", message="Pseudonyme déjà existant")
  */
-class User implements UserInterface
+class Users implements UserInterface
 {
     /**
      * @ORM\Id

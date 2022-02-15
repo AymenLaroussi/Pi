@@ -3,10 +3,10 @@
      <head>
       <meta charset="utf-8">
       <meta http-equiv="x-ua-compatible" content="ie=edge">
-      <title>Azerty - eSports and Gaming </title>
+      <title>TournamentLegacy - Organisation de tournois eSports </title>
       <meta name="author" content="Vecuro">
-      <meta name="description" content="Zocker - eSports and Gaming HTML Template">
-      <meta name="keywords" content="Zocker - eSports and Gaming HTML Template">
+      <meta name="description" content="TournamentLegacy - Organisation de tournois eSports">
+      <meta name="keywords" content="TournamentLegacy - Organisation de tournois eSports">
       <meta name="robots" content="INDEX,FOLLOW">
       <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
       <link rel="preconnect" href="https://fonts.gstatic.com/">
@@ -185,17 +185,13 @@
          <div class="bg-dark py-10" data-bg-src="assets/img/shape/header-bg-4-1.jpg">
             <div class="container vs-container">
                <div class="row justify-content-between">
-                  <div class="col-auto d-none d-sm-block">
-                     <p class="mb-0 fs-xs text-mist-blue">Welcome to our <a class="text-white" href="team.html"><u class="fw-bold">Esports team</u></a></p>
-                  </div>
                   <div class="col-auto">
-                     <span class="fs-xs text-mist-blue me-2">Follow Us:</span>
+                     <span class="fs-xs text-mist-blue me-2">Rejoignez nous:</span>
                      <ul class="social-links fs-xs text-mist-blue d-inline-block">
-                        <li><a href="https://google.com/"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="https://google.com/"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="https://google.com/"><i class="fab fa-twitch"></i></a></li>
-                        <li><a href="https://google.com/"><i class="fab fa-linkedin-in"></i></a></li>
-                        <li><a href="https://google.com/"><i class="fab fa-youtube"></i></a></li>
+                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitch"></i></a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
                      </ul>
                   </div>
                </div>
@@ -205,13 +201,13 @@
             <div class="container vs-container position-relative">
                <div class="row gx-0">
                   <div class="col-auto">
-                     <div class="header4-logo bg-light-gray"><a class="d-none d-lg-inline-block" href="index.html"><img src="assets/img/logo.png" style="width:200px;" alt="Zocker"></a><a class="d-inline-block d-lg-none" href="/home"><img src="assets/img/logo-2.png" alt="Zocker"></a></div>
+                     <div class="header4-logo bg-light-gray"><a class="d-none d-lg-inline-block" href="home"><img src="assets/img/logo.png" style="width:200px;" alt="Zocker"></a><a class="d-inline-block d-lg-none" href="/home"><img src="assets/img/logo-2.png" alt="Zocker"></a></div>
                   </div>
                   <div class="col-auto d-none d-hd-block">
                      <div class="header-info-box has-right-border">
-                        <span class="has-border fs-12 text-mist-blue">Current Event</span>
-                        <p class="fs-xs text-white"><strong>Soring Overmatch International</strong></p>
-                        <span class="fs-10 small">May 7th, 2021 at 6:30PM EST</span>
+                        <span class="has-border fs-12 text-mist-blue">Dernier tournoi</span>
+                        <p class="fs-xs text-white"><strong>< Nom ></strong></p>
+                        <span class="fs-10 small">Date : < ></span>
                      </div>
                   </div>
                   <div class="col text-end text-lg-center align-self-center">
@@ -220,39 +216,33 @@
                            <li><a href="/home">ACCUEIL</a></li>
                            <li><a href="/tournoi">TOURNOI</a></li>
                            <li><a href="/boutique">BOUTIQUE</a></li>
-                           <li><a href="/actualite">ACTUALITE</a></li>
+                           <li><a href="/boutique">ÉVÈNEMENTS</a></li>
                            {% if app.user %}
-                              <li><a href="/deconnexion">Déconnexion</a></li>
+                              <li><a href="{{ path('app_logout') }}">DÉCONNEXION</a></li>
                            {% else %}
-                              <li><a href="/login">Connexion</a></li>
+                              <li><a href="/login">CONNEXION</a></li>
+                           {% endif %}
+                           {% if is_granted('ROLE_ADMIN') %}
+                              <li><a style="color:red" href="/admin/index">Administration</a></li>
                            {% endif %}
                      </nav>
                      <button type="button" class="vs-menu-toggle text-white d-inline-block d-lg-none"><i class="far fa-bars"></i></button>
                   </div>
                   <div class="col-auto d-none d-lg-flex align-items-center justify-content-end">
-                     <a href="#" class="vs-btn style2 outline1 d-none d-xl-inline-block"><i class="fab fa-twitch"></i><strong>Live Streaming</strong></a>
+                     <a href="profil" class="vs-btn style2 outline1 d-none d-xl-inline-block"><i class="badge-online"></i><strong>VOTRE PROFIL</strong></a>
                      <ul class="header-list1 list-style-none ml-30">
-                        <li>
-                           <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><img src="assets/img/flag/flag-1.png" alt="Country Flag" class="flag radius-circle"></button>
-                           <ul class="dropdown-menu">
-                              <li><a class="dropdown-item" href="#"><img src="{{ asset('img/flag/french.png')}}" alt="Flag" class="flag-small"> French</a></li>
-                              <li><a class="dropdown-item" href="#"><img src="assets/img/flag/germany.png" alt="Flag" class="flag-small"> Germany</a></li>
-                              <li><a class="dropdown-item" href="#"><img src="assets/img/flag/italy.png" alt="Flag" class="flag-small"> Italy</a></li>
-                              <li><a class="dropdown-item" href="#"><img src="assets/img/flag/bangladesh.png" alt="Flag" class="flag-small"> Bangladesh</a></li>
-                              <li><a class="dropdown-item" href="#"><img src="assets/img/flag/united-state.png" alt="Flag" class="flag-small"> United State</a></li>
-                           </ul>
-                        </li>
+
                         <li><button class="searchBoxTggler"><i class="far fa-search"></i></button></li>
                         <li><button class="sideMenuToggler"><i class="fal fa-grip-horizontal fs-2"></i></button></li>
                      </ul>
                   </div>
-                  <div class="col-auto">
+                  {#  <div class="col-auto">
                      <div class="header-info-box has-left-border d-ml-none">
                         <span class="has-border fs-12 text-mist-blue">Next Match</span>
                         <p class="fs-xs text-white"><strong>Nigro <span class="vurses">vs</span> uniqueG</strong></p>
                         <span class="fs-10">May 7th, 2021 at 6:30PM EST</span>
                      </div>
-                  </div>
+                  </div> #}
                </div>
             </div>
          </div>
@@ -356,12 +346,10 @@
    </div>
 </footer>
 <a href="#" class="scrollToTop icon-btn5"><i class="far fa-angle-up"></i></a>
-<div class="vs-cursor"></div>
-<div class="vs-cursor2"></div>
+
 <script src="{{ asset('../assets/js/vendor/jquery-1.12.4.min.js')}}"></script>
 <script src="{{ asset('../assets/js/app.min.js')}}"></script>
 <script src="{{ asset('../assets/js/vscustom-carousel.min.js')}}">
-</script><script src="{{ asset('../assets/js/vs-cursor.min.js')}}">
 </script><script src="{{ asset('../assets/js/vsmenu.min.js')}}">
 </script><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDC3Ip9iVC0nIxC6V14CKLQ1HZNF_65qEQ"></script>
 <script src="{{ asset('../assets/js/map.js')}}"></script>
