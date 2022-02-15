@@ -1,0 +1,42 @@
+{% extends 'dashboard.html.twig' %}
+{% block body %}
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ produit.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ produit.titre }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ produit.description }}</td>
+            </tr>
+            <tr>
+                <th>Stock</th>
+                <td>{{ produit.stock }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ produit.prix }}</td>
+            </tr>
+            <tr>
+                <th>Promo</th>
+                <td>{{ produit.promo ? 'Oui' : 'Nom' }}</td>
+            </tr>
+            <tr>
+                <th>Ref</th>
+                <td>{{ produit.ref }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('list_produits') }}">Retour</a>
+
+    <a href="{{ path('modifier_produits', {'id': produit.id}) }}">Modifier</a>
+
+    {{ include('produits/_supprimer_form.html.twig') }}
+{% endblock %}

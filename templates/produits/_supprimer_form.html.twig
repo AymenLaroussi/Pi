@@ -1,0 +1,8 @@
+<form method="post" action="{{ path('supprimer_produits', {'id': produit.id}) }}" onsubmit="return confirm('vous etes sure de vouloir supprimer ?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('Supprimer' ~ produit.id) }}">
+    <button class="btn">Supprimer</button>
+</form>
+{{ form_start(form) }}
+
+                                               {{ form_widget(form.ajout, { 'label': 'Ajouter une produit' }) }}
+                                            {{ form_end(form) }}

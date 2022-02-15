@@ -6,6 +6,7 @@ use App\Entity\Produits;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class ProduitsType extends AbstractType
 {
@@ -19,6 +20,11 @@ class ProduitsType extends AbstractType
             ->add('promo')
             ->add('ref')
             ->add('categorie')
+            ->add('Enregistrer',SubmitType::class, [
+                'attr' => [
+                    'href' => "{{ path('ajout_categories') }}",
+                ],
+            ]);
         ;
     }
 
