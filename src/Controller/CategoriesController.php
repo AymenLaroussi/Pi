@@ -69,7 +69,7 @@ class CategoriesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('categories_index');
+            return $this->redirectToRoute('list_categories');
         }
 
         return $this->render('categories/modifier.html.twig', [
@@ -78,17 +78,16 @@ class CategoriesController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="supprimer_categories", methods={"POST"})
-     */
-    public function supprimer(Request $request, Categories $category): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$category->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($category);
-            $entityManager->flush();
-        }
+   
 
-        return $this->redirectToRoute('list_categories');
+    /**
+     * @Route("/supprimer/{id}", name="supprimer_categories")
+     */
+    public function delete($id){
+        $category= $this->getDoctrine()->getRepository(Categories::class)->find($id);
+        $em= $this->getDoctrine()->getManager();
+        $em->remove($category);
+        $em->flush();
+        return $this->redirectToRoute("list_categories");
     }
 }

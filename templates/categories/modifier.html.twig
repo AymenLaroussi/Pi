@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-
-<title>Metre à jour une catégories</title>
-
+{% extends 'dashboard.html.twig' %}
 {% block body %}
-    <h1>Mettre à jour Categories</h1>
-
-    {{ include('categories/_form.html.twig', {'button_label': 'Mise à jour'}) }}
-
-    <a href="{{ path('list_categories') }}">Retour</a>
-
-    {{ include('categories/_supprimer_form.html.twig') }}
+        <div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body"><br><br><br><br>
+                        <h4 class="card-title"><a href="{{ path('list_categories') }}"><i class="mdi mdi-arrow-left"></i></a>Mettre à jour une catégorie</h4>
+                            <div class="form-group">
+                                {{ include('categories/_form.html.twig', {'button_label': 'Mise à jour'}) }}
+                                {{ include('categories/_supprimer_form.html.twig') }}
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 {% endblock %}
