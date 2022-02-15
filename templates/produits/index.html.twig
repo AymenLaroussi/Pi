@@ -20,6 +20,7 @@
                                     <th>Prix</th>
                                     <th>Promo</th>
                                     <th>Ref</th>
+                                    <th>Image</th>
                                     <th>actions</th>
                                 </tr>
                             </thead>
@@ -33,6 +34,7 @@
                                     <td>{{ produit.prix }}</td>
                                     <td>{{ produit.promo ? 'Yes' : 'No' }}</td>
                                     <td>{{ produit.ref }}</td>
+                                    <td><img src="../../uploads/{{ produit.image }}"></td>
                                     
                                     <td>
                                         <form method="post" action="{{ path('supprimer_produits', {'id': produit.id}) }}" onsubmit="return confirm('vous etes sure de vouloir supprimer ?');">

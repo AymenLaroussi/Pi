@@ -2,7 +2,3 @@
     <input type="hidden" name="_token" value="{{ csrf_token('Supprimer' ~ produit.id) }}">
     <button class="btn">Supprimer</button>
 </form>
-{{ form_start(form) }}
-
-                                               {{ form_widget(form.ajout, { 'label': 'Ajouter une produit' }) }}
-                                            {{ form_end(form) }}
