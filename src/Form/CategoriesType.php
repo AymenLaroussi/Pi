@@ -6,6 +6,7 @@ use App\Entity\Categories;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class CategoriesType extends AbstractType
 {
@@ -14,7 +15,11 @@ class CategoriesType extends AbstractType
         $builder
             ->add('nom')
             ->add('produits')
-        ;
+            ->add('Enregistrer',SubmitType::class, [
+                'attr' => [
+                    'href' => "{{ path('ajout_categories') }}",
+                ],
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
