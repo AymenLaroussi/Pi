@@ -2,16 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="15642978-c11c-42c6-95ae-5b44b3bd4d3d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Form/JeuType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/jeu/JeuType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/jeu/_form.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/jeu/_supprimer_form.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/jeu/ajout.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/jeu/modifier.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/jeu/voir.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/PI.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/phpunit.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/InscriptionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/InscriptionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20220216164323.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20220216164323.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20220216183807.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/JeuController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/JeuController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/User1Type.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/User1Type.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/inscription.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin/login.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/connexion/connexion.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/connexion/connexion.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/dashboard.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/inscription/inscription.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inscription/inscription.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/jeu/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/jeu/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,6 +188,8 @@
       <path value="$PROJECT_DIR$/vendor/fakerphp/faker" />
       <path value="$PROJECT_DIR$/vendor/symfony/webpack-encore-pack" />
       <path value="$PROJECT_DIR$/vendor/twig/intl-extra" />
+      <path value="$PROJECT_DIR$/vendor/behat/transliterator" />
+      <path value="$PROJECT_DIR$/vendor/gedmo/doctrine-extensions" />
     </include_path>
   </component>
   <component name="ProjectId" id="24LQDjUbNxlayTmgi4M9c4zfjye" />
@@ -192,10 +207,15 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/3A44" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/jeu" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\PI\templates\jeu" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="phpunit.xml.dist" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -234,11 +254,23 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/templates/jeu/index.html.twig</url>
+          <line>44</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

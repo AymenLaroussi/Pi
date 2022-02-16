@@ -51,9 +51,16 @@ class User implements UserInterface
     private $roles;
 
     /**
+
      * @ORM\Column(type="datetime")
      */
     private $date_creation;
+
+     /**
+     * @ORM\OneToMany(targetEntity=Tournoi::class, mappedBy="organisateur")
+     */
+    private $tournois;
+    
 
     public function __construct() {
         $this->roles = array('ROLE_USER');
