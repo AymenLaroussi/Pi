@@ -16,7 +16,6 @@ class TournoiType extends AbstractType
             ->add('nom')
             ->add('nbr_equipes')
             ->add('nbr_joueur_eq')
-            ->add('jeu')
             ->add('prix')
             ->add('image')
             ->add('discord_channel')

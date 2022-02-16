@@ -1,0 +1,283 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TournoiController!{% endblock %}
+
+{% block body %}
+    <div class="breadcumb-wrapper breadcumb-layout1 pt-100 pb-50 " data-bg-src="assets/img/breadcumb/breadcumb-1.jpg" data-overlay>
+        <div class="container z-index-common">
+            <div class="breadcumb-content text-center">
+                <h1 class="breadcumb-title h1 text-white my-0">Tournament</h1>
+                <h2 class="breadcumb-bg-title">Events</h2>
+                <ul class="breadcumb-menu-style1 text-white mx-auto fs-xs">
+                    <li>
+                        <a href="index.html">
+                            <i class="fal fa-home"></i>Home </a>
+                    </li>
+                    <li class="active">Tournament</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="vs-newsletter-wrapper bg-dark z-index-step1 sidebar">
+        <div class="container">
+            <div class="position-relative">
+                <div class="inner-wrapper bg-black position-absolute top-50 start-50 translate-middle w-100 px-60 py-40">
+                    <div>
+                        <form action="#" class="newsletter-style1 d-md-flex" >
+
+
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-xl-6 text-center text-xl-start mb-3 mb-xl-0">
+                            <span class="sub-title2 mt-2 text-center">Créer un nouveau Tournoi !</span>
+                            <h4 class="mb-2 text-white">Organiser votre tournoi dès maintenant</h4>
+                            <button class="vs-btn gradient-btn " style="align-content: end"><a href="/jeu"> Ajoutez un Jeu </a></button>
+                        </div>
+                        </form>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="vs-events-wrapper events-layout1 space-top space-md-bottom">
+        <h2 class="text-center"><span class="sub-title2 mt-5 ">Jeu disponible</span></h2>
+        <div class="container">
+            <div class="row">
+                {#{% for tournoi in tournois %}
+                    {% if ('now'|date('U') < tournoi.time|date('U'))  %}#}
+                        <div class="col-md-6">
+
+                            <div class="vs-events d-lg-flex" data-bg-src="assets/img/shape/events-bg-1.png">
+                                <div class="media-img">
+                                   {# <img src="{{ tournoi.image }}" alt="Tournament Image">#}
+                                </div>
+                                <div class="media-body align-self-center">
+                                    <h3 class="events-name h5 text-white">
+                                        {#<a href="{{ path('showTournoi',{"id":tournoi.id}) }}">{{ tournoi.nom }}</a>#}
+                                    </h3>
+                                    <ul class="events-list list-style-none">
+                                        <li class="text-light2">
+                                            <span class="text-white">Date:</span>{#{{ tournoi.time |format_datetime()}}#}date
+                                        </li>
+                                        {#                <li class="text-light2">
+                  <span class="text-white">Game:</span>{{ tournoi.jeu }}
+                </li>#}
+                                        <li class="text-light2">
+                                            <span class="text-white">Teams:</span>nombre
+                                        </li>
+                                        <li class="text-light2">
+                                            <span class="text-white">Prize Pool:</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <div class="col-md-5 col-lg-8 col-xl-1 subscribe-buttom " >
+                                {#<form action="#" class="newsletter-style1 d-md-flex " >
+                                    <button class="vs-btn gradient-btn form"><a href="{{ path('tournoi',{"id":tournoi.id}) }}">s'inscrie</a></button>
+                                </form>#}
+                            </div>
+                        </div>
+                   {# {% endif %}
+                {% endfor %}#}
+
+
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+      {#<div class="container">
+        <div class="row">
+          <div class="col-md-5">
+            <div class="vs-events d-lg-flex" data-bg-src="assets/img/shape/events-bg-1.png">
+              <div class="media-img">
+                <img src="{{ tournoi.image }}" alt="Tournament Image">
+              </div>
+              <div class="media-body align-self-center">
+                <h3 class="events-name h5 text-white">
+                  <a href="{{ tournoi.nom }}"></a>
+                </h3>
+                <ul class="events-list list-style-none">
+                  <li class="text-light2">
+                    <span class="text-black-50">Date:</span> {{ tournoi.time |format_datetime()  }}
+                  </li>
+                  <li class="text-light2">
+                    <span class="text-black-50">Game:</span> {{ tournoi.jeu }}
+                  </li>
+                  <li class="text-light2">
+                    <span class="text-black-50">Teams:</span>{{ tournoi.nbrequipes }}
+                  </li>
+                  <li class="text-light2">
+                    <span class="text-black-50">Prize Pool:</span>120,000$
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>#}
+
+
+
+      {#<div class="mb-15 filter-active row">
+        <div class="col-md-6 col-lg-12 grid-item pubg fortnite csgo">
+          <div class="vs-match">
+            <div class="row align-items-center justify-content-center justify-content-lg-start">
+              <div class="col-lg-3">
+                <div class="match-logo">
+                  <a href="team-details.html">
+                    <img src="{{ tournoi.image }}" alt="Team Logo">
+                  </a>
+                  <span class="versus">vs</span>
+                  <a href="team-details.html">
+                    <img src="" alt="Team Logo">
+                  </a>
+                </div>
+              </div>
+              <div class="col-lg">
+                <div class="match-about pl-35">
+                  <h3 class="team-name h5 text-white mb-1 mb-lg-2">
+                    <a href="team-details.html">{{ tournoi.nom }}</a>
+                    <span class="text-theme">vs</span>
+                    <a href="team-details.html">werewolf</a>
+                  </h3>
+                  <p class="match-date mb-0">December 25, 2021 4:00 PM</p>
+                </div>
+              </div>
+              <div class="col-auto col-xl-2">
+                <div class="match-time text-white">3 : 8</div>
+              </div>
+              <div class="col-auto col-xl-2 text-end">
+                <a href="https://www.youtube-nocookie.com/embed/uoonAnmKQhI" class="icon-btn1 popup-video">
+                  <i class="fab fa-twitch"></i>
+                </a>
+                <a href="https://www.youtube-nocookie.com/embed/uoonAnmKQhI" class="icon-btn1 popup-video">
+                  <i class="fab fa-youtube"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>#}
+
+
+        {#<div class="col-md-6 col-lg-12 grid-item fortnite csgo dota">
+          <div class="vs-match">
+            <div class="row align-items-center justify-content-center justify-content-lg-start">
+              <div class="col-lg-3">
+                <div class="match-logo">
+                  <a href="team-details.html">
+                    <img src="assets/img/logos/logo-1-1.png" alt="Team Logo">
+                  </a>
+                  <span class="versus">vs</span>
+                  <a href="team-details.html">
+                    <img src="assets/img/logos/logo-1-2.png" alt="Team Logo">
+                  </a>
+                </div>
+              </div>
+              <div class="col-lg">
+                <div class="match-about pl-35">
+                  <h3 class="team-name h5 text-white mb-1 mb-lg-2">
+                    <a href="team-details.html">DARKEN GG</a>
+                    <span class="text-theme">vs</span>
+                    <a href="team-details.html">MAXDOM</a>
+                  </h3>
+                  <p class="match-date mb-0">December 25, 2021 4:00 PM</p>
+                </div>
+              </div>
+              <div class="col-auto col-xl-2">
+                <div class="match-time text-white">3 : 5</div>
+              </div>
+              <div class="col-auto col-xl-2 text-end">
+                <a href="https://www.youtube-nocookie.com/embed/uoonAnmKQhI" class="icon-btn1 popup-video">
+                  <i class="fab fa-twitch"></i>
+                </a>
+                <a href="https://www.youtube-nocookie.com/embed/uoonAnmKQhI" class="icon-btn1 popup-video">
+                  <i class="fab fa-youtube"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-12 grid-item pubg csgo dota">
+          <div class="vs-match">
+            <div class="row align-items-center justify-content-center justify-content-lg-start">
+              <div class="col-lg-3">
+                <div class="match-logo">
+                  <a href="team-details.html">
+                    <img src="assets/img/logos/logo-1-3.png" alt="Team Logo">
+                  </a>
+                  <span class="versus">vs</span>
+                  <a href="team-details.html">
+                    <img src="assets/img/logos/logo-1-4.png" alt="Team Logo">
+                  </a>
+                </div>
+              </div>
+              <div class="col-lg">
+                <div class="match-about pl-35">
+                  <h3 class="team-name h5 text-white mb-1 mb-lg-2">
+                    <a href="team-details.html">KRONTON</a>
+                    <span class="text-theme">vs</span>
+                    <a href="team-details.html">ECLIPSE</a>
+                  </h3>
+                  <p class="match-date mb-0">December 25, 2021 4:00 PM</p>
+                </div>
+              </div>
+              <div class="col-auto col-xl-2">
+                <div class="match-time text-white">2 : 4</div>
+              </div>
+              <div class="col-auto col-xl-2 text-end">
+                <a href="https://www.youtube-nocookie.com/embed/uoonAnmKQhI" class="icon-btn1 popup-video">
+                  <i class="fab fa-twitch"></i>
+                </a>
+                <a href="https://www.youtube-nocookie.com/embed/uoonAnmKQhI" class="icon-btn1 popup-video">
+                  <i class="fab fa-youtube"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-12 grid-item pubg fortnite dota">
+          <div class="vs-match">
+            <div class="row align-items-center justify-content-center justify-content-lg-start">
+              <div class="col-lg-3">
+                <div class="match-logo">
+                  <a href="team-details.html">
+                    <img src="assets/img/logos/logo-1-5.png" alt="Team Logo">
+                  </a>
+                  <span class="versus">vs</span>
+                  <a href="team-details.html">
+                    <img src="assets/img/logos/logo-1-6.png" alt="Team Logo">
+                  </a>
+                </div>
+              </div>
+              <div class="col-lg">
+                <div class="match-about pl-35">
+                  <h3 class="team-name h5 text-white mb-1 mb-lg-2">
+                    <a href="team-details.html">WAR HORNS</a>
+                    <span class="text-theme">vs</span>
+                    <a href="team-details.html">LINGTINGO</a>
+                  </h3>
+                  <p class="match-date mb-0">December 25, 2021 4:00 PM</p>
+                </div>
+              </div>
+              <div class="col-auto col-xl-2">
+                <div class="match-time text-white">1 : 6</div>
+              </div>
+              <div class="col-auto col-xl-2 text-end">
+                <a href="https://www.youtube-nocookie.com/embed/uoonAnmKQhI" class="icon-btn1 popup-video">
+                  <i class="fab fa-twitch"></i>
+                </a>
+                <a href="https://www.youtube-nocookie.com/embed/uoonAnmKQhI" class="icon-btn1 popup-video">
+                  <i class="fab fa-youtube"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div> #}

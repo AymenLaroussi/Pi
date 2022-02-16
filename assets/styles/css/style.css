@@ -6902,6 +6902,9 @@ blockquote *:not(:after)> {
 	margin-bottom: 30px;
 	padding: 45px 50px
 }
+.subscribe-buttom{
+	margin-top: 50;
+}
 
 @media (max-width: 1199px) {
 	.events-layout1 .media-img {

@@ -59,10 +59,13 @@ class Tournoi
      */
     private $equipes;
 
+
+
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="tournois")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $jeu;
+    private $organisateur;
 
 
 
@@ -190,14 +193,18 @@ class Tournoi
         return $this;
     }
 
-    public function getJeu(): ?string
+
+
+
+
+    public function getOrganisateur(): ?User
     {
-        return $this->jeu;
+        return $this->organisateur;
     }
 
-    public function setJeu(string $jeu): self
+    public function setOrganisteur(?User $organisateur): self
     {
-        $this->jeu = $jeu;
+        $this->organisateur = $organisateur;
 
         return $this;
     }
