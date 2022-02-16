@@ -1,0 +1,4 @@
+<form method="post" action="{{ path('supprimer_jeu', {'id': jeu.id}) }}" onsubmit="return confirm('vous etes sure de vouloir supprimer ?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('Supprimer' ~ jeu.id) }}">
+    <button class="btn">Supprimer</button>
+</form>
