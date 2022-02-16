@@ -26,7 +26,7 @@
                                             <td>{{ user1.id }}</td>
                                             <td>{{ user1.username }}</td>
                                             <td>{{ user1.email }}</td>
-                                            <td>{{ dump(user1.roles) }}</td>
+                                            <td>{{ user1.roles ? user1.roles|json_encode : '' }}</td>
                                             <td><form method="post" action="{{ path('supprimer_utilisateur', {'id': user1.id}) }}" onsubmit="return confirm('Confirmez-vous la suppression ?');">
                                                     <div style="margin-left: auto; margin-right: auto;">
                                                         <a href="{{ path('modifier_utilisateur', {'id': user1.id}) }}"><i class="mdi mdi-tooltip-edit"></i></a>
