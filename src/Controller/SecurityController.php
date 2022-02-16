@@ -9,10 +9,16 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends Controller
 {
     /**
-     * @Route("/login", name="login")
+     * @Route("/connexion", name="connexion")
      */
     public function loginAction(Request $request, AuthenticationUtils $authenticationUtils)
     {
+        $utilisateur = $this->getUser();
+        if($utilisateur)
+        {
+            return $this->redirectToRoute('home');
+        }
+
         $error = $authenticationUtils->getLastAuthenticationError();
 
         $lastUsername = $authenticationUtils->getLastUsername();
@@ -28,6 +34,6 @@ class SecurityController extends Controller
      */
     public function logout(): void
     {
-        throw new \Exception('Don\'t forget to activate logout in security.yaml');
+        throw new \Exception('err');
     }
 }

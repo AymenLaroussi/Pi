@@ -12,11 +12,16 @@ security:
             provider: user_db
             anonymous: ~
             form_login:
-                login_path: login
-                check_path: login
+                login_path: connexion
+                check_path: connexion
             logout:
                 path: app_logout
+                target: home
 
     access_control:
-    # - { path: ^/admin, roles: ROLE_ADMIN }
-    - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/deconnexion, roles: ROLE_USER }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/profil, roles: ROLE_USER }
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
