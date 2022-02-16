@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+{% block title %}Hello TournoiController!{% endblock %}
+{% block body %}
+    <section class="vs-match-wrapper vs-match-layout1 bg-fixed space-top space-md-bottom" data-bg-src="assets/img/bg/bg-2.jpg">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 col-xl-6 text-center text-lg-start">
+                    <div class="section-title">
+                        <span class="sub-title1 text-theme3">Informations générales sur le tournoi</span>
+
+                    </div>
+                </div>
+                <div>
+                <div class="col-md-6">
+
+                    <div class="vs-events d-lg-flex" data-bg-src="assets/img/shape/events-bg-1.png">
+                        <div class="media-img">
+                            <img src="{{ tournoi.image }}" alt="Tournament Image">
+                        </div>
+                        <div class="media-body align-self-center">
+                            <h3 class="events-name h5 text-white">
+                                <a href="{{ path('showTournoi',{"id":tournoi.id}) }}">{{ tournoi.nom }}</a>
+                            </h3>
+                            <ul class="events-list list-style-none">
+                                <li class="text-light2">
+                                    <span class="text-white">Date:</span>{{ tournoi.time |format_datetime()}}
+                                </li>
+{#                                <li class="text-light2">
+                                    <span class="text-white">Game:</span>{{ tournoi.jeu }}
+                                </li>#}
+                                <li class="text-light2">
+                                    <span class="text-white">Teams:</span>{{ tournoi.nbrequipes }}
+                                </li>
+                                <li class="text-light2">
+                                    <span class="text-white">Prize Pool:</span>{{ tournoi.prix }}
+                                </li>
+                            </ul>
+                        <div class="col-md-15">
+
+                        </div>
+                        </div>
+                        <div class="col-md-15">
+
+                            <ul class="events-list list-style-none">
+                                <li class="text-light2">
+                                    <span class="text-black">Nombre joueur par equipe:</span>{{ tournoi.nbrjoueureq}}
+                                </li>
+                                <li class="text-light2">
+                                    <span class="text-black-50">Discord channel:</span>{{ tournoi.discordchannel }}
+                                </li>
+                                
+                            </ul>
+                        </div>
+
+
+                    </div>
+                </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </section>
+    <section class="vs-match-wrapper vs-match-layout1 bg-fixed space-top space-md-bottom" data-bg-src="assets/img/bg/bg-2.jpg">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 col-xl-6 text-center text-lg-start">
+                    <div class="section-title">
+                        <span class="sub-title1 text-theme3">trending match</span>
+                        <h2 class="sec-title1 text-white">matchs</h2>
+                    </div>
+                </div>
+
+            </div>
+            <div class="mb-15 filter-active row">
+                <div class="col-md-6 col-lg-12 grid-item pubg fortnite csgo">
+                    <div class="vs-match">
+                        <div class="row align-items-center justify-content-center justify-content-lg-start">
+
+                            <div class="col-lg">
+                                <div class="match-about pl-35">
+                                    <h3 class="team-name h5 text-white mb-1 mb-lg-2"><a href="team-details.html">esports mirax</a> <span class="text-theme">vs</span> <a href="team-details.html">werewolf</a></h3>
+                                    <p class="match-date mb-0">December 25, 2021 4:00 PM</p>
+                                </div>
+                            </div>
+                            <div class="col-auto col-xl-2">
+                                <div class="match-time text-white">3 : 8</div>
+                            </div>
+                            <div class="col-auto col-xl-2 text-end"><a href="https://www.youtube-nocookie.com/embed/uoonAnmKQhI" class="icon-btn1 popup-video"><i class="fab fa-twitch"></i></a> <a href="https://www.youtube-nocookie.com/embed/uoonAnmKQhI" class="icon-btn1 popup-video"><i class="fab fa-youtube"></i></a></div>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+{% endblock %}
