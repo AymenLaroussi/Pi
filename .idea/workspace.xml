@@ -2,35 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="15642978-c11c-42c6-95ae-5b44b3bd4d3d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/migrations/Version20220214203012.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20220214203848.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20220214222231.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/migrations/Version20220215152613.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/InscriptionController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/JeuController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/Jeu.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/UserType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/JeuRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/connexion/connexion.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/inscription/index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/inscription/inscription.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/jeu/index.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/security/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/TournoiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TournoiController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Tournoi.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Tournoi.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/TournoiType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/TournoiType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/TournoiRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/TournoiRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/dashboard.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/erreur/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/erreur/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/tournoi/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tournoi/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/tournoi/tournament-details.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tournoi/tournament-details.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,9 +33,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -211,10 +188,11 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/3A44" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -238,16 +216,8 @@
       <workItem from="1644317481366" duration="1294000" />
       <workItem from="1644591255710" duration="2041000" />
       <workItem from="1644672184775" duration="315000" />
-      <workItem from="1644838576989" duration="4829000" />
-      <workItem from="1644856914274" duration="8887000" />
-      <workItem from="1644776200035" duration="317000" />
-      <workItem from="1644786817880" duration="4841000" />
-      <workItem from="1644853693102" duration="4075000" />
-      <workItem from="1644921795878" duration="904000" />
-      <workItem from="1644923550472" duration="1351000" />
-      <workItem from="1644929790877" duration="8287000" />
-      <workItem from="1644944500880" duration="1376000" />
-      <workItem from="1645014775049" duration="830000" />
+      <workItem from="1644916477629" duration="5820000" />
+      <workItem from="1644925116801" duration="10620000" />
     </task>
     <servers />
   </component>
@@ -264,7 +234,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
