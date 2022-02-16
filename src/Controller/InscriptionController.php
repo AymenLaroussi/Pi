@@ -30,12 +30,13 @@ class InscriptionController extends Controller
 
             $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
+            $user->setDateCreation(new \DateTime('now'));
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('user_registration');
+            return $this->redirectToRoute('connexion');
         }
 
         return $this->render(
