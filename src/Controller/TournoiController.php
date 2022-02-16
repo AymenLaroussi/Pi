@@ -32,7 +32,7 @@ if($this->getUser()){
     return $this->render("tournoi/index.html.twig",
         array("tournois"=>$tournois,"mestournois"=>$mestournois));
 }
-        return $this->redirectToRoute("login");
+        return $this->redirectToRoute("connexion");
     }
     /**
      * @Route("/addtournoi", name="addtournoi")
