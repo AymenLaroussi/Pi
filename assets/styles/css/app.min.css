@@ -45,7 +45,9 @@
 		scroll-behavior: smooth
 	}
 }
-
+.form {
+	 margin-right: 5rem // Change the number as you want
+}
 body {
 	margin: 0;
 	font-family: var(--bs-font-sans-serif);
