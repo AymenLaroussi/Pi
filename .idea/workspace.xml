@@ -3,15 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="15642978-c11c-42c6-95ae-5b44b3bd4d3d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/InscriptionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/InscriptionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/User1Type.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/User1Type.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/inscription.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin/login.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/connexion/connexion.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/connexion/connexion.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/dashboard.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/erreur/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/erreur/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/tournoi/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tournoi/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/inscription/inscription.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inscription/inscription.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

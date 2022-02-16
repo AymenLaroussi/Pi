@@ -50,6 +50,11 @@ class User implements UserInterface
      */
     private $roles;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date_creation;
+
     public function __construct() {
         $this->roles = array('ROLE_USER');
     }
@@ -111,5 +116,17 @@ class User implements UserInterface
 
     public function eraseCredentials()
     {
+    }
+
+    public function getDateCreation(): ?\DateTimeInterface
+    {
+        return $this->date_creation;
+    }
+
+    public function setDateCreation(\DateTimeInterface $date_creation): self
+    {
+        $this->date_creation = $date_creation;
+
+        return $this;
     }
 }
