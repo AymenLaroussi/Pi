@@ -33,6 +33,10 @@
    <meta name="msapplication-TileColor" content="#ffffff">
    <meta name="msapplication-TileImage" content={{ asset('../assets/img/favicons/ms-icon-144x144.png')}}">
       <meta name="theme-color" content="#ffffff">
+      
+      
+      
+
    <link rel="stylesheet" href="{{ asset('../assets/css/app.min.css')}}">
    <link rel="stylesheet" href="{{ asset('../assets/css/fontawesome.min.css')}}">
    <link rel="stylesheet" href="{{ asset('../assets/css/style.css')}}">
@@ -47,7 +51,7 @@
    <div class="container position-relative">
       <div class="row align-items-center">
          <div class="col-5 col-md-3">
-            <div class="logo"><a href="/"><img src="assets/img/logo.png" alt="Tournament Legacy" style="width: 159px;"></a></div>
+            <div class="logo"><a href="/"><img src="{{asset('assets/img/logo.png')}}" alt="Tournament Legacy" style="width: 159px;"></a></div>
          </div>
          <div class="col-7 col-md-9 text-end position-static">
             <nav class="main-menu menu-sticky1 d-none d-lg-block link-inherit">
@@ -75,6 +79,7 @@
                               <li><a href="player.html">Players</a></li>
                               <li><a href="player-details.html">Players Details</a></li>
                               <li><a href="team.html">Teams</a></li>
+
                            </ul>
                         </li>
                         <li>
@@ -111,13 +116,14 @@
             <button class="vs-menu-toggle text-theme border-theme d-inline-block d-lg-none"><i class="far fa-bars"></i></button>
          </div>
       </div>
+
    </div>
 </div>
 <div class="sidemenu-wrapper d-none d-lg-block">
    <div class="sidemenu-content bg-light-dark">
       <button class="closeButton border-theme text-theme bg-theme-hover sideMenuCls"><i class="far fa-times"></i></button>
       <div class="about-box">
-         <a href="/home"><img src="assets/img/logo.png" alt="Zocker"></a>
+         <a href="/home"><img src="{{asset('assets/img/logo.png')}}" alt="Tournament Legacy"></a>
          <p class="text-light mt-3">Appropriately reinvent cross-unit scenarios with reliable metrics. Dramatically morph distinctive alignments whereas.</p>
          <ul class="social-links text-light">
             <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
@@ -131,6 +137,7 @@
                <span class="icon-btn2"><i class="fas fa-map-marker-alt"></i></span>
                <p class="fs-4 lh-1 fw-medium text-white mb-0">Address</p>
                <p class="text-white mb-0">301 Massachusetts Ave, Lunenburg MA 1462</p>
+
             </div>
             <div class="info-style1">
                <span class="icon-btn2"><i class="fas fa-phone"></i></span>
@@ -166,6 +173,7 @@
                <h4 class="h5 blog-title font-theme lh-base text-white mb-0"><a href="blog-details.html">From its medieval origins to the digital</a></h4>
                <div class="blog-meta text-light fs-xs mt-1"><a href="blog.html"><i class="fal fa-calendar-alt"></i>June 21, 2021</a></div>
             </div>
+
          </div>
       </div>
    </div>
@@ -208,6 +216,7 @@
                   <span class="has-border fs-12 text-mist-blue">Dernier évènement:</span>
                   <p class="fs-xs text-white"><strong>Nom évènement</strong></p>
                   <span class="fs-10 small">Date évènement</span>
+
                </div>
             </div>
             <div class="col text-end text-lg-center align-self-center">
