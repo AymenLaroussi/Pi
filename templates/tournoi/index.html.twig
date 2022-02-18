@@ -48,9 +48,9 @@
 
           <div class="vs-events d-lg-flex" data-bg-src="assets/img/shape/events-bg-1.png">
             <div class="media-img">
-              <img src="{{ tournoi.image }}" alt="Tournament Image">
+              <img src="../../uploads/{{ tournoi.image }}">
             </div>
-            <div class="media-body align-self-center">
+            <div class="media-body ">
               <h3 class="events-name h5 text-white">
                 <a href="{{ path('showTournoi',{"id":tournoi.id}) }}">{{ tournoi.nom }}</a>
               </h3>
@@ -101,7 +101,7 @@
           <div class="vs-events d-lg-flex" data-bg-src="assets/img/shape/events-bg-1.png">
 
             <div >
-              <img src="{{ tournoi.image }}" alt="Tournament Image">
+              <img src="../../uploads/{{ tournoi.image }}">
             </div>
 
             <div class="media-body align-self-center">

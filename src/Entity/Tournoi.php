@@ -63,9 +63,15 @@ class Tournoi
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="tournois")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="organisateur_id", referencedColumnName="id",onDelete="SET NULL")
      */
     private $organisateur;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Jeu::class, inversedBy="tournois")
+     * @ORM\JoinColumn(name="jeu_id", referencedColumnName="id",onDelete="SET NULL")
+     */
+    private $jeu;
 
 
 
@@ -205,6 +211,18 @@ class Tournoi
     public function setOrganisteur(?User $organisateur): self
     {
         $this->organisateur = $organisateur;
+
+        return $this;
+    }
+
+    public function getJeu(): ?Jeu
+    {
+        return $this->jeu;
+    }
+
+    public function setJeu(?Jeu $jeu): self
+    {
+        $this->jeu = $jeu;
 
         return $this;
     }
