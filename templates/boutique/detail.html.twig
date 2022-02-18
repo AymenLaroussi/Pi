@@ -1,0 +1,314 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="breadcumb-wrapper breadcumb-layout1 pt-200 pb-50" data-bg-src="assets/img/breadcumb/breadcumb-1.jpg" data-overlay>
+      <div class="container z-index-common">
+        <div class="breadcumb-content text-center">
+          <h1 class="breadcumb-title h1 text-white my-0">{{produit.titre}}</h1>
+          <h2 class="breadcumb-bg-title">PRODUIT</h2>
+          <ul class="breadcumb-menu-style1 text-white mx-auto fs-xs">
+            <li>
+              <a href="index.html">
+                <i class="fal fa-home"></i> </a>
+            </li>
+            <li class="active">{{produit.titre}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <section class="vs-product-details space-top space-md-bottom">
+      <div class="container">
+        <div class="position-relative z-index-common py-lg-60">
+          <div class="product-details-shape bg-smoke" style="max-width: 100%;"></div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="product-main-img text-center pt-30 pt-lg-60">
+                <div class="product-share">
+                  <a href="#" class="icon1 text-reset">
+                    <i class="fal fa-share-alt fs-20"></i>
+                  </a>
+                </div>
+                <img src="/uploads/{{produit.image}}" class="zoom-img" alt="Product Image">
+              </div>
+          
+            </div>
+            <div class="col-lg-6">
+              <div class="product-about">
+                <div class="mb-2">
+                  <span class="text-yellow fs-xs me-3">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </span>
+                  <span class="d-inline-block">(2 Customer Review)</span>
+                </div>
+                
+                <h3 class="product-name font-theme text-normal">{{produit.titre}}</h3>
+                {% if produit.promo is null %}
+                <h4 class="product-price text-theme2">{{produit.prix | number_format(0, ',', ' ')}} DT</h4>
+                {%else%}
+                {% set prix = (produit.prix * produit.promo)/100 %}
+                <h4 class="product-price text-theme2" style="text-decoration: line-through;">{{produit.prix}} DT</h4>
+                <h3 class="product-price text-theme2">{{prix}} DT DT</h3>
+                {%endif%}
+                <hr class="border-dashed-light mt-25 mb-20">
+                <p class="mb-2">{{produit.description}}</p>
+                
+                <div class="cart-btn-group">
+                  <div class="quantity-box me-2 d-flex d-md-inline-flex d-lg-flex d-xl-inline-flex mb-3 mb-xl-0">
+                    <button class="quantity-minus qut-btn">
+                      <i class="far fa-minus"></i>
+                    </button>
+                    <input type="text" value="1" class="qty-input">
+                    <button class="quantity-plus qut-btn">
+                      <i class="far fa-plus"></i>
+                    </button>
+                  </div>
+                  <a href="#" class="vs-btn">Ajouter au panier</a>
+                  <a href="#" class="icon-btn3">
+                    <i class="far fa-heart"></i>
+                  </a>
+                  <a href="#" class="icon-btn3">
+                    <i class="far fa-search"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="pt-40 pt-lg-60">
+          <ul class="nav nav-tabs tab-menu2" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a class="nav-link" id="desc-tab" data-bs-toggle="tab" href="#desc" role="tab" aria-controls="desc" aria-selected="true">Description</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a class="nav-link active" id="review-tab" data-bs-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Review (02)</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane" id="desc" role="tabpanel" aria-labelledby="desc-tab">
+              <p class="mt-n1">{{produit.longdescription}}.</p>
+              <ul class="product-list mb-15">
+                
+              </ul>
+               </div>
+            <div class="tab-pane show active" id="review" role="tabpanel" aria-labelledby="review-tab">
+              <div class="vs-comment-area list-style-none vs-comments-layout1">
+                <ul class="comment-list">
+                  <li class="vs-comment">
+                    <div class="vs-post-comment">
+                      <div class="author-img">
+                        <img src="assets/img/author/comment-1-1.png" alt="Comment Author">
+                      </div>
+                      <div class="comment-content">
+                        <div class="comment-top">
+                          <div class="comment-author">
+                            <h4 class="name">Mark Jack</h4>
+                            <div class="mb-10">
+                              <span class="text-yellow fs-xs me-3">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                              </span>
+                              <span class="commented-on">22 April, 2021</span>
+                            </div>
+                          </div>
+                          <div class="reply_and_edit">
+                            <a href="blog-details.html" class="vs-btn">
+                              <i class="fal fa-reply-all mr-10"></i>Replay </a>
+                          </div>
+                        </div>
+                        <p class="text">Progressively procrastinate mission-critical action items before team building ROI. Interactively provide access to cross functional quality vectors for client-centric catalysts for change.</p>
+                      </div>
+                    </div>
+                    <ul class="children">
+                      <li class="vs-comment">
+                        <div class="vs-post-comment">
+                          <div class="author-img">
+                            <img src="assets/img/author/comment-1-2.png" alt="Comment Author">
+                          </div>
+                          <div class="comment-content">
+                            <div class="comment-top">
+                              <div class="comment-author">
+                                <h4 class="name">Peter Parker</h4>
+                                <div class="mb-10">
+                                  <span class="text-yellow fs-xs me-3">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                  </span>
+                                  <span class="commented-on">22 April, 2021</span>
+                                </div>
+                              </div>
+                              <div class="reply_and_edit">
+                                <a href="blog-details.html" class="vs-btn">
+                                  <i class="fal fa-reply-all mr-10"></i>Replay </a>
+                              </div>
+                            </div>
+                            <p class="text">Competently provide access to fully researched methods of empowerment without sticky models. Credibly morph front-end niche markets.</p>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="vs-comment">
+                    <div class="vs-post-comment">
+                      <div class="author-img">
+                        <img src="assets/img/author/comment-1-3.png" alt="Comment Author">
+                      </div>
+                      <div class="comment-content">
+                        <div class="comment-top">
+                          <div class="comment-author">
+                            <h4 class="name">John Deo</h4>
+                            <div class="mb-10">
+                              <span class="text-yellow fs-xs me-3">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                              </span>
+                              <span class="commented-on">22 April, 2021</span>
+                            </div>
+                          </div>
+                          <div class="reply_and_edit">
+                            <a href="blog-details.html" class="vs-btn">
+                              <i class="fal fa-reply-all mr-10"></i>Replay </a>
+                          </div>
+                        </div>
+                        <p class="text">Competently provide access to fully researched methods of empowerment without sticky models. Credibly morph front-end niche markets whereas 2.0 users. Enthusiastically seize team.</p>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+               
+              <div class="vs-comment-form comment-form-layout1 bg-smoke px-40 py-40 mb-30 mt-lg-30">
+                <div class="form-title">
+                  <h3 class="h4 font-theme text-normal mt-n2">Add A Review</h3>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="vs-rating-input mb-20">
+                      <strong>Your rating: </strong>
+                      <span class="active">
+                        <i class="fas fa-star"></i>
+                      </span>
+                      <span class="active">
+                        <i class="fas fa-star"></i>
+                      </span>
+                      <span class="active">
+                        <i class="fas fa-star"></i>
+                      </span>
+                      <span class="active">
+                        <i class="fas fa-star"></i>
+                      </span>
+                      <span class="active">
+                        <i class="fas fa-star"></i>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-12 form-group">
+                    <textarea placeholder="Write a Message" class="form-control" rows="8" cols="5"></textarea>
+                    <i class="fal fa-pencil-alt me-2"></i>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <input type="text" placeholder="Your Name" class="form-control">
+                    <i class="fal fa-user me-2"></i>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <input type="text" placeholder="Your Email" class="form-control">
+                    <i class="fal fa-envelope me-2"></i>
+                  </div>
+                  <div class="col-12 form-group mb-0">
+                    <button class="vs-btn gradient-btn no-skew">Submit Review</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="vs-product-wrapper vs-product-layout2 newsletter-pb">
+      <div class="container">
+        <h2 class="mt-n2 font-theme text-normal mb-4">Related Products</h2>
+        <div class="row vs-carousel arrow-margin" data-slide-show="3" data-md-slide-show="2" data-sm-slide-show="2" data-xs-slide-show="1" data-arrows="true">
+          {% for produitx in produits %}
+          <div class="col-sm-6 col-lg-4">
+            <div class="vs-product">
+              <div class="product-img">
+                <a href="shop-details.html">
+                  <img src="/uploads/{{produitx.image}}" class="w-100" alt="Product Image">
+                </a>
+                <div class="cart-btn-group">
+                  <a href="#" class="icon-btn3">
+                    <i class="far fa-heart"></i>
+                  </a>
+                  <a href="#" class="vs-btn">Add to cart</a>
+                  <a href="#" class="icon-btn3">
+                    <i class="far fa-search"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="product-content">
+                <div class="text-yellow fs-xs mb-2">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                </div>
+                <h3 class="product-name text-normal font-theme fs-20 lh-base mb-2">
+                  <a class="text-inherit" href="shop-details.html">{{produitx.titre}}</a>
+                </h3>
+                {% if produitx.promo is null %}
+                <h4 class="product-price text-theme2">{{produitx.prix}} DT</h4>
+                {%else%}
+                {% set prix = (produitx.prix * produitx.promo)/100 %}
+                <h4 class="product-price text-theme2" style="text-decoration: line-through;">{{produitx.prix}} DT</h4>
+                <h3 class="product-price text-theme2">{{prix}} DT</h3>
+                {%endif%}
+              </div>
+            </div>
+          </div>
+        
+          
+              
+                   
+          
+           {% endfor %}
+
+
+           
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="vs-newsletter-wrapper bg-dark z-index-step1">
+      <div class="container">
+        <div class="position-relative">
+          <div class="inner-wrapper bg-black position-absolute top-50 start-50 translate-middle w-100 px-60 py-40">
+            <div class="row align-items-center justify-content-center">
+              <div class="col-xl-6 text-center text-xl-start mb-3 mb-xl-0">
+                <span class="sub-title2 mt-2">Newsletter</span>
+                <h2 class="mb-0 text-white">get monthly updates</h2>
+              </div>
+              <div class="col-md-10 col-lg-8 col-xl-6">
+                <form action="#" class="newsletter-style1 d-md-flex">
+                  <input type="email" class="form-control" placeholder="Enter email address">
+                  <button class="vs-btn gradient-btn">Subscribe Now</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    {% endblock %}
+    

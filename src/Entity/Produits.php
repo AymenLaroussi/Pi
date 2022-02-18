@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\ProduitsRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,16 +26,32 @@ class Produits
      * @ORM\Column(type="string", length=255)
      */
     private $description;
-    
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $promo;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $flash;
+
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $image;
 
     /**
-     * @ORM\Column(type="integer")
+     * 
+     * @ORM\Column(type="string", length=255)
      */
-    private $stock;
+    private $ref;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $longdescription;
 
     /**
      * @ORM\Column(type="float")
@@ -45,24 +59,10 @@ class Produits
     private $prix;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\ManyToOne(targetEntity=Categories::class, inversedBy="produits")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $promo;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $ref;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Categories::class, inversedBy="produits")
-     */
-    private $categorie;
-
-    public function __construct()
-    {
-        $this->categorie = new ArrayCollection();
-    }
+    private $categories;
 
     public function getId(): ?int
     {
@@ -81,6 +81,30 @@ class Produits
         return $this;
     }
 
+    public function getRef(): ?string
+    {
+        return $this->ref;
+    }
+
+    public function setRef(string $ref): self
+    {
+        $this->ref = $ref;
+
+        return $this;
+    }
+
+    public function getLongdescription(): ?string
+    {
+        return $this->longdescription;
+    }
+
+    public function setLongdescription(string $longdescription): self
+    {
+        $this->longdescription = $longdescription;
+
+        return $this;
+    }
+
     public function getDescription(): ?string
     {
         return $this->description;
@@ -92,6 +116,43 @@ class Produits
 
         return $this;
     }
+
+    public function getPromo(): ?int
+    {
+        return $this->promo;
+    }
+
+    public function setPromo(int $promo): self
+    {
+        $this->promo = $promo;
+
+        return $this;
+    }
+
+    public function getStock(): ?int
+    {
+        return $this->promo;
+    }
+
+    public function setStock(int $stock): self
+    {
+        $this->stock = $stock;
+
+        return $this;
+    }
+
+    public function getFlash(): ?bool
+    {
+        return $this->flash;
+    }
+
+    public function setFlash(bool $flash): self
+    {
+        $this->flash = $flash;
+
+        return $this;
+    }
+    
     public function getImage(): ?string
     {
         return $this->image;
@@ -100,18 +161,6 @@ class Produits
     public function setImage(string $image): self
     {
         $this->image = $image;
-
-        return $this;
-    }
-
-    public function getStock(): ?int
-    {
-        return $this->stock;
-    }
-
-    public function setStock(int $stock): self
-    {
-        $this->stock = $stock;
 
         return $this;
     }
@@ -127,56 +176,21 @@ class Produits
 
         return $this;
     }
+    
 
-    public function getPromo(): ?bool
+    public function getCategories(): ?Categories
     {
-        return $this->promo;
+        return $this->categories;
     }
 
-    public function setPromo(bool $promo): self
+    public function setCategories(?Categories $categories): self
     {
-        $this->promo = $promo;
+        $this->categories = $categories;
 
         return $this;
     }
-
-    public function getRef(): ?string
+    public function __toString()
     {
-        return $this->ref;
-    }
-
-    public function setRef(string $ref): self
-    {
-        $this->ref = $ref;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Categories[]
-     */
-    public function getCategorie(): Collection
-    {
-        return $this->categorie;
-    }
-
-    public function addCategorie(Categories $categorie): self
-    {
-        if (!$this->categorie->contains($categorie)) {
-            $this->categorie[] = $categorie;
-        }
-
-        return $this;
-    }
-
-    public function removeCategorie(Categories $categorie): self
-    {
-        $this->categorie->removeElement($categorie);
-
-        return $this;
-    }
-
-    public function __toString() {
-        return $this->titre;
+        return(string)$this->getTitre();
     }
 }
