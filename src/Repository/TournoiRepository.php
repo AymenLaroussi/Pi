@@ -47,5 +47,25 @@ class TournoiRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
+    public function listTournoiByUser($un)
+    {
+        return $this->createQueryBuilder('t')
+            ->join('t.organisateur', 'u')
+            ->addSelect('u')
+            ->where('u.username=:un')
+            ->setParameter('un',$un)
+            ->getQuery()
+            ->getResult();
+    }
+   /* public function listStudentByClass($id)
+    {
+        return $this->createQueryBuilder('s')
+            ->join('s.classroom', 'c')
+            ->addSelect('c')
+            ->where('c.id=:id')
+            ->setParameter('id',$id)
+            ->getQuery()
+            ->getResult();
+    }*/
 
 }

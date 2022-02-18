@@ -5567,7 +5567,9 @@ blockquote *:not(:after)> {
 
 .newsletter-style2 .gradient-btn,
 .newsletter-style1 .gradient-btn {
-	margin-left: -10px
+	
+	margin-left: 100px;
+	margin-top: 0px;
 }
 
 .newsletter-style2 .form-control {

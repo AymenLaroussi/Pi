@@ -1,0 +1,14 @@
+{% extends 'dashboard.html.twig' %}
+{% block body %}
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body"><br><br><br><br>
+                <h4><a href="{{ path('liste_utilisateurs') }}"><i class="mdi mdi-arrow-left"></i></a>Mettre à jour un utilisateur</h4>
+                <div class="form-group">
+                    {{ include('user/_form.html.twig', {'button_label': 'Mise à jour'}) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

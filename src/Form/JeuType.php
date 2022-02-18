@@ -2,32 +2,34 @@
 
 namespace App\Form;
 
-use App\Entity\Tournoi;
+use App\Entity\Jeu;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class TournoiType extends AbstractType
+class JeuType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('nom')
-            ->add('nbr_equipes')
-            ->add('nbr_joueur_eq')
-            ->add('prix')
-            ->add('image')
-            ->add('discord_channel')
-            ->add('time')
-            ->add('submit',SubmitType::class)
+            ->add('imageFile', FileType::class, [
+                'mapped' => false
+            ])
+        ->add('Enregistrer',SubmitType::class, [
+        'attr' => [
+            'href' => "{{ path('ajout_jeu') }}",
+        ],
+    ]);
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Tournoi::class,
+            'data_class' => Jeu::class,
         ]);
     }
 }
