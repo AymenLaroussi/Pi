@@ -29,25 +29,40 @@ class ProduitsType extends AbstractType
                   ]
               ])
             ->add('description', TextareaType::class)
+            ->add('longdescription', TextareaType::class)
             ->add('stock',NumberType::class,[
                 'attr' => ['placeholder' => 'Quantité en stock'],
           ])
+          
             ->add('prix' ,MoneyType::class, [
                 'divisor' => 100,
             ])
-            ->add('promo', ChoiceType::class, [
+            ->add('promo', NumberType::class ,[
+                'attr' => [
+                  'placeholder' => "Contenu de l'article",
+                  'class' => 'form-control'
+                  ]
+            ])
+            ->add('flash', ChoiceType::class, [
                 'choices'  => [                    
                     'Oui' => true,
                     'Non' => false,
                 ],
             ])
-            ->add('ref',TextType::class ,[
+            ->add('stock', NumberType::class ,[
                 'attr' => [
                   'placeholder' => "Contenu de l'article",
                   'class' => 'form-control'
                   ]
               ])
-            ->add('categorie')
+              ->add('ref', TextType::class ,[
+                'attr' => [
+                  'placeholder' => "Contenu de l'article",
+                  'class' => 'form-control'
+                  ]
+              ])
+            
+            ->add('categories')
             ->add('imageFile', FileType::class, [
                 'mapped' => false
             ])

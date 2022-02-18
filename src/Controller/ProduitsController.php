@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Caegories;
 use App\Entity\Produits;
 use App\Form\ProduitsType;
 use App\Repository\ProduitsRepository;
@@ -10,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use App\Repository\CategoriesRepository;
 use Gedmo\Sluggable\Util\Urlizer;
 
 /**
@@ -20,10 +22,11 @@ class ProduitsController extends AbstractController
     /**
      * @Route("/", name="list_produits", methods={"GET"})
      */
-    public function index(ProduitsRepository $produitsRepository): Response
+    public function index(ProduitsRepository $produitsRepository,CategoriesRepository $categoriesRepository): Response
     {
         return $this->render('produits/index.html.twig', [
             'produits' => $produitsRepository->findAll(),
+            'categories' => $categoriesRepository->findAll(),
         ]);
     }
 

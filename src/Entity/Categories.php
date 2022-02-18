@@ -25,7 +25,7 @@ class Categories
     private $nom;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Produits::class, mappedBy="categorie")
+     * @ORM\OneToMany(targetEntity=Produits::class, mappedBy="categories" ,cascade={"remove"})
      */
     private $produits;
 
@@ -63,7 +63,7 @@ class Categories
     {
         if (!$this->produits->contains($produit)) {
             $this->produits[] = $produit;
-            $produit->addCategorie($this);
+            $produit->setCategories($this);
         }
 
         return $this;
@@ -72,12 +72,16 @@ class Categories
     public function removeProduit(Produits $produit): self
     {
         if ($this->produits->removeElement($produit)) {
-            $produit->removeCategorie($this);
+            // set the owning side to null (unless already changed)
+            if ($produit->getCategories() === $this) {
+                $produit->setCategories(null);
+            }
         }
 
         return $this;
     }
-    public function __toString() {
-        return $this->nom;
+    public function __toString(): string
+    {
+        return(string)$this->getNom();
     }
 }
