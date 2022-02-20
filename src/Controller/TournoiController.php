@@ -7,8 +7,10 @@ use App\Entity\Tournoi;
 use App\Entity\User;
 use App\Repository\TournoiRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Gedmo\Sluggable\Util\Urlizer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\TournoiType;
@@ -45,13 +47,21 @@ if($this->getUser()){
 //
 //
 
-
         $form= $this->createForm(TournoiType::class,$tournoi);
         $tournoi->setOrganisteur($user2);
         $form->handleRequest($request);
         $type="ajouter";
-        if($form->isSubmitted()) {
-
+        if($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $uploadedFile */
+            $uploadedFile = $form['imageFile']->getData();
+            $destination = $this->getParameter('kernel.project_dir').'/public/uploads';
+            $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $newFilename = Urlizer::urlize($originalFilename).'-'.uniqid().'.'.$uploadedFile->guessExtension();
+            $uploadedFile->move(
+                $destination,
+                $newFilename
+            );
+            $tournoi->setImage($newFilename);
             $em = $this->getDoctrine()->getManager();
             $em->persist($tournoi);
             $em->flush();
@@ -88,14 +98,14 @@ if($this->getUser()){
     /**
      * @Route("/tournoiUpdate/{id}",name="tournoiUpdate")
      */
-    public function updateStudent(TournoiRepository $s,$id,Request $request)
+    public function updateTournoi(TournoiRepository $s,$id,Request $request)
     {
         $tournoi= $s->find($id);
         //var_dump($student).die();
         $formTournoi= $this->createForm(TournoiType::class,$tournoi);
         $formTournoi->handleRequest($request);
         $type="modifier";
-        if($formTournoi->isSubmitted()){
+        if($formTournoi->isSubmitted() && $formTournoi->isValid()){
             $em= $this->getDoctrine()->getManager();
             $em->flush();
             return $this->redirectToRoute("tournoi");
