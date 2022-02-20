@@ -47,12 +47,11 @@ if($this->getUser()){
 //
 //
 
-
         $form= $this->createForm(TournoiType::class,$tournoi);
         $tournoi->setOrganisteur($user2);
         $form->handleRequest($request);
         $type="ajouter";
-        if($form->isSubmitted()) {
+        if($form->isSubmitted() && $form->isValid()) {
             /** @var UploadedFile $uploadedFile */
             $uploadedFile = $form['imageFile']->getData();
             $destination = $this->getParameter('kernel.project_dir').'/public/uploads';
@@ -106,7 +105,7 @@ if($this->getUser()){
         $formTournoi= $this->createForm(TournoiType::class,$tournoi);
         $formTournoi->handleRequest($request);
         $type="modifier";
-        if($formTournoi->isSubmitted()){
+        if($formTournoi->isSubmitted() && $formTournoi->isValid()){
             $em= $this->getDoctrine()->getManager();
             $em->flush();
             return $this->redirectToRoute("tournoi");

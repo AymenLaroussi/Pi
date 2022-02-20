@@ -2,29 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="15642978-c11c-42c6-95ae-5b44b3bd4d3d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Form/JeuType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/jeu/JeuType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/jeu/_form.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/jeu/_supprimer_form.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/jeu/ajout.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/jeu/modifier.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/jeu/voir.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/PI.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/phpunit.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20220216164323.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20220216164323.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20220216183807.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/JeuController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/JeuController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dashboard.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/jeu/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/jeu/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/TournoiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TournoiController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Jeu.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Jeu.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Tournoi.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Tournoi.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/tournoi/add-tournoi.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tournoi/add-tournoi.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/tournoi/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tournoi/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/tournoi/tournament-details.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tournoi/tournament-details.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -238,6 +222,9 @@
       <workItem from="1644672184775" duration="315000" />
       <workItem from="1644916477629" duration="5820000" />
       <workItem from="1644925116801" duration="10620000" />
+      <workItem from="1645305561696" duration="3298000" />
+      <workItem from="1645308945926" duration="1508000" />
+      <workItem from="1645346640260" duration="13492000" />
     </task>
     <servers />
   </component>

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\TournoiRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -21,36 +22,47 @@ class Tournoi
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $nom;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank()
      */
     private $nbr_equipes;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank()
      */
     private $nbr_joueur_eq;
 
     /**
      * @ORM\Column(type="float", nullable=true)
+     * * @Assert\NotBlank()
+     *
+     *
      */
     private $prix;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
      */
     private $image;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Url(message = "The url '{{ value }}' is not a valid url",)
      */
     private $discord_channel;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     * @Assert\DateTime
+     * @var string A "Y-m-d H:i:s" formatted value
      */
     private $time;
 

@@ -7,11 +7,53 @@
                 <div class="col-lg-5 col-xl-6 text-center text-lg-start">
                     <div class="section-title">
                         <span class="sub-title1 text-theme3">Informations générales sur le tournoi</span>
-
                     </div>
                 </div>
-                <div>
-                <div class="col-md-6">
+
+
+
+
+                    <div style="align-content: center" class="vs-events d-lg-flex" data-bg-src="assets/img/shape/events-bg-1.png">
+                        <div style="margin-top: 50px" class="media-img">
+                            <img src="../../uploads/{{ tournoi.image }}">
+                        </div>
+                        <div style="margin-left: 40px" class="media-body ">
+                            <h3 class="events-name h5 text-white">
+                                <a href="{{ path('showTournoi',{"id":tournoi.id}) }}">{{ tournoi.nom }}</a>
+                            </h3>
+                            <ul class="events-list list-style-none">
+                                <li class="text-light2">
+                                    <span class="text-white">Date:  </span>{{ tournoi.time |format_datetime()}}
+                                </li>
+                                <li class="text-light2">
+                                    <span class="text-white">Game:  </span>{{ tournoi.jeu.nom }}
+                                </li>
+
+                                <li class="text-light2">
+                                    <span class="text-white">Prix:  </span>{{ tournoi.prix }}
+                                </li>
+                            </ul>
+
+                            <ul class="events-list list-style-none">
+                                <li class="text-light2">
+                                    <span class="text-white">nombre d'equipe :  </span>{{ tournoi.nbrequipes}}
+                                </li>
+                                <li class="text-light2">
+                                    <span class="text-white">Game:  </span>{{ tournoi.nbrjoueureq }}
+                                </li>
+                                <li class="text-light2">
+                                    <span class="text-white">Discord channel:  </span>{{ tournoi.discordchannel }}
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+
+                    </div>
+
+
+                {#<div class="col-md-6">
 
                     <div class="vs-events d-lg-flex" data-bg-src="assets/img/shape/events-bg-1.png">
                         <div class="media-img">
@@ -25,9 +67,9 @@
                                 <li class="text-light2">
                                     <span class="text-white">Date:</span>{{ tournoi.time |format_datetime()}}
                                 </li>
-{#                                <li class="text-light2">
+#}{#                                <li class="text-light2">
                                     <span class="text-white">Game:</span>{{ tournoi.jeu }}
-                                </li>#}
+                                </li>#}{#
                                 <li class="text-light2">
                                     <span class="text-white">Teams:</span>{{ tournoi.nbrequipes }}
                                 </li>
@@ -56,7 +98,7 @@
                     </div>
                 </div>
                 </div>
-            </div>
+            </div>#}
 
         </div>
         </div>
