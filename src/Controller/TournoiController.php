@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Equipe;
 use App\Entity\Tournoi;
+use App\Entity\Jeu;
 use App\Entity\User;
 use App\Repository\TournoiRepository;
+use App\Repository\JeuRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Gedmo\Sluggable\Util\Urlizer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -31,8 +33,10 @@ if($this->getUser()){
         ->getRepository(Tournoi::class)->findAll();
     $mestournois=$this->getDoctrine()
         ->getRepository(Tournoi::class)->listTournoiByUser($this->getUser()->getUsername());
+    $jeux= $this->getDoctrine()
+        ->getRepository(Jeu::class)->findAll();
     return $this->render("tournoi/index.html.twig",
-        array("tournois"=>$tournois,"mestournois"=>$mestournois));
+        array("tournois"=>$tournois,"mestournois"=>$mestournois,"jeux"=>$jeux));
 }
         return $this->redirectToRoute("connexion");
     }
