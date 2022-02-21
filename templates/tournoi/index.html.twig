@@ -148,6 +148,33 @@
 </section>
 
            {# #}
+  <section class="vs-team-wrapper space-top space-md-bottom">
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="col-md-auto text-center text-md-start">
+          <div class="section-title">
+            <h2 class="sec-title1 text-white">Jeux disponibles</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row team-box-slide vs-carousel slick-initialized slick-slider" data-slide-show="4" data-lg-slide-show="3" data-md-slide-show="2" data-sm-slide-show="2" data-xs-slide-show="1">
+
+
+
+
+
+        <div class="slick-list draggable">
+          {% for jeu in jeux %}
+              <div class="team-box">
+                <div class="team-logo"><a href="team.html" tabindex="-1"><img src="../../uploads/{{ jeu.image }}"></a></div>
+                <h3 class="team-name h4"><a href="team.html" class="text-reset" tabindex="-1">{{ jeu.nom }}</a></h3>
+              </div>
+        </div>
+          {% endfor %}
+            </div>
+    </div></div></div>
+    </div>
+  </section>
 
 
 
