@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="15642978-c11c-42c6-95ae-5b44b3bd4d3d" name="Changes" comment="">
+    <list default="true" id="15642978-c11c-42c6-95ae-5b44b3bd4d3d" name="Changes" comment="crud comande">
+      <change afterPath="$PROJECT_DIR$/src/Entity/Commandes.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/VisiteurType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/CommandesRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/commande/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/TournoiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TournoiController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Jeu.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Jeu.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Tournoi.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Tournoi.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/tournoi/add-tournoi.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tournoi/add-tournoi.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/tournoi/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tournoi/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/tournoi/tournament-details.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tournoi/tournament-details.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20220215105522.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20220218085755.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20220221200039.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/CartController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CartController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/boutique/detail.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/boutique/detail.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/boutique/produit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/boutique/produit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/cart/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/cart/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/product/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/product/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +36,18 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/postcss.config.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/.env" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Controller/ActualiteController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/docker-compose.override.yml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/package-lock.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/templates/boutique/index.html.twig" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/templates/cart/index.html.twig" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/.env.test" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Controller/CartController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/.gitignore" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -191,7 +209,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/jeu" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -225,6 +243,7 @@
       <workItem from="1645305561696" duration="3298000" />
       <workItem from="1645308945926" duration="1508000" />
       <workItem from="1645346640260" duration="13492000" />
+      <workItem from="1645453953712" duration="17353000" />
     </task>
     <servers />
   </component>
@@ -248,6 +267,8 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
+    <MESSAGE value="crud commande" />
+    <option name="LAST_COMMIT_MESSAGE" value="crud commande" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
