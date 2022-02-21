@@ -1,0 +1,23 @@
+{% extends 'dashboard.html.twig' %}
+{% block body %}
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ jeu.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ jeu.nom }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <a href="{{ path('list_jeu') }}">Retour</a>
+
+    <a href="{{ path('modifier_jeu', {'id': jeu.id}) }}">Modifier</a>
+
+    {{ include('jeu/_supprimer_form.html.twig') }}
+{% endblock %}
