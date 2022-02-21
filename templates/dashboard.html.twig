@@ -21,6 +21,23 @@
     <link rel="stylesheet" href="{{asset('assets/assets/css/style.css')}}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{asset('assets/assets/images/favicon.png')}}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+    <style>
+.eyes {
+  font-size: 22px;
+}
+
+</style>
   </head>
   <body>
   <div class="container-scroller">
@@ -106,7 +123,7 @@
            <li class="nav-item menu-items">
             <a class="nav-link" href="/admin/utilisateurs">
               <span class="menu-icon">
-                <i class="mdi mdi-playlist-play"></i>
+                <i class="mdi mdi-account"></i>
               </span>
               <span class="menu-title">Utilisateurs</span>
             </a>
@@ -114,55 +131,55 @@
           <li class="nav-item menu-items">
             <a class="nav-link" href="/admin/jeu">
               <span class="menu-icon">
-                <i class="mdi mdi-playlist-play"></i>
+                <span class="iconify" data-icon="mdi:controller-classic"></span>
               </span>
               <span class="menu-title">Gestion des Jeux</span>
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="pages/tables/basic-table.html">
+            <a class="nav-link" href="/admin/evenemets">
               <span class="menu-icon">
-                <i class="mdi mdi-event-large"></i>
+                <span class="iconify" data-icon="mdi:calendar-star"></span>
               </span>
               <span class="menu-title">Évenements</span>
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="pages/tables/basic-table.html">
+            <a class="nav-link" href="/admin/sponsors">
               <span class="menu-icon">
-                <i class="mdi mdi-event-large"></i>
+                <span class="iconify" data-icon="mdi:account-cash-outline"></span>
               </span>
               <span class="menu-title">Sponsors</span>
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="pages/charts/chartjs.html">
+            <a class="nav-link" href="/admin/categories">
               <span class="menu-icon">
-                <i class="mdi mdi-chart-bar"></i>
+                <span class="iconify" data-icon="mdi:shape"></span>
               </span>
               <span class="menu-title">Catégorie</span>
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="pages/charts/chartjs.html">
+            <a class="nav-link" href="/admin/produits">
               <span class="menu-icon">
-                <i class="mdi mdi-chart-bar"></i>
+                <span class="iconify" data-icon="mdi:cart-arrow-down"></span>
               </span>
               <span class="menu-title">Produits</span>
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="pages/charts/chartjs.html">
+            <a class="nav-link" href="/admin/commentaires">
               <span class="menu-icon">
-                <i class="mdi mdi-chart-bar"></i>
+                <span class="iconify" data-icon="mdi:message-star"></span>
               </span>
               <span class="menu-title">Commentaire</span>
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" href="pages/icons/mdi.html">
+            <a class="nav-link" href="/admin/commandes">
               <span class="menu-icon">
-                <i class="mdi mdi-contacts"></i>
+                <span class="iconify" data-icon="mdi:cart-check"></span>
               </span>
               <span class="menu-title">Commandes</span>
             </a>
@@ -181,11 +198,7 @@
               <span class="mdi mdi-menu"></span>
             </button>
             <ul class="navbar-nav w-100">
-              <li class="nav-item w-100">
-                <form class="nav-link mt-2 mt-md-0 d-none d-lg-flex search">
-                  <input type="text" class="form-control" placeholder="Chercher une catégorie">
-                </form>
-              </li>
+              
             </ul>
             <ul class="navbar-nav navbar-nav-right">
               <li class="nav-item dropdown d-none d-lg-block">
@@ -227,11 +240,6 @@
                   <div class="dropdown-divider"></div>
                   <p class="p-3 mb-0 text-center">See all projects</p>
                 </div>
-              </li>
-              <li class="nav-item nav-settings d-none d-lg-block">
-                <a class="nav-link" href="#">
-                  <i class="mdi mdi-view-grid"></i>
-                </a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
@@ -281,6 +289,7 @@
     <!-- endinject -->
     <!-- Custom js for this page -->
     <script src="{{asset('assets/assets/js/dashboard.js')}}"></script>
+    <script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
     <!-- End custom js for this page -->
   </body>
 </html>

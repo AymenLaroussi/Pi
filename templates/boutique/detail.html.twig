@@ -27,21 +27,15 @@
                     <i class="fal fa-share-alt fs-20"></i>
                   </a>
                 </div>
-                <img src="/uploads/{{produit.image}}" class="zoom-img" alt="Product Image">
+                <span class="label">{{produit.promo}}%</span>
+                <img src="/uploads/{{produit.image}}" class="zoom-img" alt="{{produit.titre}}">
               </div>
           
             </div>
             <div class="col-lg-6">
               <div class="product-about">
                 <div class="mb-2">
-                  <span class="text-yellow fs-xs me-3">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="far fa-star"></i>
-                    <i class="far fa-star"></i>
-                  </span>
-                  <span class="d-inline-block">(2 Customer Review)</span>
+                  
                 </div>
                 
                 <h3 class="product-name font-theme text-normal">{{produit.titre}}</h3>
@@ -50,7 +44,7 @@
                 {%else%}
                 {% set prix = (produit.prix * produit.promo)/100 %}
                 <h4 class="product-price text-theme2" style="text-decoration: line-through;">{{produit.prix}} DT</h4>
-                <h3 class="product-price text-theme2">{{prix}} DT DT</h3>
+                <h3 class="product-price text-theme2">{{prix}} DT</h3>
                 {%endif%}
                 <hr class="border-dashed-light mt-25 mb-20">
                 <p class="mb-2">{{produit.description}}</p>
@@ -237,20 +231,20 @@
     </section>
     <section class="vs-product-wrapper vs-product-layout2 newsletter-pb">
       <div class="container">
-        <h2 class="mt-n2 font-theme text-normal mb-4">Related Products</h2>
+        <h2 class="mt-n2 font-theme text-normal mb-4">Produits liées</h2>
         <div class="row vs-carousel arrow-margin" data-slide-show="3" data-md-slide-show="2" data-sm-slide-show="2" data-xs-slide-show="1" data-arrows="true">
           {% for produitx in produits %}
           <div class="col-sm-6 col-lg-4">
             <div class="vs-product">
               <div class="product-img">
                 <a href="shop-details.html">
-                  <img src="/uploads/{{produitx.image}}" class="w-100" alt="Product Image">
+                  <img style="height: 300px;" src="/uploads/{{produitx.image}}" class="w-100" alt="{{produitx.titre}}">
                 </a>
                 <div class="cart-btn-group">
                   <a href="#" class="icon-btn3">
                     <i class="far fa-heart"></i>
                   </a>
-                  <a href="#" class="vs-btn">Add to cart</a>
+                  <a href="#" class="vs-btn">Ajouter au panier</a>
                   <a href="#" class="icon-btn3">
                     <i class="far fa-search"></i>
                   </a>
