@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ProduitsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ProduitsRepository::class)
@@ -43,7 +44,7 @@ class Produits
     private $image;
 
     /**
-     * 
+     * @ORM\Ref
      * @ORM\Column(type="string", length=255)
      */
     private $ref;

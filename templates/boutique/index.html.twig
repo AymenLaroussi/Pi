@@ -95,7 +95,7 @@
                  
     
                   <li>
-                    <a href="blog.html">{{categorie.nom}}</span>
+                    <a href=" {{ path('listeproduits',{"id":categorie.id}) }}">{{categorie.nom}}</span>
                     </a>
                   </li>
                   {% endfor %}
