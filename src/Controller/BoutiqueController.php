@@ -37,4 +37,17 @@ class BoutiqueController extends AbstractController
 
         return $this->render("boutique/detail.html.twig",array("produit"=>$produit ,"produits"=>$produits ));
     }
+
+     /**
+     * @Route("/categorie/{id}", name="listeproduits")
+     */
+    public function listProduitsByCategories(ProduitsRepository $produitsRepository,CategoriesRepository $categoriesRepository,$id)
+    {
+        $produits=$produitsRepository->listProduitsByCategories($id);
+        return $this->render("boutique/index.html.twig",[
+            'produits' => $produits,
+            'categories' => $categoriesRepository->findAll(),
+        ]);
+    }
+    
 }

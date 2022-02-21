@@ -4,10 +4,11 @@
                 <div class="vs-product">
                   <div class="product-img">
                   {% if produit.flash %}
-                  <span class="label">HOT</span>
+                  {% set prix = (produit.prix * produit.promo)/100 %}
+                  <span class="label">{{prix}}%</span>
                   {% endif %}
                     <a href="{{ path('show',{"id":produit.id,"titre":produit.titre}) }}">
-                      <img src="../../uploads/{{produit.image}}" class="w-100" alt="Image du produit">
+                      <img src="../../uploads/{{produit.image}}" style="height: 300px;" class="w-100" alt="{{produit.titre}}">
                     </a>
                     <div class="cart-btn-group">
                       <a href="#" class="icon-btn3">

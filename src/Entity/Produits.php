@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ProduitsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ProduitsRepository::class)
@@ -19,48 +20,61 @@ class Produits
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull (message="Titre du produit est obligatoire.")
      */
     private $titre;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $description;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Positive(message="Promotion du produit est doit étre positive.")
      */
     private $promo;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="integer")
+     * @Assert\Positive(message="Quantité du produit est doit étre positive.")
+     */
+    private $stock;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $flash;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull (message="Image du produit est obligatoire.")
      */
     private $image;
 
     /**
-     * 
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull (message="Réference du produit est  obligatoire.")
      */
     private $ref;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull (message="Description du produit est obligatoire.")
      */
     private $longdescription;
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\NotNull (message="Prix du produit est obligatoire.")
+     * @Assert\Type(type="float", message="Prix doit étre positive")
      */
     private $prix;
 
     /**
      * @ORM\ManyToOne(targetEntity=Categories::class, inversedBy="produits")
      * @ORM\JoinColumn(nullable=false)
+     * 
      */
     private $categories;
 
@@ -131,7 +145,7 @@ class Produits
 
     public function getStock(): ?int
     {
-        return $this->promo;
+        return $this->stock;
     }
 
     public function setStock(int $stock): self

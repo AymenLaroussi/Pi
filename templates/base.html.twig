@@ -168,7 +168,7 @@
       <div class="container vs-container position-relative">
          <div class="row gx-0">
             <div class="col-auto">
-               <div class="header4-logo bg-light-gray"><a class="d-none d-lg-inline-block" href="home"><img src="assets/img/logo.png" style="width:200px;" alt="Tournament Legacy"></a><a class="d-inline-block d-lg-none" href="../home"><img src="assets/img/logo-2.png" alt="Tournament Legacy"></a></div>
+               <div class="header4-logo bg-light-gray"><a class="d-none d-lg-inline-block" href="home"><img src="{{asset('assets/img/logo.png')}}" style="width:200px;" alt="Tournament Legacy"></a><a class="d-inline-block d-lg-none" href="../home"><img src="assets/img/logo-2.png" alt="Tournament Legacy"></a></div>
             </div>
             <div class="col-auto d-none d-hd-block">
                <div class="header-info-box has-right-border">
@@ -186,13 +186,31 @@
                      <li><a href="../boutique">BOUTIQUE</a></li>
                      <li><a href="../evenements">EVENEMENTS</a></li>
                      {% if app.user %}
-                        <li><a href="deconnexion">DECONNEXION</a></li>
+                     {% if is_granted('ROLE_ADMIN') %}
+                        
+                        <li class="menu-item-has-children">
+                           <a href="admin">ADMINISTRATION</a>
+                           <ul class="sub-menu">
+                           <li>
+                              <a href="deconnexion">DECONNEXION</a>
+                           </li>
+                        </ul>
+                        </li>
+                     {% endif %}
+                        
+                        
+                        <li class="menu-item-has-children">
+                           <a href="profle">{{app.user.username}}</a>
+                           <ul class="sub-menu">
+                           <li>
+                              <a href="deconnexion">DECONNEXION</a>
+                           </li>
+                        </ul>
+                        </li>
                      {% else %}
                         <li><a href="connexion">CONNEXION</a></li>
                      {% endif %}
-                     {% if is_granted('ROLE_ADMIN') %}
-                        <li><a style="color:red" href="admin">ADMINISTRATION</a></li>
-                     {% endif %}
+                     
                </nav>
                <button type="button" class="vs-menu-toggle text-white d-inline-block d-lg-none"><i class="far fa-bars"></i></button>
             </div>

@@ -1,6 +1,7 @@
 {% extends 'dashboard.html.twig' %}
 
 {% block body %}
+
     <div class="main-panel">
           <div class="content-wrapper"> 
             <div class="row ">
@@ -8,7 +9,14 @@
                  <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Liste des produits</h4>
+                        <table>
+                        <tr><td>
                         <a class="text-warning" href="{{ path('ajout_produits') }}"><i class="mdi mdi-database-plus"></i> Nouveau produit</a>
+                  </td><td></td><td></td><td>
+                
+              
+                        <input type="text" id="myInput" class="form-control" placeholder="Chercher un produit" style="width:300px">
+                       </td></tr></table>
                         <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -24,7 +32,7 @@
                                     <th>actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="myTable">
                             {% for produit in produits %}
                                 <tr>
                                     <td>{{ produit.id }}</td>
@@ -38,7 +46,7 @@
                                     
                                     <td>
                                         <form method="post" action="{{ path('supprimer_produits', {'id': produit.id}) }}" onsubmit="return confirm('vous etes sure de vouloir supprimer ?');">
-                                            <div style="margin-left: auto; margin-right: auto;">
+                                            <div style="margin-left: auto; margin-right: auto;" class="eyes">
                                             <a class="text-warning" href="{{ path('voir_produits', {'id': produit.id}) }}"><i class="mdi mdi-eye"></i></a>
                                             <a href="{{ path('modifier_produits', {'id': produit.id}) }}"><i class="mdi mdi-tooltip-edit"></i></a>
                                             <button class="text-danger" style="font-size: 14px;background:none; border:none;margin:0;padding:0;cursor: pointer;text-decoration: underline red;" class="btn" type="submit"><i class="mdi mdi-delete"></i></button>

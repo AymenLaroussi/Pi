@@ -47,4 +47,17 @@ class ProduitsRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function listProduitsByCategories($id)
+    {
+        return $this->createQueryBuilder('s')
+            ->join('s.categories', 'c')
+            ->addSelect('c')
+            ->where('c.id=:id')
+            ->setParameter('id',$id)
+            ->getQuery()
+            ->getResult();
+    }
+
+   
 }
