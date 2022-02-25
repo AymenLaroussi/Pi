@@ -58,9 +58,11 @@
                 <li class="text-light2">
                   <span class="text-white">Date:</span>{{ tournoi.time |format_datetime()}}
                 </li>
-               {# <li class="text-light2">
-                  <span class="text-white">Game:</span>{{ tournoi.jeu }}
-                </li>#}
+          {% if tournoi.jeu  %}
+                <li class="text-light2">
+                  <span class="text-white">Game:</span>{{ tournoi.jeu.nom }}
+                </li>
+          {% endif  %}
                 <li class="text-light2">
                   <span class="text-white">Teams:</span>{{ tournoi.nbrequipes }}
                 </li>
@@ -104,9 +106,11 @@
                   <li class="text-light2">
                     <span class="text-white">Date:</span>{{ tournoi.time |format_datetime()}}
                   </li>
+                  {% if tournoi.jeu  %}
                    <li class="text-light2">
                   <span class="text-white">Game:</span>{{ tournoi.jeu.nom }}
                 </li>
+                  {% endif  %}
                   <li class="text-light2">
                     <span class="text-white">Teams:</span>{{ tournoi.nbrequipes }}
                   </li>
