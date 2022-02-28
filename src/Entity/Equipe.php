@@ -38,6 +38,12 @@ class Equipe
      */
     private $tournoi;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $joueurs ;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -87,6 +93,18 @@ class Equipe
     public function setTournoi(?Tournoi $tournoi): self
     {
         $this->tournoi = $tournoi;
+
+        return $this;
+    }
+
+    public function getJoueurs(): ?string
+    {
+        return $this->joueurs;
+    }
+
+    public function setJoueurs(?string $joueurs): self
+    {
+        $this->joueurs = $joueurs;
 
         return $this;
     }
