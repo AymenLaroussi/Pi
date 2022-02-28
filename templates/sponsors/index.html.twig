@@ -1,0 +1,60 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block body %}
+    <div class="main-panel">
+          <div class="content-wrapper"> 
+            <div class="row ">
+              <div class="col-12 grid-margin">
+                 <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Liste des sponsors</h4>
+                        <a class="text-warning" href="{{ path('ajout_sponsors') }}"><i class="mdi mdi-database-plus"></i> Nouveau Sponsor</a>
+                        <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nom</th>
+                                    <th>Prenom</th>
+                                    <th>Budget</th>
+                                    <th>Image</th>
+                                     <th>Action</th>
+
+                                </tr>
+                                <tbody>
+                                {% for spons in sponsors %}
+                                    <tr>
+                                        <td>{{ spons.id }}</td>
+                                        <td>{{ spons.nom }}</td>
+                                        <td>{{ spons.prenom }}</td>
+                                        <td>{{ spons.budget }}</td>
+                                        <td>< img src="/uploads/sponsor/{{spons.image}}">}}</td>
+                                        <td>
+                                            
+                                            <form method="post" action="{{ path('supprimer_sponsors', {'id': spons.id}) }}" onsubmit="return confirm('Etes-vous sure de supprimer ce sponsor?');"> 
+                                            <div style="margin-left: auto; margin-right: auto;">
+                                            <a class="text-warning" href="{{ path('voir_sponsors', {'id': spons.id}) }}"><i class="mdi mdi-eye"></i></a>
+                                            <a href="{{ path('modifier_sponsors', {'id': spons.id}) }}"><i class="mdi mdi-tooltip-edit"></i></a>
+                                            <button class="text-danger" style="font-size: 14px;background:none; border:none;margin:0;padding:0;cursor: pointer;text-decoration: underline red;" class="btn" type="submit"><i class="mdi mdi-delete"></i></button>
+                                            
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="3">Aucun sponseur trouvée</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+{% endblock %}
