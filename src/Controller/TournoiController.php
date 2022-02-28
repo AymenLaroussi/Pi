@@ -157,6 +157,7 @@ class TournoiController extends AbstractController
         if ($this->getUser()) {
             $equipe = $this->getDoctrine()
                 ->getRepository(Equipe::class)->find($id);
+            $tournoi=$equipe->getTournoi();
             $pos = strpos($equipe->getJoueurs(), "vide");
             if ($pos !== false) {
                 $chaine = substr_replace($equipe->getJoueurs(), $this->getUser()->getUsername(),$pos,strlen("vide"));
@@ -165,7 +166,7 @@ class TournoiController extends AbstractController
             }
 
                 return $this->render("tournoi/succes-tournament.html.twig",
-                    array("tournoi" => $equipe));
+                    array("equipe" => $equipe ,"current"=>$this->getUser()->getUsername(),"tournoi" => $tournoi));
             }
 
 

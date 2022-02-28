@@ -6,7 +6,9 @@
     <h2 class="text-center"><span class="sub-title2 mt-5 "> Les equipes </span></h2>
     <div class="container">
         <div class="row">
+            {% set var1='' %}
     {% for equipe in tournoi.equipes %}
+        {% set var1=var1 ~ equipe.joueurs %}
         <div class="col-md-6">
            <div style="margin-right: 150px" class="team-box">
              <div class="team-logo"><a href="team.html" tabindex="-1"><img src="{{asset('assets/img/team/team-2-5.png')  }}" alt="Team Logo"></a></div>
@@ -20,6 +22,7 @@
                       </tr>
                       </thead>
                      <tbody>
+
                        {% set var=equipe.joueurs|split('-') %}
                        {% set ind=0 %}
                           {% for v in var  %}
@@ -40,7 +43,7 @@
                              {% endif %}
 
                           {% endfor %}
-                       {% if  "vide" in equipe.joueurs and not (current in equipe.joueurs)  %}
+                       {% if  "vide" in equipe.joueurs and not (current in var1)  %}
                            <div class="team-footer"><a href="{{ path('equipeInscrit',{"id":equipe.id}) }}">Rejoindre</a></div>
                        {% endif %}
                    </tbody>
@@ -51,6 +54,7 @@
 
            </div>
         </div>
+
     {% endfor %}
     </div>
 
