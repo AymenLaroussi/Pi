@@ -5,7 +5,7 @@
                   <div class="product-img">
                   {% if produit.flash %}
                   {% set prix = (produit.prix * produit.promo)/100 %}
-                  <span class="label">{{prix}}%</span>
+                  <span class="label">{{produit.promo}}%</span>
                   {% endif %}
                     <a href="{{ path('show',{"id":produit.id,"titre":produit.titre}) }}">
                       <img src="../../uploads/{{produit.image}}" style="height: 300px;" class="w-100" alt="{{produit.titre}}">
@@ -39,9 +39,6 @@
                         <h4 class="product-price text-theme2" style="text-decoration: line-through;">{{produit.prix |number_format(1, '', ',')}} DT</h4>
                         <h3 class="product-price text-theme2">{{prix |number_format(1, '.', ',')}} DT</h3>
                     {%endif%}
-
-
-                       
                   </div>
                 </div>
               </div>
