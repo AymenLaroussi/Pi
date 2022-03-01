@@ -1,0 +1,20 @@
+
+                                <tr>
+                                    <td>{{ comment.id }}</td>
+                                    <td>{{ comment.user.getUsername() }}</td>
+                                    <td>{{ comment.produit.getTitre() }}</td>
+                                    <td>{{ comment.message }}</td>
+                                    <td>{{ comment.date |date('d-m-Y h:i:s')}}</td>
+                                  
+                                    
+                                    <td>
+                                            <div style="margin-left: auto; margin-right: auto;" class="eyes">
+                                            <a href="{{ path('supprimer_commentaires', {'id': comment.id}) }}"   onclick="return confirm('vous etes sure de vouloir supprimer ?');"><i class="mdi mdi-delete" style="color:red;"></i></a>
+                                            
+                                    </td>
+                                </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="3">Aucun commentaires trouvée</td>
+                                    </tr>
+                              
