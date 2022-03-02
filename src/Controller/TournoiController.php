@@ -197,5 +197,26 @@ class TournoiController extends AbstractController
 
         return $this->redirectToRoute("connexion");
     }
+    /**
+     * @Route("/calendar",name="calendar")
+     */
+    public function calendar(): Response
+    {
+$events=  $this->getDoctrine()
+    ->getRepository(Tournoi::class)->findAll();
+$tournoi = [];
+foreach ($events as $event) {
+    $tournoi[] = [
+        'title'=>$event->getNom(),
+        'start'=>$event->getTime()->format('Y-m-d H:i:s'),
+        'end'=>$event->getTimeEnd()->format('Y-m-d H:i:s')
+
+    ];
+
+}
+        $data= json_encode($tournoi);
+        return $this->render('tournoi/tournament-calendar.html.twig'
+            ,array("data"=>$data));
+    }
 
 }

@@ -8,7 +8,7 @@
         <div class="row">
             {% set var1='' %}
             {% for equipe in tournoi.equipes %}
-            {% set var1=var1 ~ equipe.joueurs %}
+            {% set var1=var1 ~ '-'~ equipe.joueurs %}
             {% endfor %}
     {% for equipe in tournoi.equipes %}
 
@@ -39,6 +39,8 @@
                                      <td>  {{ v}} </td>
                                  {% if v == current %}
                                      <td><a type="button" class="btn btn-danger" href="{{ path('annulInscrit',{"id":equipe.id}) }}"><i class="far fa-trash-alt"></i></a></td>
+                                     {% else %}
+                                     <td></td>
                                      {% endif %}
                                    </tr>
 

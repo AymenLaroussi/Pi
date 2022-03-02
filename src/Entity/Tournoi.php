@@ -85,6 +85,16 @@ class Tournoi
      */
     private $jeu;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $textColor;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $timeEnd;
+
 
 
     public function __construct()
@@ -235,6 +245,30 @@ class Tournoi
     public function setJeu(?Jeu $jeu): self
     {
         $this->jeu = $jeu;
+
+        return $this;
+    }
+
+    public function getTextColor(): ?string
+    {
+        return $this->textColor;
+    }
+
+    public function setTextColor(?string $textColor): self
+    {
+        $this->textColor = $textColor;
+
+        return $this;
+    }
+
+    public function getTimeEnd(): ?\DateTimeInterface
+    {
+        return $this->timeEnd;
+    }
+
+    public function setTimeEnd(?\DateTimeInterface $timeEnd): self
+    {
+        $this->timeEnd = $timeEnd;
 
         return $this;
     }

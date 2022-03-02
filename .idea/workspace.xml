@@ -2,16 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="15642978-c11c-42c6-95ae-5b44b3bd4d3d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/migrations/Version20220228144605.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/tournoi/succes-tournament.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/tournoi/tournament-inscription.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20220302151335.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/migrations/Version20220302163202.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/tournoi/tournament-calendar.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/migrations/Version20220218085755.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20220221151300.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20220225224618.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20220221151300.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/TournoiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TournoiController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Equipe.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Equipe.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/tournoi/add-tournoi.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tournoi/add-tournoi.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/tournoi/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tournoi/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Tournoi.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Tournoi.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/tournoi/tournament-inscription.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tournoi/tournament-inscription.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -241,7 +245,8 @@
       <workItem from="1645966481554" duration="3518000" />
       <workItem from="1645989301624" duration="10146000" />
       <workItem from="1646038681997" duration="3480000" />
-      <workItem from="1646053601902" duration="12956000" />
+      <workItem from="1646053601902" duration="19596000" />
+      <workItem from="1646140311188" duration="25153000" />
     </task>
     <servers />
   </component>
