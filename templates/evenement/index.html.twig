@@ -20,6 +20,7 @@
                                     <th>Heure</th>
                                     <th>Date de fin</th>
                                     <th>Nombre de place</th>
+                                     <th>Sponsor</th>
                                     <th>Image</th>
                                     <th>Description</th>
                                     <th>Action</th>
@@ -28,6 +29,8 @@
                                 {% for event in evenements %}
                                     <tr>
                                         <td>{{event.id}}</td>
+        
+            
             
         <td>{{event.nomeven}}</td>
         <td>{{event.lieuevent}}</td>
@@ -35,6 +38,9 @@
          <td>{{event.heurevent|format_time("short")}}</td>
          <td>{{event.datefin|date("d/m/y")}}</td>
          <td>{{event.nbrplace}}</td>
+         {% for sponsor in event.sponsors %}
+                <td> {{sponsor.nom}} {{sponsor.prenom}} </td>
+            {% endfor%}
          <td><img src="/uploads/event/{{event.image}}"></td>
          <td>{{event.description}}</td>
          

@@ -56,12 +56,6 @@ class Sponsors
 
     /**
      * @ORM\Column(type="string", length=255)
-     *  @Assert\Image(
-     *     minWidth = 200,
-     *     maxWidth = 400,
-     *     minHeight = 200,
-     *     maxHeight = 400
-     * )
      */
     private $image;
 
