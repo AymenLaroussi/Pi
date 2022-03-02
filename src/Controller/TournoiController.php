@@ -19,6 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Form\TournoiType;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 class TournoiController extends AbstractController
 {
     /**
@@ -207,11 +208,12 @@ $events=  $this->getDoctrine()
 $tournoi = [];
 foreach ($events as $event) {
     $tournoi[] = [
+        'id' => $event->getId(),
         'title'=>$event->getNom(),
         'start'=>$event->getTime()->format('Y-m-d H:i:s'),
         'end'=>$event->getTimeEnd()->format('Y-m-d H:i:s')
-
     ];
+
 
 }
         $data= json_encode($tournoi);
@@ -219,4 +221,35 @@ foreach ($events as $event) {
             ,array("data"=>$data));
     }
 
+    /**
+     * @Route("/calendar/{id}/edit", name="calendar_tournoi_edit", methods={"PUT"})
+     */
+    public function majEvent(?Tournoi $tournoi, Request $request)
+    {
+
+        $donnees = json_decode($request->getContent());
+
+        if(
+            isset($donnees->title) && !empty($donnees->title) &&
+            isset($donnees->start) && !empty($donnees->start) &&
+            isset($donnees->start) && !empty($donnees->start)
+
+        )
+
+            // On hydrate l'objet avec les données
+            $tournoi->setNom($donnees->title);
+            $tournoi->setTime(new \DateTime($donnees->start));
+
+            $tournoi->setTimeEnd(new \DateTime($donnees->end));
+
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($tournoi);
+            $em->flush();
+
+            return new Response('Ok');
+
+
+
+    }
 }
