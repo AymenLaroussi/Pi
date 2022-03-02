@@ -174,4 +174,28 @@ class TournoiController extends AbstractController
         }
 
 
+    /**
+     * @Route("/annulInscrit/{id}",name="annulInscrit")
+     */
+    public function annulInscrit($id,Request $request): Response
+    {
+
+        if ($this->getUser()) {
+            $equipe = $this->getDoctrine()
+                ->getRepository(Equipe::class)->find($id);
+            $tournoi=$equipe->getTournoi();
+            $pos = strpos($equipe->getJoueurs(), $this->getUser()->getUsername());
+            if ($pos !== false) {
+                $chaine = substr_replace($equipe->getJoueurs(),"vide" ,$pos,strlen($this->getUser()->getUsername()));
+                $equipe->setJoueurs($chaine);
+                $this->getDoctrine()->getManager()->flush();
+            }
+
+            return $this->redirectToRoute("tournoi");
+        }
+
+
+        return $this->redirectToRoute("connexion");
+    }
+
 }
