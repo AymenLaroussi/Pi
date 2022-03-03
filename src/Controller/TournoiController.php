@@ -204,7 +204,7 @@ class TournoiController extends AbstractController
     public function calendar(): Response
     {
 $events=  $this->getDoctrine()
-    ->getRepository(Tournoi::class)->findAll();
+    ->getRepository(Tournoi::class)->listTournoiByUser($this->getUser()->getUsername());
 $tournoi = [];
 foreach ($events as $event) {
     $tournoi[] = [

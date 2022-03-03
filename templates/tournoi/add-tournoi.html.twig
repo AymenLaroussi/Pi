@@ -132,6 +132,20 @@
                     </div>
                 </div>
             </div>
+            <div>
+                <div class="my-custom-class-for-errors">
+                    {{ form_errors(formTournoi.timeEnd) }}
+                </div>
+                <div class="row">
+                    <div  style="width: 500px"  class="col5 sub-title2 mt-5">
+                        {{ form_label(formTournoi.timeEnd,"le temps de fin") }}
+                    </div>
+
+                    <div class="col4" id="some-custom-id">
+                        {{ form_widget(formTournoi.timeEnd, { 'attr': {'style': 'width: 250px'} }) }}
+                    </div>
+                </div>
+            </div>
 
 
 
