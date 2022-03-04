@@ -14,6 +14,9 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Form\CommentairesType;
 use App\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 
 /**
@@ -112,6 +115,19 @@ class BoutiqueController extends AbstractController
             'comment' => $comment,
             'form' => $form->createView(),
         ]);
+    }
+
+
+     ////////////////////JASON/////////////////
+    
+    /**
+    * @Route("/api/", name="boutiqueJSON" , methods={"GET"})
+    */
+    public function getProduits( SerializerInterface $SerializerInterface,ProduitsRepository $produitsRepository,CategoriesRepository $categoriesRepository, NormalizerInterface $normalizer)
+    {
+        $produits=$produitsRepository->findAll(); 
+        $response = $this->json($produits, 200, [], ['groups' => 'post:read']);
+        return $response;
     }
     
 

@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ProduitsRepository::class)
@@ -34,34 +35,40 @@ class Produits
     /**
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\Positive(message="Promotion du produit est doit étre positive.")
+     * @Groups("post:read")
      */
     private $promo;
 
     /**
      * @ORM\Column(type="integer")
      * @Assert\Positive(message="Quantité du produit est doit étre positive.")
+     * @Groups("post:read")
      */
     private $stock;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("post:read")
      */
     private $flash;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("post:read")
      */
     private $image;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotNull (message="Réference du produit est obligatoire.")
+     * @Groups("post:read")
      */
     private $ref;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotNull (message="Description du produit est obligatoire.")
+     * @Groups("post:read")
      */
     private $longdescription;
 
@@ -70,6 +77,7 @@ class Produits
      * @Assert\NotNull (message="Prix du produit est obligatoire.")
      * @Assert\Positive(message="Quantité du produit est doit étre positive.")
      * @Assert\Type(type="float", message="Quantité du produit est doit étre positive.")
+     * @Groups("post:read")
      */
     private $prix;
 
@@ -82,6 +90,7 @@ class Produits
 
     /**
      * @ORM\OneToMany(targetEntity=Commentaires::class, mappedBy="produit" ,cascade={"remove"})
+     * @Groups("post:read")
      */
     private $commentaires;
 
