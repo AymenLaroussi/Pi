@@ -14,11 +14,7 @@ class CommentairesType extends AbstractType
     {
         $builder
         ->add('message')
-        ->add('Enregistrer',SubmitType::class, [
-            'attr' => [
-                'href' => "{{ path('ajout_categories') }}",
-            ],
-        ]);
+        
         
             
         ;

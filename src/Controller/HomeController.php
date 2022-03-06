@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Produits;
+use App\Entity\Rating;
 use App\Form\ProduitsType;
 use App\Repository\ProduitsRepository;
 use App\Entity\Commentaires;
@@ -39,6 +40,7 @@ class HomeController extends AbstractController
         $produit= $this->getDoctrine()->getRepository(Produits::class)->find($id);
         $produit= $this->getDoctrine()->getRepository(Produits::class)->find($id);
         $produits= $this->getDoctrine()->getRepository(Produits::class)->findAll();
+        $ratis= $this->getDoctrine()->getRepository(Rating::class)->findAll();
         $user=$this->getUser();
         $produitf= $this->getDoctrine()->getRepository(Produits::class)->find($id);
         $comment = new Commentaires();
@@ -60,7 +62,7 @@ class HomeController extends AbstractController
 
         
 
-        return $this->render("boutique/detail.html.twig",array("produit"=>$produit ,"produits"=>$produits,'form1' => $form->createView(), ));
+        return $this->render("boutique/detail.html.twig",array("produit"=>$produit ,"produits"=>$produits,"ratis"=>$ratis,'form1' => $form->createView(), ));
     }
 
 

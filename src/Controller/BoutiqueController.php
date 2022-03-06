@@ -13,6 +13,7 @@ use App\Repository\CommentairesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\CommentairesType;
 use App\Entity\User;
+use App\Entity\Rating;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
@@ -115,6 +116,21 @@ class BoutiqueController extends AbstractController
             'comment' => $comment,
             'form' => $form->createView(),
         ]);
+    }
+
+
+    /**
+    * @Route("/addrating ", name="addrating")
+    */
+    public function searchStudentx(Request $request)
+    {
+        $ref=$request->get('ref');
+        $rat=$request->get('rating');
+        $user=$request->get('rating');
+        $rating =new Rating($ref,$rat,$user);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($rating);
+        $entityManager->flush();
     }
 
 
