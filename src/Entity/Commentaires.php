@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CommentairesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=CommentairesRepository::class)
@@ -14,16 +15,19 @@ class Commentaires
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("post:read")
      */
     private $id;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="commentaires")
+     * @Groups("post:read")
      */
     private $user;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("post:read")
      */
     private $message;
 
@@ -34,6 +38,7 @@ class Commentaires
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups("post:read")
      */
     private $date;
 

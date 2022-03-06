@@ -42,8 +42,6 @@
    <link rel="stylesheet" href="{{ asset('../assets/css/style.css')}}">
    <link rel="stylesheet" href="{{ asset('../assets/css/fontawesome.css')}}">
    <link rel="stylesheet" href="{{ asset('../assets/css/theme-color1.css')}}">
-   <script src="https://kit.fontawesome.com/45e38e596f.js" crossorigin="anonymous"></script>
-
 </head>
 <body>
 
@@ -62,9 +60,9 @@
                      <li><a href="../boutique">BOUTIQUE</a></li>
                      <li><a href="../evenements">EVENEMENTS</a></li>
                      {% if app.user %}
-                        <li><a href="deconnexion">DECONNEXION</a></li>
+                        <li><a href="/deconnexion">DECONNEXION</a></li>
                      {% else %}
-                        <li><a href="connexion">CONNEXION</a></li>
+                        <li><a href="/connexion">CONNEXION</a></li>
                      {% endif %}
                      {% if is_granted('ROLE_ADMIN') %}
                         <li><a style="color:red" href="admin">ADMINISTRATION</a></li>
