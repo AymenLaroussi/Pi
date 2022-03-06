@@ -45,13 +45,11 @@
                    {% include 'boutique/produit.html.twig' with {produit: produit} only %}
             {% endif %}
     {% endfor %}
+    {{ knp_pagination_render(produits) }}
   </div>
 
-
-
-            
-             
-            
+  
+     
             <div class="pagination-wrapper pagination-layout1 mt-lg-30 mb-30">
               <ul>
                 <li>
