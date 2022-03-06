@@ -18,6 +18,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Knp\Component\Pager\PaginatorInterface;
+use Knp\Bundle\PaginatorBundle\Pagination\SlidingPaginationInterface;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\QueryBuilder;
 
 
 /**
@@ -30,12 +34,16 @@ class BoutiqueController extends AbstractController
     /**
      * @Route("/", name="boutique")
      */
-    public function index(ProduitsRepository $produitsRepository,CategoriesRepository $categoriesRepository): Response
+    public function index(ProduitsRepository $produitsRepository,CategoriesRepository $categoriesRepository, Request $request, PaginatorInterface $paginator ): Response
     {
-
-      
+        $donnees= $this->getDoctrine()->getRepository(Produits::class)->findAll();
+        $produits = $paginator->paginate(
+            $donnees, // Requête contenant les données à paginer (ici nos articles)
+            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+            6 // Nombre de résultats par page
+        );
         return $this->render('boutique/index.html.twig', [
-            'produits' => $produitsRepository->findAll(),
+            'produits' => $produits,
             'categories' => $categoriesRepository->findAll(),
             
         ]);
