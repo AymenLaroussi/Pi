@@ -61,6 +61,12 @@ class TournoiType extends AbstractType
                     'hour' => 'Hour', 'minute' => 'Minute', 'second' => 'Second',
                 ],
             ])
+            ->add('timeEnd', DateTimeType::class, [
+                'placeholder' => [
+                    'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
+                    'hour' => 'Hour', 'minute' => 'Minute', 'second' => 'Second',
+                ],
+            ])
             ->add('submit',SubmitType::class)
         ;
     }
