@@ -2,6 +2,8 @@
 namespace App\Form;
 
 use App\Entity\User;
+use Captcha\Bundle\CaptchaBundle\Form\Type\CaptchaType;
+use Captcha\Bundle\CaptchaBundle\Validator\Constraints\ValidCaptcha;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -23,6 +25,14 @@ class UserType extends AbstractType
                 'first_options'  => array('label' => 'Mot de passe'),
                 'second_options' => array('label' => 'Répéter le mot de passe'),
 
+            ))
+            ->add('captchaCode', CaptchaType::class, array(
+                'captchaConfig' => 'ExampleCaptchaUserRegistration',
+                'constraints' => [
+                    new ValidCaptcha([
+                        'message' => 'Le captcha est incorrect',
+                    ]),
+                ],
             ))
         ;
     }

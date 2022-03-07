@@ -14,6 +14,9 @@ security:
             form_login:
                 login_path: connexion
                 check_path: connexion
+            remember_me:
+                secret:   '%kernel.secret%'
+                lifetime: 604800
             logout:
                 path: app_logout
                 target: home

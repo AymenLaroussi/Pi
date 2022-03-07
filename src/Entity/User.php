@@ -55,25 +55,39 @@ class User implements UserInterface
     private $roles;
 
     /**
-
      * @ORM\Column(type="datetime")
      */
     private $date_creation;
 
-     /**
+    /**
      * @ORM\OneToMany(targetEntity=Tournoi::class, mappedBy="organisateur")
      */
     private $tournois;
+
 
     /**
      * @ORM\OneToMany(targetEntity=Commentaires::class, mappedBy="user")
      */
     private $commentaires;
-    
 
-    public function __construct() {
+
+    public function __construct()
+    {
         $this->roles = array('ROLE_ADMIN');
         $this->commentaires = new ArrayCollection();
+    }
+
+    protected $captchaCode;
+
+
+    public function getCaptchaCode()
+    {
+        return $this->captchaCode;
+    }
+
+    public function setCaptchaCode($captchaCode)
+    {
+        $this->captchaCode = $captchaCode;
     }
 
     public function getEmail()
@@ -147,6 +161,7 @@ class User implements UserInterface
         return $this;
     }
 
+
     /**
      * @return Collection|Commentaires[]
      */
@@ -173,7 +188,6 @@ class User implements UserInterface
                 $commentaire->setUser(null);
             }
         }
-
-        return $this;
+ return $this;
     }
 }

@@ -112,6 +112,7 @@
             }
             function lessClick() {
                 
+
                 document.getElementById('qty').value = --i;
                  if (i <=0 ) {
     document.getElementById('qty').value = ++i;
@@ -129,6 +130,25 @@
                 <button class="quantity-plus qut-btn" onclick="addClick()">
                   <i class="far fa-plus"></i>
                 </button>
+
+                <div class="cart-btn-group">
+                  <div class="quantity-box me-2 d-flex d-md-inline-flex d-lg-flex d-xl-inline-flex mb-3 mb-xl-0">
+                    <button class="quantity-minus qut-btn">
+                      <i class="far fa-minus"></i>
+                    </button>
+                    <input type="text" value="1" class="qty-input">
+                    <button class="quantity-plus qut-btn">
+                      <i class="far fa-plus"></i>
+                    </button>
+                  </div>
+                  <a href="/panier" class="vs-btn">Ajouter au panier</a>
+                  <a href="#" class="icon-btn3">
+                    <i class="far fa-heart"></i>
+                  </a>
+                  <a href="#" class="icon-btn3">
+                    <i class="far fa-search"></i>
+                  </a>
+                </div>
               </div>
               <a href="#" class="vs-btn">Ajouter au panier</a>
               <a href="#" class="icon-btn3">
