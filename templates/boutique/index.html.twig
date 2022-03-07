@@ -3,6 +3,19 @@
 {% block title %}Hello BoutiqueController!{% endblock %}
 
 {% block body %}
+<script> 
+  
+var down = document.getElementById('sidebox-title-v2 h5');
+  
+        function GFG_Fun() {
+            document.getElementsByClassName('alert alert-danger d-block')[0].
+            style.visibility = 'hidden';
+            down.innerHTML = "Element is hidden";
+        }
+</script>
+
+
+ 
   
     <section class="vs-product-wrapper vs-product-layout2 space-top newsletter-pb">
       <div class="container">
@@ -45,45 +58,21 @@
                    {% include 'boutique/produit.html.twig' with {produit: produit} only %}
             {% endif %}
     {% endfor %}
-    {{ knp_pagination_render(produits) }}
-  </div>
+   
 
   
      
-            <div class="pagination-wrapper pagination-layout1 mt-lg-30 mb-30">
-              <ul>
-                <li>
-                  <a href="#" class="active">
-                    <span class="text">1</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <span class="text">2</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <span class="text">3</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <span class="text">4</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
+           
           </div>
+           <div style="margin: auto;
+    width: 50%;
+    /* border: 3px solid green; */
+    padding: 10px;">{{ knp_pagination_render(produits) }}</div>
+  </div>
           <div class="col-lg-4">
             <aside class="sidebar-area sticky-top overflow-hidden">
               <div class="widget widget_search">
-                <form class="search-form">
-                  <input type="text" placeholder="Search Here">
-                  <button type="submit">
-                    <i class="far fa-search"></i>
-                  </button>
-                </form>
+                {{ form(formSearch) }}
               </div>
               
               <h3 class="sidebox-title-v2 h5">Categories</h3>

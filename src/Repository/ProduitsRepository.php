@@ -70,5 +70,12 @@ class ProduitsRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-   
+    public function RechercheProduit($titre)
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.titre LIKE :x')
+            ->setParameter('x', '%'.$titre.'%')
+            ->getQuery()
+            ->execute();
+    }
 }
