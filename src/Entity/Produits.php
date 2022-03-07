@@ -3,8 +3,11 @@
 namespace App\Entity;
 
 use App\Repository\ProduitsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ProduitsRepository::class)
@@ -32,42 +35,49 @@ class Produits
     /**
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\Positive(message="Promotion du produit est doit étre positive.")
+     * @Groups("post:read")
      */
     private $promo;
 
     /**
      * @ORM\Column(type="integer")
      * @Assert\Positive(message="Quantité du produit est doit étre positive.")
+     * @Groups("post:read")
      */
     private $stock;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("post:read")
      */
     private $flash;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotNull (message="Image du produit est obligatoire.")
+     * @Groups("post:read")
      */
     private $image;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotNull (message="Réference du produit est  obligatoire.")
+     * @Assert\NotNull (message="Réference du produit est obligatoire.")
+     * @Groups("post:read")
      */
     private $ref;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotNull (message="Description du produit est obligatoire.")
+     * @Groups("post:read")
      */
     private $longdescription;
 
     /**
      * @ORM\Column(type="float")
      * @Assert\NotNull (message="Prix du produit est obligatoire.")
-     * @Assert\Type(type="float", message="Prix doit étre positive")
+     * @Assert\Positive(message="Quantité du produit est doit étre positive.")
+     * @Assert\Type(type="float", message="Quantité du produit est doit étre positive.")
+     * @Groups("post:read")
      */
     private $prix;
 
@@ -77,6 +87,21 @@ class Produits
      * 
      */
     private $categories;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Commentaires::class, mappedBy="produit" ,cascade={"remove"})
+     * @Groups("post:read")
+     */
+    private $commentaires;
+
+    public function __construct()
+    {
+        $this->commentaires = new ArrayCollection();
+    }
+
+ 
+
+    
 
     public function getId(): ?int
     {
@@ -207,4 +232,38 @@ class Produits
     {
         return(string)$this->getTitre();
     }
+
+    /**
+     * @return Collection|Commentaires[]
+     */
+    public function getCommentaires(): Collection
+    {
+        return $this->commentaires;
+    }
+
+    public function addCommentaire(Commentaires $commentaire): self
+    {
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[] = $commentaire;
+            $commentaire->setProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaires $commentaire): self
+    {
+        if ($this->commentaires->removeElement($commentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getProduit() === $this) {
+                $commentaire->setProduit(null);
+            }
+        }
+
+        return $this;
+    }
+
+    
+
+    
 }

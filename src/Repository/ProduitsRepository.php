@@ -59,5 +59,23 @@ class ProduitsRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-   
+    public function listCommentaireByProduit($id)
+    {
+        return $this->createQueryBuilder('s')
+            ->join('s.commentaires','c')
+            ->addSelect('c')
+            ->where('c.id=:id')
+            ->setParameter('id',$id)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function RechercheProduit($titre)
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.titre LIKE :x')
+            ->setParameter('x', '%'.$titre.'%')
+            ->getQuery()
+            ->execute();
+    }
 }
