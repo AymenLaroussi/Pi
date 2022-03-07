@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use App\Entity\Caegories;
 use App\Entity\Produits;
 use App\Form\ProduitsType;
@@ -13,6 +15,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use App\Repository\CategoriesRepository;
 use Gedmo\Sluggable\Util\Urlizer;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 /**
  * @Route("admin/produits")
@@ -106,6 +110,49 @@ class ProduitsController extends AbstractController
         $em->flush();
         return $this->redirectToRoute("list_produits");
     }
+
+
+    /**
+     * @Route("/produits/imprimer", name="listProduits", methods={"GET"})
+     */
+    public function listProduitsPDF(ProduitsRepository $rep ) :Response
+    {
+
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        $pdfOptions->setIsRemoteEnabled(true);
+        $pdfOptions->set('defaultFont', 'Courier New');
+
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+        $reader=$rep->findAll();
+
+
+        // Retrieve the HTML generated in our twig file
+
+         $html = $this->renderView('produits/imprimer.html.twig', array(
+            'reader'=>$reader
+        ));
+
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (force download)
+        $dompdf->stream("Listesproduits.pdf", [
+            "Attachment" => false
+        ]);
+
+        // Send some text response
+        return new Response("The List of Products has been succesfully generated as a PDFfile  !");
+
+    }
+
 
    
 }
