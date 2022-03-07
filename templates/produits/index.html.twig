@@ -1,0 +1,67 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block body %}
+    <div class="main-panel">
+          <div class="content-wrapper"> 
+            <div class="row ">
+              <div class="col-12 grid-margin">
+                 <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Liste des produits</h4>
+                        <a class="text-warning" href="{{ path('ajout_produits') }}"><i class="mdi mdi-database-plus"></i> Nouveau produit</a>
+                        <input id="myInput" type="text" placeholder="Search..">
+                        <div class="table-responsive">
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Titre</th>
+                                    <th>Description</th>
+                                    <th>Stock</th>
+                                    <th>Prix</th>
+                                    <th>Promo</th>
+                                    <th>Ref</th>
+                                    <th>Image</th>
+                                    <th>actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="myTable">
+                            {% for produit in produits %}
+                                <tr>
+                                    <td>{{ produit.id }}</td>
+                                    <td><span class="ps-2">{{ produit.titre }}</span></td>
+                                    <td>{{ produit.description }}</td>
+                                    <td>{{ produit.stock }}</td>
+                                    <td>{{ produit.prix }}</td>
+                                    <td>{{ produit.promo ? 'Yes' : 'No' }}</td>
+                                    <td>{{ produit.ref }}</td>
+                                    <td><img src="../../uploads/{{ produit.image }}"></td>
+                                    
+                                    <td>
+                                        
+                                            <div class="iconss" >
+                                            <a class="text-warning" href="{{ path('voir_produits', {'id': produit.id}) }}"><i class="mdi mdi-eye"></i></a>
+                                            <a href="{{ path('modifier_produits', {'id': produit.id}) }}"><i class="mdi mdi-tooltip-edit"></i></a>
+                                            <a href="{{ path('supprimer_produits', {'id': produit.id}) }}"   onclick="return confirm('vous etes sure de vouloir supprimer ?');"><i class="mdi mdi-delete" style="color:red;"></i></a>
+                                                
+                                    </td>
+                                </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="3">Aucun produit trouvée</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                               
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+{% endblock %}

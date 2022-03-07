@@ -1,0 +1,49 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block body %}
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row ">
+                <div class="col-12 grid-margin">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4>Liste des utilisateurs</h4>
+                            <form class="search">
+                                <input type="text" class="form-control" placeholder="Chercher un utilisateur">
+                            </form>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Pseudonyme</th>
+                                        <th>Email</th>
+                                        <th>Rôles</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    {% for user1 in user %}
+                                        <tr>
+                                            <td>{{ user1.id }}</td>
+                                            <td>{{ user1.username }}</td>
+                                            <td>{{ user1.email }}</td>
+                                            <td>{{ user1.roles ? user1.roles|json_encode : '' }}</td>
+                                            <td><form method="post" action="{{ path('supprimer_utilisateur', {'id': user1.id}) }}" onsubmit="return confirm('Confirmez-vous la suppression ?');">
+                                                    <div style="margin-left: auto; margin-right: auto;">
+                                                        <a href="{{ path('modifier_utilisateur', {'id': user1.id}) }}"><i class="mdi mdi-tooltip-edit"></i></a>
+                                                        <button class="text-danger" style="font-size: 14px;background:none; border:none;margin:0;padding:0;cursor: pointer;text-decoration: underline red;" class="btn" type="submit"><i class="mdi mdi-delete"></i></button></td>
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td colspan="3">Aucune catégorie trouvée</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

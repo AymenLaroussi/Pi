@@ -1,0 +1,63 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block body %}
+
+    <div class="main-panel">
+          <div class="content-wrapper"> 
+            <div class="row ">
+              <div class="col-12 grid-margin">
+                 <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Liste des produits</h4>
+                        <table>
+                        <tr><td>
+                        <a class="text-warning" href="{{ path('ajout_produits') }}"><i class="mdi mdi-database-plus"></i> Nouveau produit</a>
+                  </td><td></td><td></td><td>
+                
+              
+                        <input type="text" id="myInput" class="form-control" placeholder="Chercher un produit" style="width:300px">
+                       </td></tr></table>
+                        <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Utilisateur</th>
+                                    <th>Message</th>
+                                    <th>Date</th>
+                                    <th>actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="myTable">
+                            {% for comment in commentaires %}
+                                <tr>
+                                    <td>{{ comment.id }}</td>
+                                    <td>{{ comment.user.getUsername() }}</td>
+                                    <td>{{ comment.produit.getTitre() }}</td>
+                                    <td>{{ comment.message }}</td>
+                                    <td>{{ comment.date |date('d-m-Y h:i:s')}}</td>
+                                  
+                                    
+                                    <td>
+                                            <div style="margin-left: auto; margin-right: auto;" class="eyes">
+                                            <a href="{{ path('supprimer_commentaires', {'id': comment.id}) }}"   onclick="return confirm('vous etes sure de vouloir supprimer ?');"><i class="mdi mdi-delete" style="color:red;"></i></a>
+                                            
+                                    </td>
+                                </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="3">Aucun commentaires trouvée</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+{% endblock %}

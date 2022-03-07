@@ -24,10 +24,8 @@ class CategoriesType extends AbstractType
                   'class' => 'form-control'
                   ]
               ])
-            ->add('produits', [
-                'attr'=>[
-                    'class'=>'btn btn-info dropdown-toggle'
-                ] ])
+
+
             ->add('Enregistrer',SubmitType::class, [
                 'attr' => [
                     'href' => "{{ path('ajout_categories') }}",

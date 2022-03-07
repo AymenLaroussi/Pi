@@ -1,7 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello TournoiController!{% endblock %}
-
 {% block body %}
   <div class="breadcumb-wrapper breadcumb-layout1 pt-100 pb-50 " data-bg-src="assets/img/breadcumb/breadcumb-1.jpg" data-overlay>
     <div class="container z-index-common">
@@ -27,153 +25,175 @@
           <div class="row align-items-center justify-content-center">
             <div class="col-xl-6 text-center text-xl-start mb-3 mb-xl-0">
               <span class="sub-title2 mt-2 text-center">Créer un nouveau Tournoi !</span>
-              <h4 class="mb-0 text-white">Organiser votre tournoi dès maintenant</h4>
+              <h4 class="mb-2 text-white">Organiser votre tournoi dès maintenant</h4>
             </div>
             <div class="col-md-10 col-lg-8 col-xl-6">
-              <form action="#" class="newsletter-style1 d-md-flex">
-                <button class="vs-btn gradient-btn"><a href="/addtournoi">Subscribe Now</a></button>
+              <form action="#" class="newsletter-style1 d-md-flex" >
+                <button class="vs-btn gradient-btn" style="align-content: end"><a href="/addtournoi">organiser tournoi</a></button>
               </form>
             </div>
+
           </div>
         </div>
       </div>
     </div>
   </section>
   <section class="vs-events-wrapper events-layout1 space-top space-md-bottom">
-    <h2 class="text-center"><span class="sub-title2 mt-5 ">Mes tournois</span></h2>
+    <h2 class="text-center"><span class="sub-title2 mt-5 ">Tournoi disponible</span></h2>
     <div class="container">
       <div class="row">
+        {% for tournoi in tournois %}
+          {% if ('now'|date('U') < tournoi.time|date('U'))  %}
         <div class="col-md-6">
-          <div class="vs-events d-lg-flex" data-bg-src="assets/img/shape/events-bg-1.png">
-            <div class="media-img">
-              <img src="assets/img/tournament/t-img-1.png" alt="Tournament Image">
-            </div>
-            <div class="media-body align-self-center">
-              <h3 class="events-name h5 text-white">
-                <a href="">2021 WORLD CHAMPIONSHIP</a>
-              </h3>
-              <ul class="events-list list-style-none">
-                <li class="text-light2">
-                  <span class="text-white">Date:</span>June 1 - October 31, 2021
-                </li>
-                <li class="text-light2">
-                  <span class="text-white">Game:</span>Dota2
-                </li>
-                <li class="text-light2">
-                  <span class="text-white">Teams:</span>280
-                </li>
-                <li class="text-light2">
-                  <span class="text-white">Prize Pool:</span>120,000$
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
 
-        <div class="col-md-6">
           <div class="vs-events d-lg-flex" data-bg-src="assets/img/shape/events-bg-1.png">
             <div class="media-img">
-              <img src="assets/img/tournament/t-img-2.png" alt="Tournament Image">
+              <img src="../../uploads/{{ tournoi.image }}">
             </div>
-            <div class="media-body align-self-center">
+            <div class="media-body ">
               <h3 class="events-name h5 text-white">
-                <a href="tournament-details.html">2021 Rank Topper</a>
+                <a href="{{ path('showTournoi',{"id":tournoi.id}) }}">{{ tournoi.nom }}</a>
               </h3>
               <ul class="events-list list-style-none">
                 <li class="text-light2">
-                  <span class="text-white">Date:</span>July 05 - November 31, 2021
+                  <span class="text-white">Date:</span>{{ tournoi.time |format_datetime()}}
+                </li>
+          {% if tournoi.jeu  %}
+                <li class="text-light2">
+                  <span class="text-white">Game:</span>{{ tournoi.jeu.nom }}
+                </li>
+          {% endif  %}
+                <li class="text-light2">
+                  <span class="text-white">Teams:</span>{{ tournoi.nbrequipes }}
                 </li>
                 <li class="text-light2">
-                  <span class="text-white">Game:</span>PUBG
-                </li>
-                <li class="text-light2">
-                  <span class="text-white">Teams:</span>320
-                </li>
-                <li class="text-light2">
-                  <span class="text-white">Prize Pool:</span>112,000$
+                  <span class="text-white">Prize Pool:</span>{{ tournoi.prix }}
                 </li>
               </ul>
             </div>
+
+          </div>
+          <div style="margin-top: -45px" class="col-md-5 col-lg-8 col-xl-1 subscribe-buttom " >
+            <form action="#" class="newsletter-style1 d-md-flex " >
+              <button class="vs-btn gradient-btn form"><a href="{{ path('tournoi',{"id":tournoi.id}) }}">s'inscrir</a></button>
+            </form>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="vs-events d-lg-flex" data-bg-src="assets/img/shape/events-bg-1.png">
-            <div class="media-img">
-              <img src="assets/img/tournament/t-img-3.png" alt="Tournament Image">
-            </div>
-            <div class="media-body align-self-center">
-              <h3 class="events-name h5 text-white">
-                <a href="tournament-details.html">2021 WORLD Legend</a>
-              </h3>
-              <ul class="events-list list-style-none">
-                <li class="text-light2">
-                  <span class="text-white">Date:</span>Augest 1 - October 22, 2021
-                </li>
-                <li class="text-light2">
-                  <span class="text-white">Game:</span>FreeFire
-                </li>
-                <li class="text-light2">
-                  <span class="text-white">Teams:</span>522
-                </li>
-                <li class="text-light2">
-                  <span class="text-white">Prize Pool:</span>99,000$
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="vs-events d-lg-flex" data-bg-src="assets/img/shape/events-bg-1.png">
-            <div class="media-img">
-              <img src="assets/img/tournament/t-img-4.png" alt="Tournament Image">
-            </div>
-            <div class="media-body align-self-center">
-              <h3 class="events-name h5 text-white">
-                <a href="tournament-details.html">2022 Topper game</a>
-              </h3>
-              <ul class="events-list list-style-none">
-                <li class="text-light2">
-                  <span class="text-white">Date:</span>July 12 - Augest 18, 2021
-                </li>
-                <li class="text-light2">
-                  <span class="text-white">Game:</span>Bulker
-                </li>
-                <li class="text-light2">
-                  <span class="text-white">Teams:</span>85
-                </li>
-                <li class="text-light2">
-                  <span class="text-white">Prize Pool:</span>123,000$
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
+        {% endif %}
+        {% endfor %}
+
+
       </div>
     </div>
   </section>
-  <section class="vs-match-wrapper vs-match-layout1 newsletter-pb">
-    <h2 class="text-center"><span class="sub-title2 mt-5 ">tournoi disponible</span></h2>
+<section style="margin-top: -100px" class="vs-events-wrapper events-layout1 space-top space-md-bottom">
+  <h2 class="text-center"><span class="sub-title2 mt-5 ">Mes Tournois</span></h2>
+  <div class="container">
+    <div class="row">
+      {% for tournoi in mestournois %}
+
+          <div class="col-md-6">
+
+            <div class="vs-events d-lg-flex" data-bg-src="assets/img/shape/events-bg-1.png">
+              <div class="media-img">
+                <img src="../../uploads/{{ tournoi.image }}">
+              </div>
+              <div class="media-body ">
+                <h3 class="events-name h5 text-white">
+                  <a href="{{ path('showTournoi',{"id":tournoi.id}) }}">{{ tournoi.nom }}</a>
+                </h3>
+                <ul class="events-list list-style-none">
+                  <li class="text-light2">
+                    <span class="text-white">Date:</span>{{ tournoi.time |format_datetime()}}
+                  </li>
+                  {% if tournoi.jeu  %}
+                   <li class="text-light2">
+                  <span class="text-white">Game:</span>{{ tournoi.jeu.nom }}
+                </li>
+                  {% endif  %}
+                  <li class="text-light2">
+                    <span class="text-white">Teams:</span>{{ tournoi.nbrequipes }}
+                  </li>
+                  <li class="text-light2">
+                    <span class="text-white">Prize Pool:</span>{{ tournoi.prix }}
+                  </li>
+                </ul>
+              </div>
+              <div style="margin-top: 25px" class="col-md-8 col-lg-8 col-xl-1 subscribe-buttom" >
+
+                <ul>
+                  <li >
+                    <a href="{{ path('removeTournoi',{"id":tournoi.id}) }}">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-trash  subscribe-buttom" viewBox="0 0 16 16" >
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                      </svg>
+                    </a>
+                  </li>
+                  <li style="margin-top: 20px">
+                    <a href="{{ path('tournoiUpdate',{"id":tournoi.id}) }}">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                        <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
+                      </svg>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+
+          </div>
+
+      {% endfor %}
+
+
+    </div>
+  </div>
+</section>
+
+           {# #}
+  <section class="vs-team-wrapper space-top space-md-bottom">
     <div class="container">
-      <div class="text-center">
-        <div class="filter-menu-style1 filter-menu-active mb-70">
-          <button data-filter="*" class="active">All</button>
-          <button data-filter=".csgo">csgo</button>
-          <button data-filter=".dota">dota 2</button>
-          <button data-filter=".fortnite">fortnite</button>
-          <button data-filter=".pubg">pubg</button>
+      <div class="row justify-content-between">
+        <div class="col-md-auto text-center text-md-start">
+          <div class="section-title">
+            <h2 class="sec-title1 text-white">Jeux disponibles</h2>
+          </div>
         </div>
       </div>
-      {% for tournoi in tournois %}
-      <div class="container">
+      <div class="row team-box-slide vs-carousel slick-initialized slick-slider" data-slide-show="4" data-lg-slide-show="3" data-md-slide-show="2" data-sm-slide-show="2" data-xs-slide-show="1">
+
+
+
+
+
+        <div class="slick-list draggable">
+          {% for jeu in jeux %}
+              <div class="team-box">
+                <div class="team-logo"><a href="team.html" tabindex="-1"><img src="../../uploads/{{ jeu.image }}"></a></div>
+                <h3 class="team-name h4"><a href="team.html" class="text-reset" tabindex="-1">{{ jeu.nom }}</a></h3>
+              </div>
+        </div>
+          {% endfor %}
+            </div>
+    </div></div></div>
+    </div>
+  </section>
+
+
+
+{% endblock %}
+
+      {#<div class="container">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-5">
             <div class="vs-events d-lg-flex" data-bg-src="assets/img/shape/events-bg-1.png">
               <div class="media-img">
                 <img src="{{ tournoi.image }}" alt="Tournament Image">
               </div>
               <div class="media-body align-self-center">
                 <h3 class="events-name h5 text-white">
-                  <a href="{{ tournoi.image }}"></a>
+                  <a href="{{ tournoi.nom }}"></a>
                 </h3>
                 <ul class="events-list list-style-none">
                   <li class="text-light2">
@@ -193,8 +213,8 @@
             </div>
           </div>
         </div>
-      </div>
-      {% endfor %}
+      </div>#}
+
 
 
       {#<div class="mb-15 filter-active row">
@@ -238,9 +258,7 @@
         </div>
       </div>#}
 
-    </div>
-  </section>
-{% endblock %}
+
         {#<div class="col-md-6 col-lg-12 grid-item fortnite csgo dota">
           <div class="vs-match">
             <div class="row align-items-center justify-content-center justify-content-lg-start">

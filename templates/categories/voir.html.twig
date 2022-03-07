@@ -1,0 +1,22 @@
+{% extends 'dashboard.html.twig' %}
+{% block body %}
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ category.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ category.nom }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('list_categories') }}">Retour</a>
+
+    <a href="{{ path('modifier_categories', {'id': category.id}) }}">Modifier</a>
+
+    {{ include('categories/_supprimer_form.html.twig') }}
+{% endblock %}

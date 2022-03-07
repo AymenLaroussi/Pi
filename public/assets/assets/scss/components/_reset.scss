@@ -1,10 +1,16 @@
 /* Reset Styles */
 
+
 body {
     padding: 0;
     margin: 0;
     overflow-x: hidden;
 }
+
+.form-control form-control {
+    color:white;
+}
+
 
 .form-control,
 .form-control:focus {
@@ -56,10 +62,30 @@ textarea:focus,
 button:focus {
     outline: none;
     outline-width: 0;
+
+    color:white;
+
     outline-color: transparent;
     box-shadow: none;
     outline-style: none;
 }
+.iconss{
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 22px;
+}
+.form-control:focus, .asColorPicker-input:focus, .dataTables_wrapper select:focus, .jsgrid .jsgrid-table .jsgrid-filter-row input:focus[type=text], .jsgrid .jsgrid-table .jsgrid-filter-row select:focus, .jsgrid .jsgrid-table .jsgrid-filter-row input:focus[type=number], .select2-container--default .select2-selection--single:focus, .select2-container--default .select2-selection--single .select2-search__field:focus, .typeahead:focus, .tt-query:focus, .tt-hint:focus {
+    
+    background-color: #fff;
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+}
+a:focus, input:focus {
+    border-color: transparent;
+    outline: none;
+}
+
 
 textarea {
     resize: none;

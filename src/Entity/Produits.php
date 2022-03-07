@@ -6,6 +6,8 @@ use App\Repository\ProduitsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ProduitsRepository::class)
@@ -21,48 +23,85 @@ class Produits
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull (message="Titre du produit est obligatoire.")
      */
     private $titre;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $description;
-    
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $image;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $stock;
-
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $prix;
-
-    /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Positive(message="Promotion du produit est doit étre positive.")
+     * @Groups("post:read")
      */
     private $promo;
 
     /**
+     * @ORM\Column(type="integer")
+     * @Assert\Positive(message="Quantité du produit est doit étre positive.")
+     * @Groups("post:read")
+     */
+    private $stock;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("post:read")
+     */
+    private $flash;
+
+    /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("post:read")
+     */
+    private $image;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull (message="Réference du produit est obligatoire.")
+     * @Groups("post:read")
      */
     private $ref;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Categories::class, inversedBy="produits")
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull (message="Description du produit est obligatoire.")
+     * @Groups("post:read")
      */
-    private $categorie;
+    private $longdescription;
+
+    /**
+     * @ORM\Column(type="float")
+     * @Assert\NotNull (message="Prix du produit est obligatoire.")
+     * @Assert\Positive(message="Quantité du produit est doit étre positive.")
+     * @Assert\Type(type="float", message="Quantité du produit est doit étre positive.")
+     * @Groups("post:read")
+     */
+    private $prix;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Categories::class, inversedBy="produits")
+     * @ORM\JoinColumn(nullable=false)
+     *
+     */
+    private $categories;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Commentaires::class, mappedBy="produit" ,cascade={"remove"})
+     * @Groups("post:read")
+     */
+    private $commentaires;
 
     public function __construct()
     {
-        $this->categorie = new ArrayCollection();
+        $this->commentaires = new ArrayCollection();
     }
+
+
+
+
 
     public function getId(): ?int
     {
@@ -81,6 +120,30 @@ class Produits
         return $this;
     }
 
+    public function getRef(): ?string
+    {
+        return $this->ref;
+    }
+
+    public function setRef(string $ref): self
+    {
+        $this->ref = $ref;
+
+        return $this;
+    }
+
+    public function getLongdescription(): ?string
+    {
+        return $this->longdescription;
+    }
+
+    public function setLongdescription(string $longdescription): self
+    {
+        $this->longdescription = $longdescription;
+
+        return $this;
+    }
+
     public function getDescription(): ?string
     {
         return $this->description;
@@ -92,14 +155,15 @@ class Produits
 
         return $this;
     }
-    public function getImage(): ?string
+
+    public function getPromo(): ?int
     {
-        return $this->image;
+        return $this->promo;
     }
 
-    public function setImage(string $image): self
+    public function setPromo(int $promo): self
     {
-        $this->image = $image;
+        $this->promo = $promo;
 
         return $this;
     }
@@ -116,6 +180,30 @@ class Produits
         return $this;
     }
 
+    public function getFlash(): ?bool
+    {
+        return $this->flash;
+    }
+
+    public function setFlash(bool $flash): self
+    {
+        $this->flash = $flash;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
     public function getPrix(): ?float
     {
         return $this->prix;
@@ -128,55 +216,54 @@ class Produits
         return $this;
     }
 
-    public function getPromo(): ?bool
+
+    public function getCategories(): ?Categories
     {
-        return $this->promo;
+        return $this->categories;
     }
 
-    public function setPromo(bool $promo): self
+    public function setCategories(?Categories $categories): self
     {
-        $this->promo = $promo;
+        $this->categories = $categories;
 
         return $this;
     }
-
-    public function getRef(): ?string
+    public function __toString()
     {
-        return $this->ref;
-    }
-
-    public function setRef(string $ref): self
-    {
-        $this->ref = $ref;
-
-        return $this;
+        return(string)$this->getTitre();
     }
 
     /**
-     * @return Collection|Categories[]
+     * @return Collection|Commentaires[]
      */
-    public function getCategorie(): Collection
+    public function getCommentaires(): Collection
     {
-        return $this->categorie;
+        return $this->commentaires;
     }
 
-    public function addCategorie(Categories $categorie): self
+    public function addCommentaire(Commentaires $commentaire): self
     {
-        if (!$this->categorie->contains($categorie)) {
-            $this->categorie[] = $categorie;
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[] = $commentaire;
+            $commentaire->setProduit($this);
         }
 
         return $this;
     }
 
-    public function removeCategorie(Categories $categorie): self
+    public function removeCommentaire(Commentaires $commentaire): self
     {
-        $this->categorie->removeElement($categorie);
+        if ($this->commentaires->removeElement($commentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getProduit() === $this) {
+                $commentaire->setProduit(null);
+            }
+        }
 
         return $this;
     }
 
-    public function __toString() {
-        return $this->titre;
-    }
+
+
+
 }

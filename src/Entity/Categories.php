@@ -3,9 +3,11 @@
 namespace App\Entity;
 
 use App\Repository\CategoriesRepository;
+use App\Repository\ProduitsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CategoriesRepository::class)
@@ -21,11 +23,12 @@ class Categories
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull (message="Nom obligatoire.")
      */
     private $nom;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Produits::class, mappedBy="categorie")
+     * @ORM\OneToMany(targetEntity=Produits::class, mappedBy="categories" ,cascade={"remove"})
      */
     private $produits;
 
@@ -63,7 +66,7 @@ class Categories
     {
         if (!$this->produits->contains($produit)) {
             $this->produits[] = $produit;
-            $produit->addCategorie($this);
+            $produit->setCategories($this);
         }
 
         return $this;
@@ -72,12 +75,16 @@ class Categories
     public function removeProduit(Produits $produit): self
     {
         if ($this->produits->removeElement($produit)) {
-            $produit->removeCategorie($this);
+            // set the owning side to null (unless already changed)
+            if ($produit->getCategories() === $this) {
+                $produit->setCategories(null);
+            }
         }
 
         return $this;
     }
-    public function __toString() {
-        return $this->nom;
+    public function __toString(): string
+    {
+        return(string)$this->getNom();
     }
 }

@@ -1,8 +1,15 @@
+
+ {% block body %}
+ 
  <div class="col-sm-6">
                 <div class="vs-product">
                   <div class="product-img">
-                    <a href="shop-details.html">
-                      <img src="{{produit.image}}" class="w-100" alt="Image du produit">
+                  {% if produit.flash %}
+                  {% set prix = (produit.prix * produit.promo)/100 %}
+                  <span class="label">{{produit.promo}}%</span>
+                  {% endif %}
+                    <a href="{{ path('show',{"id":produit.id,"titre":produit.titre}) }}">
+                      <img src="../../uploads/{{produit.image}}" style="height: 300px;" class="w-100" alt="{{produit.titre}}">
                     </a>
                     <div class="cart-btn-group">
                       <a href="#" class="icon-btn3">
@@ -23,12 +30,19 @@
                       <i class="far fa-star"></i>
                     </div>
                     <h3 class="product-name text-normal font-theme fs-20 lh-base mb-2">
-                      <a class="text-inherit" href="shop-details.html">{{produit.nom}}</a>
+                      <a class="text-inherit" href="">{{produit.titre}}</a>
                     </h3>
                     
-                       <strong class="fs-18 text-theme2" style="text-decoration: line-through;">au lieu de {{produit.prix}} DT</strong>
-                       <br>
-                    <strong class="fs-18 text-theme2">Vous l'auras à {{produit.prix}} DT</strong>
+                    {% if produit.promo is null %}
+                        <h4 class="product-price text-theme2">{{produit.prix |number_format(1, '.', ',')}} DT</h4>
+                    {%else%}
+                    {% set prix = (produit.prix * produit.promo)/100 %}
+                        <h4 class="product-price text-theme2" style="text-decoration: line-through;">{{produit.prix |number_format(1, '', ',')}} DT</h4>
+                        <h3 class="product-price text-theme2">{{prix |number_format(1, '.', ',')}} DT</h3>
+                    {%endif%}
                   </div>
                 </div>
               </div>
+              {% endblock %}
+              
+              
