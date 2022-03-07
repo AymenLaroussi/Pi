@@ -6,9 +6,11 @@ body {
     margin: 0;
     overflow-x: hidden;
 }
+
 .form-control form-control {
     color:white;
 }
+
 
 .form-control,
 .form-control:focus {
@@ -60,7 +62,9 @@ textarea:focus,
 button:focus {
     outline: none;
     outline-width: 0;
+
     color:white;
+
     outline-color: transparent;
     box-shadow: none;
     outline-style: none;
@@ -81,6 +85,7 @@ a:focus, input:focus {
     border-color: transparent;
     outline: none;
 }
+
 
 textarea {
     resize: none;

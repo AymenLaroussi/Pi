@@ -29,6 +29,7 @@ class ProduitsType extends AbstractType
                   ]
               ])
             ->add('description', TextareaType::class)
+
             ->add('longdescription', TextareaType::class)
             ->add('stock',NumberType::class,[
                 'attr' => ['placeholder' => 'Quantité en stock'],
@@ -44,17 +45,21 @@ class ProduitsType extends AbstractType
                   ]
             ])
             ->add('flash', ChoiceType::class, [
+
                 'choices'  => [                    
                     'Oui' => true,
                     'Non' => false,
                 ],
             ])
+
             ->add('stock', NumberType::class ,[
+
                 'attr' => [
                   'placeholder' => "Contenu de l'article",
                   'class' => 'form-control'
                   ]
               ])
+
               ->add('ref', TextType::class ,[
                 'attr' => [
                   'placeholder' => "Contenu de l'article",
@@ -81,5 +86,4 @@ class ProduitsType extends AbstractType
         ]);
     }
 
-   
 }

@@ -34,6 +34,7 @@ class ProduitsRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
     */
 
     /*
@@ -78,4 +79,5 @@ class ProduitsRepository extends ServiceEntityRepository
             ->getQuery()
             ->execute();
     }
+
 }

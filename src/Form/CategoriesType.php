@@ -24,6 +24,8 @@ class CategoriesType extends AbstractType
                   'class' => 'form-control'
                   ]
               ])
+
+
             ->add('Enregistrer',SubmitType::class, [
                 'attr' => [
                     'href' => "{{ path('ajout_categories') }}",
