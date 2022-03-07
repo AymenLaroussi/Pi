@@ -60,10 +60,26 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity=Tournoi::class, mappedBy="organisateur")
      */
     private $tournois;
-    
 
     public function __construct() {
         $this->roles = array('ROLE_ADMIN');
+    }
+
+    protected $captchaCode;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $banned = false;
+
+    public function getCaptchaCode()
+    {
+        return $this->captchaCode;
+    }
+
+    public function setCaptchaCode($captchaCode)
+    {
+        $this->captchaCode = $captchaCode;
     }
 
     public function getEmail()
@@ -133,6 +149,18 @@ class User implements UserInterface
     public function setDateCreation(\DateTimeInterface $date_creation): self
     {
         $this->date_creation = $date_creation;
+
+        return $this;
+    }
+
+    public function getBanned(): ?bool
+    {
+        return $this->banned;
+    }
+
+    public function setBanned(bool $banned): self
+    {
+        $this->banned = $banned;
 
         return $this;
     }
