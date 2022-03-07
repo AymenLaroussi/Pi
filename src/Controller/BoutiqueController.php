@@ -22,6 +22,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use Knp\Bundle\PaginatorBundle\Pagination\SlidingPaginationInterface;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
+use App\Form\RechercheProduitType;
 
 
 /**
@@ -35,16 +36,35 @@ class BoutiqueController extends AbstractController
      * @Route("/", name="boutique")
      */
     public function index(ProduitsRepository $produitsRepository,CategoriesRepository $categoriesRepository, Request $request, PaginatorInterface $paginator ): Response
-    {
+    {   
+
+         $formSearch= $this->createForm(RechercheProduitType::class, null, [
+            'attr' => [
+                'class' => 'search-form'
+            ]
+            ]);
+         $formSearch->handleRequest($request);
+         if($formSearch->isSubmitted()){
+             $titre= $formSearch->getData()->getTitre();
+             $result= $this->getDoctrine()->getRepository(Produits::class)->RechercheProduit($titre);
+             $produits = $paginator->paginate(
+                $result,
+                $request->query->getInt('page', 1),
+            );
+             return $this->render("boutique/index.html.twig",array(
+             "produits"=>$produits,
+             'categories' => $categoriesRepository->findAll(),
+             'formSearch'=>$formSearch->createView()));
+         }
         $donnees= $this->getDoctrine()->getRepository(Produits::class)->findAll();
         $produits = $paginator->paginate(
-            $donnees, // Requête contenant les données à paginer (ici nos articles)
-            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
-            6 // Nombre de résultats par page
+            $donnees,
+            $request->query->getInt('page', 1),
         );
         return $this->render('boutique/index.html.twig', [
             'produits' => $produits,
             'categories' => $categoriesRepository->findAll(),
+            'formSearch'=>$formSearch->createView(),
             
         ]);
     } 
@@ -75,7 +95,7 @@ class BoutiqueController extends AbstractController
         }
 
         
-
+       
         return $this->render("boutique/detail.html.twig",[
             "produit"=>$produit,
             "produits"=>$produits,
@@ -87,9 +107,16 @@ class BoutiqueController extends AbstractController
      /**
      * @Route("/categorie/{id}", name="listeproduits")
      */
-    public function listProduitsByCategories(ProduitsRepository $produitsRepository,CategoriesRepository $categoriesRepository,$id)
+    public function listProduitsByCategories(ProduitsRepository $produitsRepository,CategoriesRepository $categoriesRepository,$id, PaginatorInterface $paginator,Request $request ): Response
     {
-        $produits=$produitsRepository->listProduitsByCategories($id);
+        $donnees= $produitsRepository->listProduitsByCategories($id);
+        $produits = $paginator->paginate(
+            $donnees, // Requête contenant les données à paginer (ici nos articles)
+            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+            6 // Nombre de résultats par page
+        );
+        
+       
         return $this->render("boutique/index.html.twig",[
             'produits' => $produits,
             'categories' => $categoriesRepository->findAll(),
@@ -140,6 +167,7 @@ class BoutiqueController extends AbstractController
         $entityManager->persist($rating);
         $entityManager->flush();
     }
+    
 
 
      ////////////////////JASON/////////////////
