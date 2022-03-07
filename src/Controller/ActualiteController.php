@@ -22,8 +22,21 @@ class ActualiteController extends AbstractController
             [
                 'evenements' => $evenementsRepository->findAll(),
             ]);
+
+           
+            
+
+      function indexx(SponsorsRepository $sponsorsRepository): Response
+     {
+       
+        return $this->render('actualite/index.html.twig', 
+            [
+                'sponsors' => $sponsorsRepository->findAll(),
+            ]);
+        
         
 
+     }
     }
  
 }
