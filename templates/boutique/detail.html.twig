@@ -178,16 +178,23 @@
                         <div class="text-yellow fs-xs mb-2">
                         {% set comp = 0 %}
                          {% for j in ratis %}
-                        {% set comp = j.getRating() %}
+                        
                         {% if komm.user.getId() == j.getUserCode() %}
+                        {% set comp = j.getRating() %}
                        {% endif %}
-                        {% endfor %} 
+                        {% endfor %}
+               {% if comp ==5 %}          
+              {% for b in 1..comp %}
+                 <i class="fas fa-star"></i>
+              {% endfor %}
+              {% else %}
               {% for b in 1..comp %}
                  <i class="fas fa-star"></i>
               {% endfor %}
               {% for b in comp..4 %}
                  <i class="fas fa-star" style ="font-weight: inherit;"></i>
               {% endfor %}
+              {% endif %}
 
             
             
@@ -677,15 +684,10 @@
         showClear: !0,
         showCaption: !0,
         starCaptionClasses: {
-            .5: "label label-danger",
             1: "label label-danger",
-            1.5: "label label-warning",
             2: "label label-warning",
-            2.5: "label label-info",
             3: "label label-info",
-            3.5: "label label-primary",
             4: "label label-primary",
-            4.5: "label label-success",
             5: "label label-success"
         },
         clearButton: '<i class="fas fa-minus"></i>',
@@ -703,15 +705,10 @@
     }, e.fn.ratingLocales.en = {
         defaultCaption: "{rating} Etoile",
         starCaptions: {
-            .5: "",
             1: "Une étoile",
-            1.5: "",
             2: "Deux étoile",
-            2.5: "",
             3: "Trois étoile",
-            3.5: "",
             4: "Quatre étoile",
-            4.5: "",
             5: "cinq étoile"
         },
         clearButtonTitle: "Clear",

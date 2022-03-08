@@ -57,12 +57,17 @@ class HomeController extends AbstractController
             $entityManager->persist($comment);
             $entityManager->flush();
 
-            return $this->redirectToRoute('show',array('id' => $id), Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('show',array(
+                'id' => $id), Response::HTTP_SEE_OTHER);
         }
 
         
 
-        return $this->render("boutique/detail.html.twig",array("produit"=>$produit ,"produits"=>$produits,"ratis"=>$ratis,'form1' => $form->createView(), ));
+        return $this->render("boutique/detail.html.twig",array(
+            "produit"=>$produit ,
+            "produits"=>$produits,
+            "ratis"=>$ratis,
+            'form1' => $form->createView(), ));
     }
 
 

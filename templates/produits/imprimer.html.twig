@@ -67,6 +67,7 @@
   
 
     <body>
+    <img src="../assets/logo.png" />
          <h6>*********************************T&emsp;O&emsp;U&emsp;R&emsp;N&emsp;M&emsp;E&emsp;N&emsp;T&emsp;8&emsp;&emsp;L&emsp;E&emsp;G&emsp;C&emsp;Y&emsp;*****************************************************</h6>
          <hr class="cmDEY eufYP cDHZq" style="color: #45047c">
          <div style="margin-left: 600px;margin-top: -600px">Imprimé le : {{ "now"|date("m/d/y")}}</div>
@@ -97,7 +98,7 @@
                                     <td>{{ produit.prix }}</td>
                                     <td>{{ produit.promo ? 'Oui' : 'Non' }}</td>
                                     <td>{{ produit.ref }}</td>
-                                    <td><img src="../../uploads/{{ produit.image }}"></td>
+                                    <td><img src="uploads/{{ produit.image }}" style="width: 80px; height: 80px"></td>
     
          </tr>   
    
