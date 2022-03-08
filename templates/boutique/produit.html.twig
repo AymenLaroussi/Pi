@@ -23,11 +23,29 @@
                   </div>
                   <div class="product-content">
                     <div class="text-yellow fs-xs mb-2">
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="far fa-star"></i>
-                      <i class="far fa-star"></i>
+                      {% set comp = 0 %}
+                         {% for j in ratis %}
+                        
+                        {% if produit.getId() == j.getUserCode() %}
+                        {% set comp = j.getRating() %}
+                       {% endif %}
+                        {% endfor %}
+               {% if comp ==5 %}          
+              {% for b in 1..comp %}
+                 <i class="fas fa-star"></i>
+              {% endfor %}
+              {% else %}
+              {% for b in 1..comp %}
+                 <i class="fas fa-star"></i>
+              {% endfor %}
+              {% for b in comp..4 %}
+                 <i class="fas fa-star" style ="font-weight: inherit;"></i>
+              {% endfor %}
+              {% endif %}
+
+
+
+              
                     </div>
                     <h3 class="product-name text-normal font-theme fs-20 lh-base mb-2">
                       <a class="text-inherit" href="">{{produit.titre}}</a>

@@ -10,6 +10,7 @@ use App\Entity\Rating;
 use App\Form\ProduitsType;
 use App\Repository\ProduitsRepository;
 use App\Entity\Commentaires;
+use App\Repository\RatingRepository;
 use App\Repository\CommentairesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\CommentairesType;
@@ -39,6 +40,8 @@ class HomeController extends AbstractController
      * @Route("/boutique/{id}",name="show", methods={"GET","POST"})
      */
     public function show($id,Request $request): Response{
+        
+        
         $produit= $this->getDoctrine()->getRepository(Produits::class)->find($id);
         $produit= $this->getDoctrine()->getRepository(Produits::class)->find($id);
         $produits= $this->getDoctrine()->getRepository(Produits::class)->findAll();
@@ -59,12 +62,17 @@ class HomeController extends AbstractController
             $entityManager->persist($comment);
             $entityManager->flush();
 
-            return $this->redirectToRoute('show',array('id' => $id), Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('show',array(
+                'id' => $id), Response::HTTP_SEE_OTHER);
         }
 
 
 
-        return $this->render("boutique/detail.html.twig",array("produit"=>$produit ,"produits"=>$produits,"ratis"=>$ratis,'form1' => $form->createView(), ));
+        return $this->render("boutique/detail.html.twig",array(
+            "produit"=>$produit ,
+            "produits"=>$produits,
+            "ratis"=>$ratis,
+            'form1' => $form->createView(), ));
     }
 
 
