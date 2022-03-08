@@ -34,6 +34,7 @@ class ProduitsRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
     */
 
     /*
@@ -79,6 +80,7 @@ class ProduitsRepository extends ServiceEntityRepository
             ->execute();
     }
 
+
     public function orderByPrixBas()
     {
         return $this->createQueryBuilder('s')
@@ -101,4 +103,5 @@ class ProduitsRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
     
+
 }
