@@ -14,7 +14,11 @@ class RechercheProduitType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titre', null, array('label' => false))
+            ->add('titre', null, array(
+                'label' => false, 
+                'attr' => [
+                    'placeholder' => 'Recherche'
+                ]))
             ->add('longdescription' ,HiddenType::class, [
                 'data' => 'abcdef',
             ])
@@ -24,7 +28,6 @@ class RechercheProduitType extends AbstractType
             ->add('ref' ,HiddenType::class, [
                 'data' => '10',
             ])
-            ->add('Recherche',SubmitType::class)
         ;
     }
 

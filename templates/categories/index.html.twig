@@ -8,8 +8,15 @@
                  <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Liste des catégories</h4>
+                        
                         <a class="text-warning" href="{{ path('ajout_categories') }}"><i class="mdi mdi-database-plus"></i> Nouvelle catégorie</a>
-                        <div class="table-responsive">
+                        
+                
+              
+                        <<input id="myInput" type="text" placeholder="Recherche..." style="
+    left: 694px;
+    position: relative;
+">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -17,7 +24,7 @@
                                     <th>Nom</th>
                                     <th>Action</th>
                                 </tr>
-                                <tbody>
+                                <tbody id="myTable">
                                 {% for category in categories %}
                                     <tr>
                                         <td>{{ category.id }}</td>

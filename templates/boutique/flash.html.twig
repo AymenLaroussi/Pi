@@ -27,10 +27,10 @@
               <div class="col-xl-7 mt-3 mt-xl-0">
                 <div class="sort-btn d-flex flex-wrap justify-content-between justify-content-xl-end align-items-start">
                   <select class="form-select form-select-lg" aria-label=".form-select-lg example" onchange="location = this.value;">
-                    <option selected="selected">Nouveau produits 🆕</option>
+                    <option >Nouveau produits 🆕</option>
                     <option value="/boutique/DESC">Tri bas prix 🔽</option>
                     <option value="/boutique/ASC" >Tri haut prix 🔼</option>
-                    <option value="/boutique/FLASH">Tri paromation 📢</option>
+                    <option value="/boutique/FLASH" selected="selected">Tri paromation 📢</option>
                   </select>
                   
                 </div>
@@ -47,7 +47,7 @@
             {% if (comp == 0) %}
                    <h1> la boutique est vide pour l'instant</h1>
             {% else %}
-                   {% include 'boutique/produit.html.twig' with {produit: produit,ratis: ratis,user: user} only %}
+                   {% include 'boutique/produit.html.twig' with {produit: produit} only %}
             {% endif %}
     {% endfor %}
    
