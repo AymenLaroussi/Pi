@@ -8,8 +8,13 @@
                  <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Liste des produits</h4>
+                         <form action="{{ path('listProduits')}}" style="margin-left: 850px;margin-top: -15px"> <button class="btn btn-sm btn-primary" style="background-color: #b284c2;border-color:#b284c2">Imprimer la liste des Produits</button> </form>
+                   
                         <a class="text-warning" href="{{ path('ajout_produits') }}"><i class="mdi mdi-database-plus"></i> Nouveau produit</a>
-                        <input id="myInput" type="text" placeholder="Search..">
+                        <input id="myInput" type="text" placeholder="Recherche..." style="
+    left: 694px;
+    position: relative;
+">
                         <div class="table-responsive">
 
                         <table class="table">
@@ -56,8 +61,7 @@
                                
                             </table>
                         </div>
-                        <form action="{{ path('listProduits')}}" style="margin-left: 850px;margin-top: -15px"> <button class="btn btn-sm btn-primary" style="background-color: #b284c2;border-color:#b284c2">Imprimer la liste des Produits</button> </form>
-                    </div>
+                        </div>
                 </div>
                 </div>
             </div>

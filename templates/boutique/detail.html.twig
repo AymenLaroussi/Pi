@@ -90,7 +90,32 @@
             <div class="mb-2"></div>
             <h3 class="product-name font-theme text-normal">{{produit.titre}}</h3>
             <h class="product-name font-theme text-normal">Réference : #{{produit.ref}}</h>
+            {% set et = 0 %}
+            {% set j = 0 %}
+             {% for etoile in ratis %}
+              {% set et = et + etoile.rating %}
+              {% set j=j+1 %}
+
+            {% endfor %}
+            {% set et= et / j %}
+            <p>{% set et= et|round %}</p>
+
+            {% if et ==5 %}          
+              {% for b in 1..et %}
+                 <i class="fas fa-star"></i>
+              {% endfor %}
+              {% else %}
+              {% for b in 1..et %}
+                 <i class="fas fa-star"></i>
+              {% endfor %}
+              {% for b in et..4 %}
+                 <i class="fas fa-star" style ="font-weight: inherit;"></i>
+              {% endfor %}
+              {% endif %}
             <table><tr><td>
+            
+
+
              {% if produit.promo is null %} <h4 class="product-price text-theme2">{{produit.prix | number_format(0, ',', ' ')}} DT</h4> {%else%} {% set prix = (produit.prix * produit.promo)/100 %} <h4 class="product-price text-theme2" style="text-decoration: line-through;">{{produit.prix}} DT</h4></td><td> <p>offre expire aprés : <span style="color:red;" id="demo"></span></p></td></table>
    
             <h3 class="product-price text-theme2">{{prix}} DT</h3> 
@@ -293,11 +318,28 @@
           </div>
           <div class="product-content">
             <div class="text-yellow fs-xs mb-2">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="far fa-star"></i>
-              <i class="far fa-star"></i>
+              {% set et = 0 %}
+            {% set j = 0 %}
+             {% for etoile in ratis %}
+              {% set et = et + etoile.rating %}
+              {% set j=j+1 %}
+
+            {% endfor %}
+            {% set et= et / j %}
+            <p>{% set et= et|round %}</p>
+
+            {% if et ==5 %}          
+              {% for b in 1..et %}
+                 <i class="fas fa-star"></i>
+              {% endfor %}
+              {% else %}
+              {% for b in 1..et %}
+                 <i class="fas fa-star"></i>
+              {% endfor %}
+              {% for b in et..4 %}
+                 <i class="fas fa-star" style ="font-weight: inherit;"></i>
+              {% endfor %}
+              {% endif %}
             </div>
             <h3 class="product-name text-normal font-theme fs-20 lh-base mb-2">
               <a class="text-inherit" href="{{ path('show',{"id":produit.id,"titre":produit.titre}) }}">{{produitx.titre}}</a>

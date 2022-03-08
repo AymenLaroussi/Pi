@@ -23,6 +23,9 @@ use Knp\Bundle\PaginatorBundle\Pagination\SlidingPaginationInterface;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use App\Form\RechercheProduitType;
+use App\Repository\RatingRepository;
+
+use App\Repository\UserRepository;
 
 
 /**
@@ -35,8 +38,10 @@ class BoutiqueController extends AbstractController
     /**
      * @Route("/", name="boutique")
      */
-    public function index(ProduitsRepository $produitsRepository,CategoriesRepository $categoriesRepository, Request $request, PaginatorInterface $paginator ): Response
+    public function index(RatingRepository $ratingRepository,ProduitsRepository $produitsRepository,CategoriesRepository $categoriesRepository, Request $request, PaginatorInterface $paginator ): Response
     {   
+        $user= $this->getDoctrine()->getRepository(User::class)->findAll();
+        $ratis= $this->getDoctrine()->getRepository(Rating::class)->findAll();
         $haut= $this->getDoctrine()->getRepository(Produits::class)->orderByPrixHaut();
         $bas= $this->getDoctrine()->getRepository(Produits::class)->orderByPrixBas();
          $formSearch= $this->createForm(RechercheProduitType::class, null, [
@@ -57,7 +62,9 @@ class BoutiqueController extends AbstractController
              "haut"=>$haut,
              "bas"=>$bas,
              'categories' => $categoriesRepository->findAll(),
+             "ratis"=>$ratis,
              'formSearch'=>$formSearch->createView()
+             
              
             ));
          }
@@ -68,11 +75,14 @@ class BoutiqueController extends AbstractController
             6
         );
         return $this->render('boutique/index.html.twig', [
+            "ratis"=>$ratis,
             'produits' => $produits,
             'categories' => $categoriesRepository->findAll(),
             'formSearch'=>$formSearch->createView(),
             "haut"=>$haut,
              "bas"=>$bas,
+             "ratis"=>$ratis,
+             "user"=>$user,
             
         ]);
     } 
@@ -266,7 +276,6 @@ class BoutiqueController extends AbstractController
      */
     public function FLASH(ProduitsRepository $produitsRepository,CategoriesRepository $categoriesRepository, Request $request, PaginatorInterface $paginator ): Response
     {   
-        
         $bas= $this->getDoctrine()->getRepository(Produits::class)->orderByPrixBas();
          $formSearch= $this->createForm(RechercheProduitType::class, null, [
             'attr' => [

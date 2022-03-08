@@ -10,6 +10,7 @@ use App\Entity\Rating;
 use App\Form\ProduitsType;
 use App\Repository\ProduitsRepository;
 use App\Entity\Commentaires;
+use App\Repository\RatingRepository;
 use App\Repository\CommentairesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\CommentairesType;
@@ -37,6 +38,8 @@ class HomeController extends AbstractController
      * @Route("/boutique/{id}",name="show", methods={"GET","POST"})
      */
     public function show($id,Request $request): Response{
+        
+        
         $produit= $this->getDoctrine()->getRepository(Produits::class)->find($id);
         $produit= $this->getDoctrine()->getRepository(Produits::class)->find($id);
         $produits= $this->getDoctrine()->getRepository(Produits::class)->findAll();
