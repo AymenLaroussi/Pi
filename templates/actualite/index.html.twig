@@ -12,10 +12,10 @@
           <h2 class="breadcumb-bg-title">Bienvenu</h2>
           <ul class="breadcumb-menu-style1 text-white mx-auto fs-xs">
             <li>
-              <a href="index.html">
+              <a href="../home">
                 <i class="fal fa-home"></i>Home </a>
             </li>
-            <li class="active">Evenement detail</li>
+            <li class="active">Evénement</li>
           </ul>
         </div>
       </div>
@@ -31,15 +31,15 @@
                 {% for event in evenements %}
 
                 <div class="vs-blog col-xl-3">
-                    <div class="position-relative"><a href="actualite/event.html.twig" class="overlay overlay-lg"></a>
+                    <div class="position-relative"><a href="{{ path('voir_details', {'id': event.id}) }}" class="overlay overlay-lg"></a>
                         
-                        <div class="blog-image"><img src="{{ asset('/uploads/event/' ~  event.image )}}" width="268.99" height="372.76"
+                        <div class="blog-image"><img src="{{ asset('/uploads/event/' ~  event.image )}}" style="height:300px;"
                                 alt="Featured Blog Image" class="w-100"></div>
                         <div class="blog-content pos-bottom">
-                            <div class="blog-category mb-1"><a href="actualite/event.html.twig">Evenement</a></div>
-                            <h3 class="blog-title h5 text-white font-theme lh-base mb-2"><a href="actualite/event.html.twig">
+                            <div class="blog-category mb-1"><a href="{{ path('voir_details', {'id': event.id}) }}">Evenement</a></div>
+                            <h3 class="blog-title h5 text-white font-theme lh-base mb-2"><a href="{{ path('voir_details', {'id': event.id}) }}">
                                     {{ event.nomeven}}</a></h3>
-                            <div class="blog-meta text-light-white fs-xs"><a href="blog.html"><i
+                            <div class="blog-meta text-light-white fs-xs"><a href="{{ path('voir_details', {'id': event.id}) }}"><i
                                         class="fal fa-calendar-alt"></i>{{event.datevent|date("m/d/Y") }}</a></div>
                         </div>
                     </div>
@@ -51,20 +51,13 @@
  <section>
  <div class="vs-brand-wrapper bg-dark space">
         <div class="container">
-        
+
             <div class="row vs-carousel arrow-white" data-slide-show="5" data-lg-slide-show="4" data-md-slide-show="4"
                 data-sm-slide-show="3" data-xs-slide-show="2" data-arrows="true" data-xl-arrows="true"
                 data-ml-arrows="true" data-lg-arrows="true">
-                <div class="col-xl-2 text-center"><img src="assets/img/brand/brand-1.png" alt="Brand Image"></div>
-                <div class="col-xl-2 text-center"><img src="assets/img/brand/brand-2.png" alt="Brand Image"></div>
-                <div class="col-xl-2 text-center"><img src="assets/img/brand/brand-3.png" alt="Brand Image"></div>
-                <div class="col-xl-2 text-center"><img src="assets/img/brand/brand-4.png" alt="Brand Image"></div>
-                <div class="col-xl-2 text-center"><img src="assets/img/brand/brand-5.png" alt="Brand Image"></div>
-                <div class="col-xl-2 text-center"><img src="assets/img/brand/brand-1.png" alt="Brand Image"></div>
-                <div class="col-xl-2 text-center"><img src="assets/img/brand/brand-2.png" alt="Brand Image"></div>
-                <div class="col-xl-2 text-center"><img src="assets/img/brand/brand-3.png" alt="Brand Image"></div>
-                <div class="col-xl-2 text-center"><img src="assets/img/brand/brand-4.png" alt="Brand Image"></div>
-                <div class="col-xl-2 text-center"><img src="assets/img/brand/brand-5.png" alt="Brand Image"></div>
+                 {% for spons in sponsors%}
+                <div class="col-xl-2 text-center"><img src="{{ asset('/uploads/sponsor/' ~  spons.image )}}" style="height:200px;" alt="Brand Image"></div>
+                {% endfor %} 
             </div>
         </div>
     </div>
