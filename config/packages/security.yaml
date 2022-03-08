@@ -15,8 +15,9 @@ security:
                 login_path: connexion
                 check_path: connexion
             remember_me:
-                secret:   '%kernel.secret%'
+                secret: '%kernel.secret%'
                 lifetime: 604800
+                always_remember_me: true
             logout:
                 path: app_logout
                 target: home

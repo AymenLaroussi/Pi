@@ -367,6 +367,32 @@
                <div class="row justify-content-between">
                   <div class="col-md-auto text-center text-md-start">
                      <div class="section-title">
+                        <span class="sub-title1 text-theme3">Rejoignez l'un de nos Evénements</span>
+                        <h2 class="sec-title1 text-white">Les Evénements</h2>
+                     </div>
+                  </div>
+                  <div class="col-md-auto mt-3 d-none d-md-block"><a href="{{ path('actualite') }}" class="vs-btn style3">Afficher tout</a></div>
+               </div>
+               <div class="row vs-carousel arrow-white" data-slide-show="3" data-md-slide-show="2" data-sm-slide-show="1" data-xs-slide-show="1" data-arrows="true" data-xl-arrows="true">
+                  {% for event in evenements %}
+                     <div class="col-lg-4">
+                        <div class="vs-blog">
+                           <div class="blog-image image-scale-hover"><img src="{{ asset('/uploads/event/' ~  event.image )}}" alt="Blog Image" class="w-100"></a></div>
+                           <div class="blog-content">
+                              <h3 class="blog-title text-white fs-20"><a href="blog-details.html"> {{ event.nomeven}}</a></h3>
+                              <div class="blog-meta text-light fs-xs"><a href="blog.html"><i class="fal fa-calendar-alt"></i>{{event.datevent|date("m/d/Y") }}</a></div>
+                           </div>
+                        </div>
+                     </div>
+                  {% endfor %}
+               </div>
+            </div>
+         </section>
+         <section class="vs-blog-wrapper vs-blog-layout1 link-inherit space-md-bottom" id="blog">
+            <div class="container">
+               <div class="row justify-content-between">
+                  <div class="col-md-auto text-center text-md-start">
+                     <div class="section-title">
                         <span class="sub-title1 text-theme3">Get Attendant Our Tournament</span>
                         <h2 class="sec-title1 text-white">Latest Event</h2>
                      </div>

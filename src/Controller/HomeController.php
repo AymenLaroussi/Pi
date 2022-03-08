@@ -20,20 +20,22 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Serializer;
+use App\Repository\EvenementRepository;
 
 class HomeController extends AbstractController
 {
     /**
      * @Route("/home", name="home")
      */
-    public function index(ProduitsRepository $produitsRepository): Response
+    public function index(ProduitsRepository $produitsRepository,EvenementRepository $evenementsRepository): Response
     {
-        return $this->render('home/index.html.twig', [
-            'produits' => $produitsRepository->findAll(),
-        ]);
+        $produit =$produitsRepository->findAll();
+        $evenements =$evenementsRepository->findAll();
+        return $this->render('home/index.html.twig',array
+        ("evenements"=> $evenements,"produits"=> $produit));
     }
 
-     /**
+    /**
      * @Route("/boutique/{id}",name="show", methods={"GET","POST"})
      */
     public function show($id,Request $request): Response{
@@ -47,7 +49,7 @@ class HomeController extends AbstractController
         $comment->setDate(new \DateTime('now'));
         $comment->setUser($user);
         $comment->setProduit($produitf);
-        
+
         $form = $this->createForm(CommentairesType::class, $comment);
         $form->handleRequest($request);
 
@@ -60,22 +62,22 @@ class HomeController extends AbstractController
             return $this->redirectToRoute('show',array('id' => $id), Response::HTTP_SEE_OTHER);
         }
 
-        
+
 
         return $this->render("boutique/detail.html.twig",array("produit"=>$produit ,"produits"=>$produits,"ratis"=>$ratis,'form1' => $form->createView(), ));
     }
 
 
 
-        /**
+    /**
      * @Route("/boutique/api/{id}",name="show1", methods={"GET","POST"})
      */
     public function show1(SerializerInterface $SerializerInterface, $id,Request $request, ValidatorInterface $validator): Response{
-        
+
         $user=$this->getUser();
         $produitf= $this->getDoctrine()->getRepository(Produits::class)->find($id);
         $comment = new Commentaires();
-       
+
         $requete = $request->getContent();
         try {
             $post = $serializer->deserialize($requete, Commentaires::class, 'json');
@@ -94,7 +96,7 @@ class HomeController extends AbstractController
             return $this->json([
                 'status' => 400,
                 'message' => $e->getMessage()
-        ], 400);
+            ], 400);
         }
     }
 }
