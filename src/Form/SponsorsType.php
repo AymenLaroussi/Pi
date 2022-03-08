@@ -21,10 +21,7 @@ class SponsorsType extends AbstractType
                 'required' => false
                 ])
 
-            ->add('prenom',TextType::class, [
-                'label' => 'Prénom de Sponsor',
-                'required' => false
-                ])
+           
             ->add('num',TextType::class, [
                 'label' => 'Num de Sponsor',
                 'required' => false

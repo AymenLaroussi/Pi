@@ -9,6 +9,12 @@
                     <div class="card-body">
                         <h4 class="card-title">Liste des evenements</h4>
                         <a class="text-warning" href="{{ path('ajout_evenements') }}"><i class="mdi mdi-database-plus"></i> Nouveau evenement</a>
+                        <td>
+                        <input type="text" id="keyWord" name="keyWord" class="form-control" placeholder="Chercher un evenement" style="width:300px"> 
+                        <input type="button"
+                        value="chercher"
+                        name="keyWord">
+                       </td>
                         <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -39,7 +45,7 @@
          <td>{{event.datefin|date("d/m/y")}}</td>
          <td>{{event.nbrplace}}</td>
          {% for sponsor in event.sponsors %}
-                <td> {{sponsor.nom}} {{sponsor.prenom}} </td>
+                <td> {{sponsor.nom}}  </td>
             {% endfor%}
          <td><img src="/uploads/event/{{event.image}}"></td>
          <td>{{event.description}}</td>
