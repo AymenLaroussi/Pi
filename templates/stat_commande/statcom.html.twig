@@ -9,72 +9,61 @@
             <nav class="bg-white sidebar sidebar-offcanvas" id="sidebar">
                 <div class="user-info">
                     <img src="{{asset('assets/images/faces/face1.jpg')}}" alt="">
-                    <p class="name">Richard V.Welsh</p>
-                    <p class="designation">Manager</p>
+                    <p class="name">AZERTY CREW ADMIN</p>
+                    <p class="designation">Fares</p>
                     <span class="online"></span>
                 </div>
                 <ul class="nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{ path('dashboard') }}">
-                            <img src="{{asset('Affichback/images/icons/1.png')}}" alt="">
-                            <span class="menu-title">Dashboard</span>
+
+
+                        <span class="menu-title">Dashboard</span>
                         </a>
                     </li>
 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Utilisateur.html">
-                            <img src="{{asset('Affichback/images/icons/04.png')}}" alt="">
-                            <span class="menu-title">Utilisateur</span>
+
+                        <span class="menu-title">Utilisateur</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('categorie_index') }}">
-                            <img src="{{ asset('Affichback/images/icons/06.png')}}" alt="">
-                            <span class="menu-title">Categorie</span>
+
+                        >
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('produit_index') }}">
-                            <img src="{{ asset('Affichback/images/icons/06.png')}}" alt="">
-                            <span class="menu-title">Produit</span>
+
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('commande_index') }}">
-                            <img src="{{asset('Affichback/images/icons/05.png')}}" alt="">
-                            <span class="menu-title">Commande</span>
+
+
+                        <span class="menu-title">Commande</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('lignecommande') }}">
-                            <img src="{{asset('Affichback/images/icons/05.png')}}" alt="">
-                            <span class="menu-title">Ligne Commande</span>
+
+
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Livraison.html">
-                            <img src="{{asset('Affichback/images/icons/01.png')}}" alt="">
-                            <span class="menu-title">Livraison</span>
+                        >
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Tables.html">
-                            <img src="{{asset('Affichback/images/icons/02.png')}}" alt="">
-                            <span class="menu-title">Tables</span>
+
+                        <span class="menu-title">Tables</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Evenement.html">
-                            <img src="{{asset('Affichback/images/icons/03.png')}}" alt="">
-                            <span class="menu-title">Evenement</span>
+
+
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('StatCommande') }}">
-                            <img src="{{asset('Affichback/images/icons/6.png')}}" alt="">
-                            <span class="menu-title">Charts</span>
+
                         </a>
                     </li>
 
@@ -106,7 +95,7 @@
 
 {% endblock %}
 {% block javascripts %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
 
     <script>
 
@@ -114,7 +103,7 @@
         let graph = new Chart(pr, {
                 type: "bar",
                 data: {
-                    labels: {{ id_produit  | raw }},
+                    labels: {{ id_product  | raw }},
                     datasets: [{
                         label: ['Commande en fonction de leurs quantite acheté '],
                         data: {{ quantitydemande| raw }},
@@ -146,7 +135,9 @@
         let graph1 = new Chart(pr1, {
             type: "pie",
             data: {
-                labels: {{id_produit  | raw }},
+
+
+                labels: {{id_product  | raw }},
                 datasets: [{
                     label: ['Repartition par quantite acheter'],
                     data: {{  quantitydemande| raw }},
