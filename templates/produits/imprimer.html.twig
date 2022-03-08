@@ -1,0 +1,119 @@
+<head>
+ <style>
+    #customers {
+         font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+         border-collapse: collapse;
+         width: 100%;
+     }
+
+     td, th {
+         border: 1px solid #ddd;
+         padding: 8px;
+     }
+
+     tr:nth-child(even){background-color: #f2f2f2;}
+
+     tr:hover {background-color: #ddd;}
+
+     th {
+         padding-top: 12px;
+         padding-bottom: 12px;
+         text-align: left;
+         background-color: #ffeeff;
+         color: black;
+     }
+            table {
+                margin-right: 10px;
+                border-collapse: collapse;
+            }
+           @page {
+            margin: 0cm 0cm;
+        }
+
+        /** Define now the real margins of every page in the PDF **/
+        body {
+            margin-top: 10px;
+            margin-left: 10px;
+            margin-right: 15px;
+            margin-bottom: 0px;
+        }
+
+        /** Define the header rules **/
+        header {
+            position: fixed;
+            top: 0cm;
+            margin-left: 10px;
+            margin-right: 10px;
+            height: 3cm;
+            background-color: #ffeeff;
+           }
+
+        footer {
+            position: fixed;
+            text-align: right;
+            bottom: 0cm;
+            margin-left: -10px;
+            margin-right: 10px;
+            height: 120px;
+            width: 790px;
+            background-color: #ffeeff;
+            
+        }
+    </style>
+</head>
+
+{% block body %}
+ 
+  
+
+    <body>
+         <h6>*********************************T&emsp;O&emsp;U&emsp;R&emsp;N&emsp;M&emsp;E&emsp;N&emsp;T&emsp;8&emsp;&emsp;L&emsp;E&emsp;G&emsp;C&emsp;Y&emsp;*****************************************************</h6>
+         <hr class="cmDEY eufYP cDHZq" style="color: #45047c">
+         <div style="margin-left: 600px;margin-top: -600px">Imprimé le : {{ "now"|date("m/d/y")}}</div>
+
+     <div id="customers"><h1 class="intro" align="center" > Listes des produits </h1>
+         <table border-spacing: 30px class="theme_dark" style="background-color: #ffffff;">
+   
+         <br><br>
+
+       <tr>
+                                    <th>Id</th>
+                                    <th>Titre</th>
+                                    <th>Description</th>
+                                    <th>Stock</th>
+                                    <th>Prix</th>
+                                    <th>Promo</th>
+                                    <th>Ref</th>
+                                    <th>Image</th>
+                                </tr>
+    
+      {% for produit in reader %}
+    
+       <tr>
+        <td>{{ produit.id }}</td>
+                                    <td><span class="ps-2">{{ produit.titre }}</span></td>
+                                    <td>{{ produit.description }}</td>
+                                    <td>{{ produit.stock }}</td>
+                                    <td>{{ produit.prix }}</td>
+                                    <td>{{ produit.promo ? 'Oui' : 'Non' }}</td>
+                                    <td>{{ produit.ref }}</td>
+                                    <td><img src="../../uploads/{{ produit.image }}"></td>
+    
+         </tr>   
+   
+     {% endfor %}
+
+         </table>
+    <br><br>
+
+    </center>
+    
+    <footer>
+        <hr class="cmDEY eufYP cDHZq" style="color: #45047c">
+        <div id="customers" style="color: #068cb4"> T&emsp;O&emsp;U&emsp;R&emsp;I&emsp;F&emsp;Y</div>
+        <div id="customers">Adresse_Email: tournament-legacy@email.com</div>
+        <div id="customers">Adresse: Esprit Technopole Ghazela Ariana</div>
+        <div id="customers">Numéro: +216 93 784 444</div>
+    </footer>
+
+{% endblock %}

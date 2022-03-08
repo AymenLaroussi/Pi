@@ -1,14 +1,299 @@
 {% extends 'base.html.twig' %}
-{% block title %}Hello TournoiController!{% endblock %}
-{% block body %}
-    <section class="vs-events-wrapper events-layout1 space-top space-md-bottom">
-        <h2 class="text-center"><span class="sub-title2 mt-5 ">Ajouter une tournoi</span></h2>
-        <h4 class="align-content-center"> Merci de remplir le formulaire ci-dessous avant de lancer le tournoi :</h4>
-        <div class="container center">
-            {{ form(formTournoi) }}
 
-        </div>
+{% block title %}Hello TournoiController!{% endblock %}
+
+{% block body %}
+
+
+        {% if type != "modifier" %}
+            <section class="vs-events-wrapper events-layout1 space-top space-md-bottom">
+        <h2 class="text-center"><span class="sub-title2 mt-5 ">Ajouter un tournoi</span></h2>
+
+        <div class="container" >
+
+            {{ form_start(formTournoi,{'attr': {'novalidate': 'novalidate'}} ) }}
+            <h4  class="text-white "> Merci de remplir le formulaire ci-dessous avant de lancer le tournoi :</h4>
+            <div>
+
+            <div class="row">
+                <div  style="width: 500px"  class="col5 sub-title2 mt-5">
+            {{ form_label(formTournoi.nom,"Nom de tournoi") }}
+                </div>
+
+                <div class="col4" id="some-custom-id">
+            {{ form_widget(formTournoi.nom, { 'attr': {'style': 'width: 500px'} }) }}
+                </div>
+            </div>
+            </div>
+
+            <div>
+            <div class="my-custom-class-for-errors">
+                {{ form_errors(formTournoi.nbr_equipes) }}
+            </div>
+            <div class="row">
+                <div  style="width: 500px"  class="col5 sub-title2 mt-5">
+                    {{ form_label(formTournoi.nbr_equipes,"Nombre d'equipe") }}
+                </div>
+
+                <div class="col4" id="some-custom-id">
+                    {{ form_widget(formTournoi.nbr_equipes, { 'attr': {'style': 'width: 110px'} }) }}
+                </div>
+            </div>
+            </div>
+
+            <div>
+                <div class="my-custom-class-for-errors">
+                    {{ form_errors(formTournoi.nbr_joueur_eq) }}
+                </div>
+                <div class="row">
+                    <div  style="width: 500px"  class="col5 sub-title2 mt-5">
+                        {{ form_label(formTournoi.nbr_joueur_eq,"Le nombre de joueur par equipe") }}
+                    </div>
+
+                    <div class="col4" id="some-custom-id">
+                        {{ form_widget(formTournoi.nbr_joueur_eq, { 'attr': {'style': 'width: 110px'} }) }}
+                    </div>
+                </div>
+            </div>
+
+            <div>
+
+                <div class="row">
+                    <div   style="width: 500px" class="col5 sub-title2 mt-5">
+                        {{ form_label(formTournoi.prix,"Le prix de tournoi:") }}
+                    </div>
+
+                    <div  class="col4 " id="some-custom-id" >
+                        {{ form_widget(formTournoi.prix )}}
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="my-custom-class-for-errors">
+                    {{ form_errors(formTournoi.Jeu) }}
+                </div>
+                <div class="row">
+                    <div  style="width: 500px"  class="col5 sub-title2 mt-5">
+                        {{ form_label(formTournoi.imageFile,"Choisir une image:") }}
+                    </div>
+
+                    <div class="col4" id="some-custom-id">
+                        {{ form_widget(formTournoi.imageFile, { 'attr': {'style': 'width: 500px'} }) }}
+                    </div>
+                </div>
+
+            </div>
+
+            <div>
+                <div class="my-custom-class-for-errors">
+                    {{ form_errors(formTournoi.Jeu) }}
+                </div>
+                <div class="row">
+                    <div  style="width: 500px"  class="col5 sub-title2 mt-5">
+                        {{ form_label(formTournoi.Jeu,"choisir le jeu :") }}
+                    </div>
+
+                    <div class="col4" id="some-custom-id">
+                        {{ form_widget(formTournoi.Jeu, { 'attr': {'style': 'width: 200px'} }) }}
+                    </div>
+                </div>
+            </div>
+
+            <div>
+
+
+                <div class="my-custom-class-for-errors">
+                    {{ form_errors(formTournoi.discord_channel) }}
+                </div>
+                <div class="row">
+                    <div  style="width: 500px"  class="col5 sub-title2 mt-5">
+                        {{ form_label(formTournoi.discord_channel,"la chaine Discord") }}
+                    </div>
+
+                    <div class="col4" id="some-custom-id">
+                        {{ form_widget(formTournoi.discord_channel, { 'attr': {'style': 'width: 500px'} }) }}
+                    </div>
+                </div>
+            </div>
+
+
+            <div>
+                <div class="my-custom-class-for-errors">
+                    {{ form_errors(formTournoi.time) }}
+                </div>
+                <div class="row">
+                    <div  style="width: 500px"  class="col5 sub-title2 mt-5">
+                        {{ form_label(formTournoi.time,"le temps de début") }}
+                    </div>
+
+                    <div class="col4" id="some-custom-id">
+                        {{ form_widget(formTournoi.time, { 'attr': {'style': 'width: 250px'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="my-custom-class-for-errors">
+                    {{ form_errors(formTournoi.timeEnd) }}
+                </div>
+                <div class="row">
+                    <div  style="width: 500px"  class="col5 sub-title2 mt-5">
+                        {{ form_label(formTournoi.timeEnd,"le temps de fin") }}
+                    </div>
+
+                    <div class="col4" id="some-custom-id">
+                        {{ form_widget(formTournoi.timeEnd, { 'attr': {'style': 'width: 250px'} }) }}
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div>
+
+                    <div style="margin-top: 50px" class="col6 center" id="some-custom-id" >
+                        {{ form_widget(formTournoi.submit, { 'attr': {'style': 'width: 250px'} }) }}
+                    </div>
+            </div>
+            {{ form_end(formTournoi) }}
+            </div>
+
+
+
+
+        {% endif %}
+
     </section>
+        {% if type =="modifier"  %}
+    <section class="vs-events-wrapper events-layout1 space-top space-md-bottom">
+        {% if ('now'|date('U') < tournoi.time|date('U'))  %}
+            <h2 class="text-center"><span class="sub-title2 mt-5 "> Modifier le tournoi {{ tournoi.nom }}</span></h2>
+
+            <div class="container">
+
+                {{ form_start(formTournoi)}}
+                <h4> Merci de remplir le formulaire ci-dessous pour modifier le tournoi : </h4>
+                <div>
+                    <div class="my-custom-class-for-errors">
+                        {{ form_errors(formTournoi.nom) }}
+                    </div>
+                    <div class="row">
+                        <div  style="width: 500px"  class="col5 sub-title2 mt-5">
+                            {{ form_label(formTournoi.nom,"Nom de tournoi") }}
+                        </div>
+
+                        <div class="col4" id="some-custom-id">
+                            {{ form_widget(formTournoi.nom, { 'attr': {'style': 'width: 500px'} }) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="my-custom-class-for-errors">
+                        {{ form_errors(formTournoi.nbr_equipes) }}
+                    </div>
+                    <div class="row">
+                        <div  style="width: 500px"  class="col5 sub-title2 mt-5">
+                            {{ form_label(formTournoi.nbr_equipes,"Nombre de joueur par equipe") }}
+                        </div>
+
+                        <div class="col4" id="some-custom-id">
+                            {{ form_widget(formTournoi.nbr_equipes, { 'attr': {'style': 'width: 110px'} }) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="my-custom-class-for-errors">
+                        {{ form_errors(formTournoi.nbr_joueur_eq) }}
+                    </div>
+                    <div class="row">
+                        <div  style="width: 500px"  class="col5 sub-title2 mt-5">
+                            {{ form_label(formTournoi.nbr_joueur_eq,"Le nombre de joueur par equipe") }}
+                        </div>
+
+                        <div class="col4" id="some-custom-id">
+                            {{ form_widget(formTournoi.nbr_joueur_eq, { 'attr': {'style': 'width: 110px'} }) }}
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <div>
+                    <div class="my-custom-class-for-errors">
+                        {{ form_errors(formTournoi.Jeu) }}
+                    </div>
+                    <div class="row">
+                        <div  style="width: 500px"  class="col5 sub-title2 mt-5">
+                            {{ form_label(formTournoi.Jeu,"choisir le jeu :") }}
+                        </div>
+
+                        <div class="col4" id="some-custom-id">
+                            {{ form_widget(formTournoi.Jeu, { 'attr': {'style': 'width: 200px'} }) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="my-custom-class-for-errors">
+                        {{ form_errors(formTournoi.discord_channel) }}
+                    </div>
+                    <div class="row">
+                        <div  style="width: 500px"  class="col5 sub-title2 mt-5">
+                            {{ form_label(formTournoi.discord_channel,"la chaine Discord") }}
+                        </div>
+
+                        <div class="col4" id="some-custom-id">
+                            {{ form_widget(formTournoi.discord_channel, { 'attr': {'style': 'width: 500px'} }) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="my-custom-class-for-errors">
+                        {{ form_errors(formTournoi.time) }}
+                    </div>
+                    <div class="row">
+                        <div  style="width: 500px"  class="col5 sub-title2 mt-5">
+                            {{ form_label(formTournoi.time,"la date de début :") }}
+                        </div>
+
+                        <div class="col4" id="some-custom-id">
+                            {{ form_widget(formTournoi.time, { 'attr': {'style': 'width: 250px'} }) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+
+                    <div style="margin-top: 50px" class="col6" id="some-custom-id" >
+                        {{ form_widget(formTournoi.submit, { 'attr': {'style': 'width: 250px'} }) }}
+                    </div>
+                </div>
+                {% do formTournoi.prix.setRendered() %}
+                {% do formTournoi.imageFile.setRendered() %}
+            </div>
+
+
+            {{ form_end(formTournoi) }}
+        {% endif %}
+
+
+            {% if ('now'|date('U') > tournoi.time|date('U'))  %}
+
+                <h4 style="text-align: center"> Le tournoi à déja commencé vous ne pouvez plus le modifié </h4>
+                <div style="text-align: center">
+                    <img src="https://www.pngitem.com/pimgs/m/255-2550411_404-error-images-free-png-transparent-png.png" alt="Tournament Image">
+                </div>
+            {% endif %}
+
+        {% endif %}
+    </section>
+    </body>
 
 
 {% endblock %}

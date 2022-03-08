@@ -1,0 +1,161 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <!-- partial -->
+    <div class="container-fluid">
+        <div class="row row-offcanvas row-offcanvas-right">
+            <!-- partial:../../partials/_sidebar.html -->
+            <nav class="bg-white sidebar sidebar-offcanvas" id="sidebar">
+                <div class="user-info">
+                    <img src="{{asset('assets/images/faces/face1.jpg')}}" alt="">
+                    <p class="name">Richard V.Welsh</p>
+                    <p class="designation">Manager</p>
+                    <span class="online"></span>
+                </div>
+                <ul class="nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ path('dashboard') }}">
+                            <img src="{{asset('Affichback/images/icons/1.png')}}" alt="">
+                            <span class="menu-title">Dashboard</span>
+                        </a>
+                    </li>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Utilisateur.html">
+                            <img src="{{asset('Affichback/images/icons/04.png')}}" alt="">
+                            <span class="menu-title">Utilisateur</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('categorie_index') }}">
+                            <img src="{{ asset('Affichback/images/icons/06.png')}}" alt="">
+                            <span class="menu-title">Categorie</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('produit_index') }}">
+                            <img src="{{ asset('Affichback/images/icons/06.png')}}" alt="">
+                            <span class="menu-title">Produit</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('commande_index') }}">
+                            <img src="{{asset('Affichback/images/icons/05.png')}}" alt="">
+                            <span class="menu-title">Commande</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('lignecommande') }}">
+                            <img src="{{asset('Affichback/images/icons/05.png')}}" alt="">
+                            <span class="menu-title">Ligne Commande</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Livraison.html">
+                            <img src="{{asset('Affichback/images/icons/01.png')}}" alt="">
+                            <span class="menu-title">Livraison</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Tables.html">
+                            <img src="{{asset('Affichback/images/icons/02.png')}}" alt="">
+                            <span class="menu-title">Tables</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Evenement.html">
+                            <img src="{{asset('Affichback/images/icons/03.png')}}" alt="">
+                            <span class="menu-title">Evenement</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('StatCommande') }}">
+                            <img src="{{asset('Affichback/images/icons/6.png')}}" alt="">
+                            <span class="menu-title">Charts</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+            <div class="content-wrapper">
+                <h3 class="page-heading mb-4">Charts</h3>
+                <div class="row">
+                    <div class="col-lg-6 col-12 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <canvas id="commande"  style="height:250px"></canvas>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <canvas id="commandes" style="height:250px"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
+
+    <script>
+
+        var pr = document.querySelector("#commande")
+        let graph = new Chart(pr, {
+                type: "bar",
+                data: {
+                    labels: {{ id_produit  | raw }},
+                    datasets: [{
+                        label: ['Commande en fonction de leurs quantite acheté '],
+                        data: {{ quantitydemande| raw }},
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255,99,132,1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+
+                    }]
+                },
+            }
+        )
+
+
+        let pr1 = document.querySelector("#commandes")
+        let graph1 = new Chart(pr1, {
+            type: "pie",
+            data: {
+                labels: {{id_produit  | raw }},
+                datasets: [{
+                    label: ['Repartition par quantite acheter'],
+                    data: {{  quantitydemande| raw }},
+
+                    backgroundColor: ['pink', 'blue', 'green', 'yellow','black','brown']
+                }]
+
+            }
+        })
+
+    </script>
+{% endblock %}

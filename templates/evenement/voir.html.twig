@@ -1,0 +1,44 @@
+{% extends 'dashboard.html.twig' %}
+{% block body %}
+<div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body"><br><br><br><br>
+                        <h4 class="card-title"><a href="{{ path('list_evenements') }}"><i class="mdi mdi-arrow-left"></i></a>Detail d'un Evenement</h4>
+                            <div class="form-group">
+
+    <table class="table">
+        <tbody>
+           
+        
+            {% for sponsor in sponsors %}
+             <th>Nom Sponsor </th>
+               <td> {{sponsor.nom}} {{sponsor.prenom}} </P>
+            {% endfor%}
+                <th>Nom Evenement </th>
+             
+        <td>{{event.nomeven}}</td>
+        <th>Lieu </th>
+        <td>{{event.lieuevent}}</td>
+        <th>Date Debut</th>
+         <td>{{event.datevent|date("d/m/y")}}</td>
+        <th>Heure</th>
+         <td>{{event.heurevent|format_time("short")}}</td> 
+         <th>Date fin </th>
+         <td>{{event.datefin|date("d/m/y")}}</td>
+         <tr>
+         <th>Nombre de place </th>
+         <td>{{event.nbrplace}}</td> 
+         <th>L'image</th>
+        <td>{{event.image}}</td>
+        
+        <th>La description</th>
+         <td>{{event.description}}</td>
+         </tr>
+            
+        </tbody>
+    </table>
+    {% dump event.sponsors%}
+   
+
+    
+{% endblock %}

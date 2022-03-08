@@ -19,14 +19,65 @@ class ProduitsRepository extends ServiceEntityRepository
         parent::__construct($registry, Produits::class);
     }
 
-
-   /* Récupère les produits en lien avec une recherche*/
-    /**
-    * @return Produits[] 
-    */
-   
-    public function findSearch(): array
+    // /**
+    //  * @return Produits[] Returns an array of Produits objects
+    //  */
+    /*
+    public function findByExampleField($value)
     {
-        return $this->findAll();
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.exampleField = :val')
+            ->setParameter('val', $value)
+            ->orderBy('p.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
     }
+
+    */
+
+    /*
+    public function findOneBySomeField($value): ?Produits
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.exampleField = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+    */
+
+    public function listProduitsByCategories($id)
+    {
+        return $this->createQueryBuilder('s')
+            ->join('s.categories', 'c')
+            ->addSelect('c')
+            ->where('c.id=:id')
+            ->setParameter('id',$id)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function listCommentaireByProduit($id)
+    {
+        return $this->createQueryBuilder('s')
+            ->join('s.commentaires','c')
+            ->addSelect('c')
+            ->where('c.id=:id')
+            ->setParameter('id',$id)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function RechercheProduit($titre)
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.titre LIKE :x')
+            ->setParameter('x', '%'.$titre.'%')
+            ->getQuery()
+            ->execute();
+    }
+
 }

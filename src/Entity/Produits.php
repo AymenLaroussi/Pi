@@ -6,6 +6,8 @@ use App\Repository\ProduitsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ProduitsRepository::class)
@@ -21,69 +23,123 @@ class Produits
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull (message="Titre du produit est obligatoire.")
      */
-    private $nom;
+    private $titre;
 
     /**
-     * @ORM\Column(type="float")
-     */
-    private $prix;
-
-    /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $description;
 
     /**
-     * @ORM\Column(type="text")
-     */
-    private $contenu;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $image;
-
-    /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Positive(message="Promotion du produit est doit étre positive.")
+     * @Groups("post:read")
      */
     private $promo;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Categorie::class, inversedBy="produits")
+     * @ORM\Column(type="integer")
+     * @Assert\Positive(message="Quantité du produit est doit étre positive.")
+     * @Groups("post:read")
+     */
+    private $stock;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     * @Groups("post:read")
+     */
+    private $flash;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Groups("post:read")
+     */
+    private $image;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull (message="Réference du produit est obligatoire.")
+     * @Groups("post:read")
+     */
+    private $ref;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull (message="Description du produit est obligatoire.")
+     * @Groups("post:read")
+     */
+    private $longdescription;
+
+    /**
+     * @ORM\Column(type="float")
+     * @Assert\NotNull (message="Prix du produit est obligatoire.")
+     * @Assert\Positive(message="Quantité du produit est doit étre positive.")
+     * @Assert\Type(type="float", message="Quantité du produit est doit étre positive.")
+     * @Groups("post:read")
+     */
+    private $prix;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Categories::class, inversedBy="produits")
+     * @ORM\JoinColumn(nullable=false)
+     *
      */
     private $categories;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Commentaires::class, mappedBy="produit" ,cascade={"remove"})
+     * @Groups("post:read")
+     */
+    private $commentaires;
+
     public function __construct()
     {
-        $this->categories = new ArrayCollection();
+        $this->commentaires = new ArrayCollection();
     }
+
+
+
+
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getTitre(): ?string
     {
-        return $this->nom;
+        return $this->titre;
     }
 
-    public function setNom(string $nom): self
+    public function setTitre(string $titre): self
     {
-        $this->nom = $nom;
+        $this->titre = $titre;
 
         return $this;
     }
 
-    public function getPrix(): ?float
+    public function getRef(): ?string
     {
-        return $this->prix;
+        return $this->ref;
     }
 
-    public function setPrix(float $prix): self
+    public function setRef(string $ref): self
     {
-        $this->prix = $prix;
+        $this->ref = $ref;
+
+        return $this;
+    }
+
+    public function getLongdescription(): ?string
+    {
+        return $this->longdescription;
+    }
+
+    public function setLongdescription(string $longdescription): self
+    {
+        $this->longdescription = $longdescription;
 
         return $this;
     }
@@ -100,14 +156,38 @@ class Produits
         return $this;
     }
 
-    public function getContenu(): ?string
+    public function getPromo(): ?int
     {
-        return $this->contenu;
+        return $this->promo;
     }
 
-    public function setContenu(string $contenu): self
+    public function setPromo(int $promo): self
     {
-        $this->contenu = $contenu;
+        $this->promo = $promo;
+
+        return $this;
+    }
+
+    public function getStock(): ?int
+    {
+        return $this->stock;
+    }
+
+    public function setStock(int $stock): self
+    {
+        $this->stock = $stock;
+
+        return $this;
+    }
+
+    public function getFlash(): ?bool
+    {
+        return $this->flash;
+    }
+
+    public function setFlash(bool $flash): self
+    {
+        $this->flash = $flash;
 
         return $this;
     }
@@ -124,39 +204,66 @@ class Produits
         return $this;
     }
 
-    public function getPromo(): ?bool
+    public function getPrix(): ?float
     {
-        return $this->promo;
+        return $this->prix;
     }
 
-    public function setPromo(bool $promo): self
+    public function setPrix(float $prix): self
     {
-        $this->promo = $promo;
+        $this->prix = $prix;
 
         return $this;
     }
 
-    /**
-     * @return Collection|Categorie[]
-     */
-    public function getCategories(): Collection
+
+    public function getCategories(): ?Categories
     {
         return $this->categories;
     }
 
-    public function addCategory(Categorie $category): self
+    public function setCategories(?Categories $categories): self
     {
-        if (!$this->categories->contains($category)) {
-            $this->categories[] = $category;
+        $this->categories = $categories;
+
+        return $this;
+    }
+    public function __toString()
+    {
+        return(string)$this->getTitre();
+    }
+
+    /**
+     * @return Collection|Commentaires[]
+     */
+    public function getCommentaires(): Collection
+    {
+        return $this->commentaires;
+    }
+
+    public function addCommentaire(Commentaires $commentaire): self
+    {
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[] = $commentaire;
+            $commentaire->setProduit($this);
         }
 
         return $this;
     }
 
-    public function removeCategory(Categorie $category): self
+    public function removeCommentaire(Commentaires $commentaire): self
     {
-        $this->categories->removeElement($category);
+        if ($this->commentaires->removeElement($commentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getProduit() === $this) {
+                $commentaire->setProduit(null);
+            }
+        }
 
         return $this;
     }
+
+
+
+
 }

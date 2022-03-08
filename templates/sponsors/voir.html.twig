@@ -1,0 +1,27 @@
+{% extends 'dashboard.html.twig' %}
+{% block body %}
+<div class="col-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body"><br><br><br><br>
+                        <h4 class="card-title"><a href="{{ path('list_sponsors') }}"><i class="mdi mdi-arrow-left"></i></a>Detail d'un Sponsor</h4>
+                            <div class="form-group">
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Nom</th>
+                <td>{{ spons.nom }}</td>
+                 <th>Prenom</th>
+                                        <td>{{ spons.prenom }}</td>
+                                        <th>Budget</th>
+                                        <td>{{ spons.budget }}</td>
+             
+                                        <th>Image</th>
+                                        <td>{{ spons.image }}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+
+    
+{% endblock %}
