@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Repository\ProductRepository;
+use App\Form\ComandeType;
+use App\Entity\Commande;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -13,8 +15,13 @@ class CartController extends AbstractController
     /**
      * @Route("/panier", name="cart_index")
      */
-    public function index (SessionInterface $session , ProductRepository $productRepository)
+    public function index (SessionInterface $session , ProductRepository $productRepository , Request $request)
     {
+        $cmd=new Commande();
+        $cmd->setIduser($this->getUser());
+
+        $form=$this->createForm(ComandeType::class , $cmd);
+        $form->handleRequest($request);
         $panier = $session->get('panier',[]);
         $panierWithData = [];
 
@@ -33,13 +40,27 @@ class CartController extends AbstractController
         foreach($panierWithData as $item ){
 
             $totalItem = $item['product']->getPrice() * $item['quantity'] ;
+            $cmd->addProduit($item['product']);
             $total +=$totalItem;
 
         }
+        $cmd->setTotal($total);
+        if ($form->isSubmitted() ) {
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($cmd);
+            $entityManager->flush();
+            //tinsach tfaregh il panier
+
+            return $this->redirectToRoute('home');
+
+        }
+
 
         return $this->render('cart/index.html.twig',[
             'items'=> $panierWithData ,
-             'total'=> $total
+             'total'=> $total,
+            'form' => $form->createView()
         ]);
     }
 

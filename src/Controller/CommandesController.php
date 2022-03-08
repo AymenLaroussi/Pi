@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Commandes;
 use App\Repository\CommandesRepository;
 
-/**
+ /**
  * @Route("admin/commandes")
  */
 class CommandesController extends AbstractController
@@ -34,5 +34,5 @@ class CommandesController extends AbstractController
         $em->remove($category);
         $em->flush();
         return $this->redirectToRoute("liste_commandes");
-    }
+   }
 }
