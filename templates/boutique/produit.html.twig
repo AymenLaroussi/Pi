@@ -54,7 +54,7 @@
                     {% if produit.promo is null %}
                         <h4 class="product-price text-theme2">{{produit.prix |number_format(1, '.', ',')}} DT</h4>
                     {%else%}
-                    {% set prix = (produit.prix * produit.promo)/100 %}
+                    {% set prix = (produit.prix * produit.promo)/100 %} {% set prix = (produit.prix - prix) %}
                         <h4 class="product-price text-theme2" style="text-decoration: line-through;">{{produit.prix |number_format(1, '', ',')}} DT</h4>
                         <h3 class="product-price text-theme2">{{prix |number_format(1, '.', ',')}} DT</h3>
                     {%endif%}
