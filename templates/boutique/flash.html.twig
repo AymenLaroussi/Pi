@@ -47,7 +47,7 @@
             {% if (comp == 0) %}
                    <h1> la boutique est vide pour l'instant</h1>
             {% else %}
-                   {% include 'boutique/produit.html.twig' with {produit: produit} only %}
+                   {% include 'boutique/produit.html.twig' with {produit: produit,ratis:ratis} only %}
             {% endif %}
     {% endfor %}
    
