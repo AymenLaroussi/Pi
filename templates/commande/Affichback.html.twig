@@ -1,0 +1,68 @@
+{% extends 'dashboard.html.twig' %}
+
+{% block body %}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row ">
+            <div class="col-12 grid-margin">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Order Status</h4>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+
+                                    <th> e-mail </th>
+                                    <th> nom </th>
+                                    <th> id-user </th>
+                                    <th> Produits </th>
+                                    <th> total </th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for cmd in cmds %}
+                                <tr>
+
+                                    <td>
+
+                                        <span class="ps-2">{{ cmd.getIduser.getEmail() }}</span>
+                                    </td>
+                                    <td> {{ cmd.getIduser.getUsername() }} </td>
+                                    <td> {{ cmd.getIduser.getId() }} </td>
+                                    <td>
+                                    {% for prd in cmd.getProduits()  %}
+                                        <p>{{ prd.getTitle() }} </p>
+                                    {% endfor%}
+                                    </td>
+                                    <td> {{ cmd.getTotal() }} </td>
+
+                                </tr>
+
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                            <div class="imprimer">
+                                <center><input id="impression" name="impression" type="submit" onclick="imprimer_page()" value="Exporter en pdf " /></center>
+                            </div>
+
+                            <script type="text/javascript">
+                                function imprimer_page(){
+                                    window.print();
+                                }
+                            </script>
+                            <PHP header('Expires: 0');
+                            header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+                            header('Pragma: public');
+                            ?>
+                        </div>
+                        <a href="{{ path('StatCommande') }}"><button  type="button" class="btn btn-outline-info"> Statistique</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}

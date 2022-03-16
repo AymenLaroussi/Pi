@@ -1,0 +1,376 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<body ">
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>TournamentLegacy - Organisation de tournois eSport</title>
+<meta name="author" content="Vecuro">
+<meta name="description" content="Tournament Legacy - eSports and Gaming HTML Template">
+<meta name="keywords" content="Tournament Legacy - eSports and Gaming HTML Template">
+<meta name="robots" content="INDEX,FOLLOW">
+<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<link rel="preconnect" href="https://fonts.gstatic.com/">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;family=Montserrat:wght@700&amp;family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet">
+<link rel="apple-touch-icon" sizes="57x57" href="{{ asset('../assets/img/favicons/apple-icon-57x57.png')}}">
+
+<link rel="apple-touch-icon" sizes="60x60" href="{{ asset('../assets/img/favicons/apple-icon-60x60.png')}}">
+<link rel="apple-touch-icon" sizes="72x72" href="{{ asset('../assets/img/favicons/apple-icon-72x72.png')}}">
+<link rel="apple-touch-icon" sizes="76x76" href="{{ asset('../assets/img/favicons/apple-icon-76x76.png')}}">
+<link rel="apple-touch-icon" sizes="114x114" href="{{ asset('../assets/img/favicons/apple-icon-114x114.png')}}">
+<link rel="apple-touch-icon" sizes="120x120" href="{{ asset('../assets/img/favicons/apple-icon-120x120.png')}}">
+<link rel="apple-touch-icon" sizes="144x144" href="{{ asset('../assets/img/favicons/apple-icon-144x144.png')}}">
+<link rel="apple-touch-icon" sizes="152x152" href="{{ asset('../assets/img/favicons/apple-icon-152x152.png')}}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('../assets/img/favicons/apple-icon-180x180.png')}}">
+<link rel="icon" type="image/png" sizes="192x192" href="{{ asset('../assets/img/favicons/android-icon-192x192.png')}}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ asset('../assets/img/favicons/favicon-32x32.png')}}">
+<link rel="icon" type="image/png" sizes="96x96" href="{{ asset('../assets/img/favicons/favicon-96x96.png')}}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('../assets/img/favicons/favicon-16x16.png')}}">
+<link rel="manifest" href="{{ asset('../assets/img/favicons/manifest.html')}}">
+<script src="https://code.iconify.design/2/2.1.2/iconify.min.js"></script>
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content={{ asset('../assets/img/favicons/ms-icon-144x144.png')}}">
+      <meta name="theme-color" content="#ffffff">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.css" integrity="sha256-5veQuRbWaECuYxwap/IOE/DAwNxgm4ikX7nrgsqYp88=" crossorigin="anonymous">
+<link rel="stylesheet" href="{{ asset('../assets/css/app.min.css')}}">
+<link rel="stylesheet" href="{{ asset('../assets/css/fontawesome.min.css')}}">
+<link rel="stylesheet" href="{{ asset('../assets/css/style.css')}}">
+<link rel="stylesheet" href="{{ asset('../assets/css/fontawesome.css')}}">
+<link rel="stylesheet" href="{{ asset('../assets/css/theme-color1.css')}}">
+
+
+</head>
+<body>
+
+<div class="sticky-header-wrap sticky-header bg-light-dark py-1 py-sm-2 py-lg-1">
+    <div class="container position-relative">
+        <div class="row align-items-center">
+            <div class="col-5 col-md-3">
+                <div class="logo"><a href="/"><img src="{{asset('assets/img/logo.png')}}" alt="Tournament Legacy" style="width: 159px;"></a></div>
+            </div>
+            <div class="col-7 col-md-9 text-end position-static">
+                <nav class="main-menu menu-sticky1 d-none d-lg-block link-inherit">
+                    <ul>
+                        <ul>
+                            <li><a href="../home">ACCUEIL</a></li>
+                            <li><a href="../tournoi">TOURNOI</a></li>
+                            <li><a href="../boutique">BOUTIQUE</a></li>
+                            <li><a href="../evenements">EVENEMENTS</a></li>
+                            {% if app.user %}
+                                <li><a href="deconnexion">DECONNEXION</a></li>
+                            {% else %}
+                                <li><a href="connexion">CONNEXION</a></li>
+                            {% endif %}
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <li><a style="color:red" href="admin">ADMINISTRATION</a></li>
+                            {% endif %}
+
+                        </ul>
+                </nav>
+                <button class="vs-menu-toggle text-theme border-theme d-inline-block d-lg-none"><i class="far fa-bars"></i></button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="sidemenu-wrapper d-none d-lg-block">
+    <div class="sidemenu-content bg-light-dark">
+        <button class="closeButton border-theme text-theme bg-theme-hover sideMenuCls"><i class="far fa-times"></i></button>
+        <div class="about-box">
+            <a href="../home"><img src="{{asset('assets/img/logo.png')}}" alt="Tournament Legacy"></a>
+            <p class="text-light mt-3">Appropriately reinvent cross-unit scenarios with reliable metrics. Dramatically morph distinctive alignments whereas.</p>
+            <ul class="social-links text-light">
+                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+            </ul>
+            <div class="my-40">
+                <div class="info-style1">
+                    <span class="icon-btn2"><i class="fas fa-map-marker-alt"></i></span>
+                    <p class="fs-4 lh-1 fw-medium text-white mb-0">Address</p>
+                    <p class="text-white mb-0">301 Massachusetts Ave, Lunenburg MA 1462</p>
+
+                </div>
+                <div class="info-style1">
+                    <span class="icon-btn2"><i class="fas fa-phone"></i></span>
+                    <p class="fs-4 lh-1 fw-medium text-white mb-0">Get In Touch</p>
+                    <p class="text-white mb-0"><a href="tel:13456789" class="text-inherit">85 125 1256 12145</a></p>
+                </div>
+                <div class="info-style1">
+                    <span class="icon-btn2"><i class="fas fa-envelope"></i></span>
+                    <p class="fs-4 lh-1 fw-medium text-white mb-0">Mail Us</p>
+                    <p class="text-white mb-0"><a href="mailto:Tournament Legacy@gmail.com" class="text-inherit">Tournament Legacy@example.com</a></p>
+                </div>
+            </div>
+        </div>
+        <h3 class="sidebox-title text-white h5">Recent viewed</h3>
+        <div class="post-thumb-style1">
+            <div class="vs-blog d-flex gap-3">
+                <div class="media-img"><a href="blog-details.html"><img src="assets/img/widget/recent-post-1-1.png" alt="Recent Post"></a></div>
+                <div class="media-body align-self-center">
+                    <h4 class="h5 blog-title font-theme lh-base text-white mb-0"><a href="blog-details.html">The General Sery vice Administr</a></h4>
+                    <div class="blog-meta text-light fs-xs mt-1"><a href="blog.html"><i class="fal fa-calendar-alt"></i>June 21, 2021</a></div>
+                </div>
+            </div>
+            <div class="vs-blog d-flex gap-3">
+                <div class="media-img"><a href="blog-details.html"><img src="assets/img/widget/recent-post-1-2.png" alt="Recent Post"></a></div>
+                <div class="media-body align-self-center">
+                    <h4 class="h5 blog-title font-theme lh-base text-white mb-0"><a href="blog-details.html">Lorem ipsum is placeholder text commonly</a></h4>
+                    <div class="blog-meta text-light fs-xs mt-1"><a href="blog.html"><i class="fal fa-calendar-alt"></i>June 21, 2021</a></div>
+                </div>
+            </div>
+            <div class="vs-blog d-flex gap-3">
+                <div class="media-img"><a href="blog-details.html"><img src="assets/img/widget/recent-post-1-3.png" alt="Recent Post"></a></div>
+                <div class="media-body align-self-center">
+                    <h4 class="h5 blog-title font-theme lh-base text-white mb-0"><a href="blog-details.html">From its medieval origins to the digital</a></h4>
+                    <div class="blog-meta text-light fs-xs mt-1"><a href="blog.html"><i class="fal fa-calendar-alt"></i>June 21, 2021</a></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="popup-search-box d-none d-lg-block">
+    <button class="searchClose border-theme text-theme"><i class="fal fa-times"></i></button>
+    <form action="#"><input type="text" class="border-theme" placeholder="What are you looking for"> <button type="submit"><i class="fal fa-search"></i></button></form>
+</div>
+<div class="vs-menu-wrapper">
+    <div class="vs-menu-area bg-dark">
+        <button class="vs-menu-toggle"><i class="fal fa-times"></i></button>
+        <div class="mobile-logo"><a href="index.html"><img src="assets/img/logo.png" alt="Tournament Legacy"></a>
+            <label style"color:red;">test</label></div>
+        <div class="vs-mobile-menu link-inherit"></div>
+    </div>
+</div>
+<header style="margin-bottom:100px"" class="header-wrapper header-layout4">
+    <div class="bg-dark py-10" data-bg-src="assets/img/shape/header-bg-4-1.jpg">
+        <div class="container vs-container">
+            <div class="row justify-content-between">
+                <div class="col-auto">
+                    <span class="fs-xs text-mist-blue me-2">Rejoignez-nous: </span>
+                    <ul class="social-links fs-xs text-mist-blue d-inline-block">
+                        <li><a href="https://google.com/"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="https://google.com/"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="https://google.com/"><i class="fab fa-youtube"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bg-light-gray py-2 py-sm-3 py-lg-0">
+        <div class="container vs-container position-relative">
+            <div class="row gx-0">
+                <div class="col-auto">
+                    <div class="header4-logo bg-light-gray"><a class="d-none d-lg-inline-block" href="home"><img src="{{asset('assets/img/logo.png')}}" style="width:200px;" alt="Tournament Legacy"></a><a class="d-inline-block d-lg-none" href="../home"><img src="assets/img/logo-2.png" alt="Tournament Legacy"></a></div>
+                </div>
+                <div class="col-auto d-none d-hd-block">
+                    <div class="header-info-box has-right-border">
+                        <span class="has-border fs-12 text-mist-blue">Dernier évènement:</span>
+                        <p class="fs-xs text-white"><strong>Nom évènement</strong></p>
+                        <span class="fs-10 small">Date évènement</span>
+
+                    </div>
+                </div>
+                <div class="col text-end text-lg-center align-self-center">
+                    <nav class="main-menu menu-style3 mobile-menu-active" data-expand="992">
+                        <ul>
+                            <li><a href="../home">ACCUEIL</a></li>
+                            <li><a href="../tournoi">TOURNOI</a></li>
+                            <li><a href="../boutique">BOUTIQUE</a></li>
+                            <li><a href="../evenements">EVENEMENTS</a></li>
+                            {% if app.user %}
+                                {% if is_granted('ROLE_ADMIN') %}
+
+                                    <li class="menu-item-has-children">
+                                        <a href="admin">ADMINISTRATION</a>
+                                        <ul class="sub-menu">
+                                            <li>
+                                                <a href="deconnexion">DECONNEXION</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                {% endif %}
+
+
+                                <li class="menu-item-has-children">
+                                    <a href="profle">{{app.user.username}}</a>
+                                    <ul class="sub-menu">
+                                        <li>
+                                            <a href="deconnexion">DECONNEXION</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            {% else %}
+                                <li><a href="connexion">CONNEXION</a></li>
+                            {% endif %}
+
+                    </nav>
+                    <button type="button" class="vs-menu-toggle text-white d-inline-block d-lg-none"><i class="far fa-bars"></i></button>
+                </div>
+                <div class="col-auto d-none d-lg-flex align-items-center justify-content-end">
+                    {% if app.user %}
+                        <a href="../profil" class="vs-btn style2 outline1 d-none d-xl-inline-block"><strong>Profil</strong></a>
+                    {% endif %}
+                    <ul class="header-list1 list-style-none ml-30">
+                        <li><button class="searchBoxTggler"><i class="far fa-search"></i></button></li>
+                        <li><button class="sideMenuToggler"><i class="fal fa-grip-horizontal fs-2"></i></button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<body>
+
+<div style="width: 80% margin:auto"  id="calendrier">
+
+</div>
+
+</body>
+<section class="vs-newsletter-wrapper bg-dark z-index-step1">
+    <div class="container">
+        <div class="position-relative">
+            <div class="inner-wrapper bg-black position-absolute top-50 start-50 translate-middle w-100 px-60 py-40">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-xl-6 text-center text-xl-start mb-3 mb-xl-0">
+                        <span class="sub-title2 mt-2">Newsletter</span>
+                        <h2 class="mb-0 text-white">get monthly updates</h2>
+                    </div>
+                    <div class="col-md-10 col-lg-8 col-xl-6">
+                        <form action="#" class="newsletter-style1 d-md-flex">
+                            <input type="email" class="form-control" placeholder="Enter email address">
+                            <button class="vs-btn gradient-btn">Subscribe Now</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer-wrapper footer-layout3">
+    <div class="footer-widget-wrapper dark-style1 z-index-common">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-md-6 col-lg-3 col-xl-4">
+                    <div class="widget footer-widget pt-0">
+                        <h3 class="widget_title">About Us</h3>
+                        <div class="vs-widget-about">
+                            <p class="about-text text-footer1 pe-xl-5">The League of Legends offseason is in full effect and teams are looking to sign new players to strengthen their roster or to re-sign their current players.</p>
+                            <div class="d-flex gap-2 text-white mt-45"><a class="icon-btn1 skew-right" href="https://google.com/"><i class="fab fa-facebook-f"></i></a> <a class="icon-btn1 skew-right" href="https://google.com/"><i class="fab fa-twitter"></i></a> <a class="icon-btn1 skew-right" href="https://google.com/"><i class="fab fa-linkedin-in"></i></a> <a class="icon-btn1 skew-right" href="https://google.com/"><i class="fab fa-youtube"></i></a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-3 col-xl-2">
+                    <div class="widget widget_categories footer-widget">
+                        <h3 class="widget_title">Categories</h3>
+                        <ul>
+                            <li><a href="#">Ancient</a></li>
+                            <li><a href="#">Fantasy</a></li>
+                            <li><a href="#">Horror</a></li>
+                            <li><a href="#">Shooting</a></li>
+                            <li><a href="#">MS-XBOX</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-3 col-xl-2">
+                    <div class="widget widget_nav_menu footer-widget">
+                        <h3 class="widget_title">NEED HELP?</h3>
+                        <div class="menu-all-pages-container">
+                            <ul class="menu">
+                                <li><a href="#">Company</a></li>
+                                <li><a href="#">For the fans</a></li>
+                                <li><a href="#">Press</a></li>
+                                <li><a href="#">Privacy</a></li>
+                                <li><a href="#">Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 col-xl-3">
+                    <div class="widget footer-widget">
+                        <h3 class="widget_title">Contact Us</h3>
+                        <div class="vs-widget-about">
+                            <p class="contact-info"><i class="fal fa-map-marker-alt text-white"></i>121 King St, Melbourne VIC 3000, Australia</p>
+                            <p class="contact-info"><i class="fal fa-phone text-white"></i><a href="tel:+65965252561">(888)-659-252561</a></p>
+                            <p class="contact-info"><i class="fal fa-fax text-white"></i><a href="tel:+65965252561">(888)-123-45678</a></p>
+                            <p class="contact-info"><i class="fal fa-envelope text-white"></i><a href="mailto:Tournament Legacy@webmail.com">Tournament Legacy@email.com</a></p>
+                            <p class="contact-info"><i class="fal fa-globe text-white"></i><a href="https://Tournament Legacy.com/">www.Tournament Legacyexample.com</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright bg-black z-index-step1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 d-none d-xl-block">
+                    <div class="footer-menu style2">
+                        <ul>
+                            <li><a href="#">Features</a></li>
+                            <li><a href="#">Request</a></li>
+                            <li><a href="#">Imprint</a></li>
+                            <li><a href="#">Privacy</a></li>
+                            <li><a href="#">Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-4 align-self-center text-center py-3 py-xl-0 text-xl-end">
+                    <p class="text-light fw-bold text-bold mb-0">&copy; 2021 <a class="text-white" href="/home">Tournament Legacy</a> By <a class="text-white" href="https://themeforest.net/user/vecuro">Vecuro</a>. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<a href="#" class="scrollToTop icon-btn5"><i class="far fa-angle-up"></i></a>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.min.js" integrity="sha256-YicH/8aE660iEnJtgll3vT54dJApy3XkYmqNfGVFEzA=" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/45e38e596f.js" crossorigin="anonymous"></script>
+<script src="{{ asset('../assets/js/vendor/jquery-1.12.4.min.js')}}"></script>
+<script src="{{ asset('../assets/js/app.min.js')}}"></script>
+<script src="{{ asset('../assets/js/vscustom-carousel.min.js')}}">
+</script><script src="{{ asset('../assets/js/vsmenu.min.js')}}">
+</script><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDC3Ip9iVC0nIxC6V14CKLQ1HZNF_65qEQ"></script>
+<script src="{{ asset('../assets/js/map.js')}}"></script>
+<script src="{{ asset('../assets/js/ajax-mail.js"></script><script src="assets/js/main.js')}}"></script>
+<script>
+    window.onload = () => {
+        let calendarElt= document.querySelector("#calendrier")
+        let calendar = new FullCalendar.Calendar(calendarElt,{
+            initialView:'dayGridMonth',
+            locale: 'fr',
+            timeZone: 'Europe/Paris',
+            headerToolbar:{
+                start:'prev,next today',
+                end:'dayGridMonth, timeGridWeek'
+            },
+            events: {{ data|raw }},
+            editable:true,
+            eventResizableFromStart: true
+        })
+       calendar.on('eventChange', (e) => {
+           console.log(e)
+            let url = `/calendar/${e.event.id}/edit`
+            let donnees = {
+                "title": e.event.title,
+                "start": e.event.start,
+                "end": e.event.end
+            }
+
+            let xhr = new XMLHttpRequest
+            xhr.open("PUT", url)
+            xhr.send(JSON.stringify(donnees))
+    })
+        calendar.render()
+    }
+</script>
+</html>
+

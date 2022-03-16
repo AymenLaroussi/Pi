@@ -84,7 +84,7 @@ class Produits
     /**
      * @ORM\ManyToOne(targetEntity=Categories::class, inversedBy="produits")
      * @ORM\JoinColumn(nullable=false)
-     * 
+     *
      */
     private $categories;
 
@@ -99,9 +99,9 @@ class Produits
         $this->commentaires = new ArrayCollection();
     }
 
- 
 
-    
+
+
 
     public function getId(): ?int
     {
@@ -191,7 +191,7 @@ class Produits
 
         return $this;
     }
-    
+
     public function getImage(): ?string
     {
         return $this->image;
@@ -215,7 +215,7 @@ class Produits
 
         return $this;
     }
-    
+
 
     public function getCategories(): ?Categories
     {
@@ -263,7 +263,7 @@ class Produits
         return $this;
     }
 
-    
 
-    
+
+
 }

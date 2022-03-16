@@ -47,6 +47,8 @@ class CategoriesRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
     public function listProduitsByCategories($id)
     {
         return $this->createQueryBuilder('s')
@@ -57,4 +59,5 @@ class CategoriesRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
 }

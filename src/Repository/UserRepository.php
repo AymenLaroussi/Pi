@@ -47,4 +47,11 @@ class UserRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function orderByMail()
+    {
+        $qb=  $this->createQueryBuilder('s')
+            ->orderBy('s.email', 'ASC');
+        return $qb->getQuery()->getResult();
+    }
 }
