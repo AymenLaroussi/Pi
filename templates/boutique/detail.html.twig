@@ -1,31 +1,84 @@
 {% extends 'base.html.twig' %} 
 {% block body %} 
-
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
    
    <!-- default styles -->
 
 <style>
-.fa {
-  padding: 20px;
-  font-size: 30px;
-  width: 50px;
+@import "//codepen.io/jatinn_r/pen/OJPLZLX.css";
+.social-btns .btn,
+.social-btns .btn:before,
+.social-btns .btn .fa {
+  transition: all 0.35s;
+  transition-timing-function: cubic-bezier(0.31, -0.105, 0.43, 1.59);
+}
+.social-btns .btn:before {
+  top: 90%;
+  left: -110%;
+}
+.social-btns .btn .fa {
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+}
+.social-btns .btn.facebook:before {
+  background-color: #3b5998;
+}
+.social-btns .btn.facebook .fa {
+  color: #3b5998;
+}
+.social-btns .btn.twitter:before {
+  background-color: #00aff0;
+}
+.social-btns .btn.twitter .fa {
+  color: #00aff0;
+}
+.social-btns .btn:focus:before,
+.social-btns .btn:hover:before {
+  top: -10%;
+  left: -10%;
+}
+.social-btns .btn:focus .fa,
+.social-btns .btn:hover .fa {
+  color: #fff;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+.social-btns {
+  height: 90px;
+  margin: auto;
+  font-size: 0;
   text-align: center;
-  text-decoration: none;
-  margin: 5px 2px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
-
-.fa:hover {
-    opacity: 0.7;
+.social-btns .btn {
+  display: inline-block;
+  background-color: #fff;
+  width: 90px;
+  height: 90px;
+  line-height: 90px;
+  margin: 0 10px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 28%;
+  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
+  opacity: 0.99;
 }
-
-.fa-facebook {
-  background: #3B5998;
-  color: white;
+.social-btns .btn:before {
+  content: "";
+  width: 120%;
+  height: 120%;
+  position: absolute;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
-
-.fa-twitter {
-  background: #55ACEE;
-  color: white;
+.social-btns .btn .fa {
+  font-size: 38px;
+  vertical-align: middle;
 }
 
 </style>
@@ -74,10 +127,8 @@
         <div class="col-lg-6">
           <div class="product-main-img text-center pt-30 pt-lg-60">
             <div class="social-btns">
-    <a class="btn facebook" href="#"><i class="fab fa-facebook"></i></a>
-    <a class="btn twitter" href="#"><i class="fab fa-twitter"></i></a>
-
- 
+    <a class="btn facebook" href="#"><i class="fa fa-facebook"></i></a>
+    <a class="btn twitter" href="#"><i class="fa fa-twitter"></i></a>
 
 
   </div>
@@ -90,8 +141,33 @@
             <div class="mb-2"></div>
             <h3 class="product-name font-theme text-normal">{{produit.titre}}</h3>
             <h class="product-name font-theme text-normal">Réference : #{{produit.ref}}</h>
+            {% set et = 0 %}
+            {% set j = 0 %}
+             {% for etoile in ratis %}
+              {% set et = et + etoile.rating %}
+              {% set j=j+1 %}
+
+            {% endfor %}
+            {% set et= et / j %}
+            <p>{% set et= et|round %}</p>
+
+            {% if et ==5 %}          
+              {% for b in 1..et %}
+                 <i class="fas fa-star"></i>
+              {% endfor %}
+              {% else %}
+              {% for b in 1..et %}
+                 <i class="fas fa-star"></i>
+              {% endfor %}
+              {% for b in et..4 %}
+                 <i class="fas fa-star" style ="font-weight: inherit;"></i>
+              {% endfor %}
+              {% endif %}
             <table><tr><td>
-             {% if produit.promo is null %} <h4 class="product-price text-theme2">{{produit.prix | number_format(0, ',', ' ')}} DT</h4> {%else%} {% set prix = (produit.prix * produit.promo)/100 %} <h4 class="product-price text-theme2" style="text-decoration: line-through;">{{produit.prix}} DT</h4></td><td> <p>offre expire aprés : <span style="color:red;" id="demo"></span></p></td></table>
+            
+
+
+             {% if produit.promo is null %} <h4 class="product-price text-theme2">{{produit.prix | number_format(0, ',', ' ')}} DT</h4> {%else%} {% set prix = (produit.prix * produit.promo)/100 %} {% set prix = (produit.prix - prix) %} <h4 class="product-price text-theme2" style="text-decoration: line-through;">{{produit.prix}} DT</h4></td><td> <p>offre expire aprés : <span style="color:red;" id="demo"></span></p></td></table>
    
             <h3 class="product-price text-theme2">{{prix}} DT</h3> 
             
@@ -194,20 +270,34 @@
                     <div class="comment-top">
                       <div class="comment-author">
                         <h4 class="name">{{komm.user.getUsername()}}</h4>
-                        <h6 class="name">{{komm.date |date('d-m-Y h:i:s')}}</h6>
+                        <h6 class="name">{{komm.date |date('d-m-Y h:i:s')}}</h6> 
+                        <a href={{ path('supprimer_commentaires1', {'id': komm.id}) }}"   onclick="return confirm('vous etes sure de vouloir supprimer ?');" <i class="material-icons" style="
+    color: red;
+    font-size: 32px;
+    width: 53px;
+    position: relative;
+    left: 958px;
+">delete</i></a>
                         <div class="text-yellow fs-xs mb-2">
                         {% set comp = 0 %}
                          {% for j in ratis %}
-                        {% set comp = j.getRating() %}
+                        
                         {% if komm.user.getId() == j.getUserCode() %}
+                        {% set comp = j.getRating() %}
                        {% endif %}
-                        {% endfor %} 
+                        {% endfor %}
+               {% if comp ==5 %}          
+              {% for b in 1..comp %}
+                 <i class="fas fa-star"></i>
+              {% endfor %}
+              {% else %}
               {% for b in 1..comp %}
                  <i class="fas fa-star"></i>
               {% endfor %}
               {% for b in comp..4 %}
                  <i class="fas fa-star" style ="font-weight: inherit;"></i>
               {% endfor %}
+              {% endif %}
 
             
             
@@ -306,11 +396,28 @@
           </div>
           <div class="product-content">
             <div class="text-yellow fs-xs mb-2">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="far fa-star"></i>
-              <i class="far fa-star"></i>
+              {% set et = 0 %}
+            {% set j = 0 %}
+             {% for etoile in ratis %}
+              {% set et = et + etoile.rating %}
+              {% set j=j+1 %}
+
+            {% endfor %}
+            {% set et= et / j %}
+            <p>{% set et= et|round %}</p>
+
+            {% if et ==5 %}          
+              {% for b in 1..et %}
+                 <i class="fas fa-star"></i>
+              {% endfor %}
+              {% else %}
+              {% for b in 1..et %}
+                 <i class="fas fa-star"></i>
+              {% endfor %}
+              {% for b in et..4 %}
+                 <i class="fas fa-star" style ="font-weight: inherit;"></i>
+              {% endfor %}
+              {% endif %}
             </div>
             <h3 class="product-name text-normal font-theme fs-20 lh-base mb-2">
               <a class="text-inherit" href="{{ path('show',{"id":produit.id,"titre":produit.titre}) }}">{{produitx.titre}}</a>
@@ -697,15 +804,10 @@
         showClear: !0,
         showCaption: !0,
         starCaptionClasses: {
-            .5: "label label-danger",
             1: "label label-danger",
-            1.5: "label label-warning",
             2: "label label-warning",
-            2.5: "label label-info",
             3: "label label-info",
-            3.5: "label label-primary",
             4: "label label-primary",
-            4.5: "label label-success",
             5: "label label-success"
         },
         clearButton: '<i class="fas fa-minus"></i>',
@@ -723,15 +825,10 @@
     }, e.fn.ratingLocales.en = {
         defaultCaption: "{rating} Etoile",
         starCaptions: {
-            .5: "",
             1: "Une étoile",
-            1.5: "",
             2: "Deux étoile",
-            2.5: "",
             3: "Trois étoile",
-            3.5: "",
             4: "Quatre étoile",
-            4.5: "",
             5: "cinq étoile"
         },
         clearButtonTitle: "Clear",
@@ -743,16 +840,7 @@
 });
  </script> 
  <script>
-var text = encodeURIComponent("profitez de {{produit.promo}} % de
-réduction pour ce produit
-Offre valable jusqu'au
-{{ "now" |date_modify("+1 day")|date("m/d/Y") }} ! Contactez-
-nous au
-04.89.35.23.65 ou
-cliquez sur le lien
-https://
-assurhabita.com (STOP
-au 36173)");
+ var text = encodeURIComponent("Profiter de {{produit.promo}} % sur ce le produit {{produit.titre}} de {{produit.prix}}");
 var url = "{{ app.request.uri }}"; 
 var user_id = "jagathish1123";
 var hash_tags = "JS,JavaScript,100DaysOfCode,Programming";
@@ -771,10 +859,6 @@ twitter.addEventListener('click', function(ev) {
   let shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}&via=${user_id}&hashtags=${hash_tags}`;
    window.open(shareUrl,"NewWindow" , params);
 });
-
-
-
-
 
  </script>
 

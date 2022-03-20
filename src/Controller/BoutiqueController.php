@@ -23,6 +23,9 @@ use Knp\Bundle\PaginatorBundle\Pagination\SlidingPaginationInterface;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 use App\Form\RechercheProduitType;
+use App\Repository\RatingRepository;
+
+use App\Repository\UserRepository;
 
 
 /**
@@ -35,9 +38,12 @@ class BoutiqueController extends AbstractController
     /**
      * @Route("/", name="boutique")
      */
-    public function index(ProduitsRepository $produitsRepository,CategoriesRepository $categoriesRepository, Request $request, PaginatorInterface $paginator ): Response
+    public function index(RatingRepository $ratingRepository,ProduitsRepository $produitsRepository,CategoriesRepository $categoriesRepository, Request $request, PaginatorInterface $paginator ): Response
     {   
-
+        $user= $this->getDoctrine()->getRepository(User::class)->findAll();
+        $ratis= $this->getDoctrine()->getRepository(Rating::class)->findAll();
+        $haut= $this->getDoctrine()->getRepository(Produits::class)->orderByPrixHaut();
+        $bas= $this->getDoctrine()->getRepository(Produits::class)->orderByPrixBas();
          $formSearch= $this->createForm(RechercheProduitType::class, null, [
             'attr' => [
                 'class' => 'search-form'
@@ -53,18 +59,31 @@ class BoutiqueController extends AbstractController
             );
              return $this->render("boutique/index.html.twig",array(
              "produits"=>$produits,
+             "haut"=>$haut,
+             "bas"=>$bas,
+             'ratis'=>$ratis,
              'categories' => $categoriesRepository->findAll(),
-             'formSearch'=>$formSearch->createView()));
+             'formSearch'=>$formSearch->createView()
+             
+             
+             
+            ));
          }
         $donnees= $this->getDoctrine()->getRepository(Produits::class)->findAll();
         $produits = $paginator->paginate(
             $donnees,
             $request->query->getInt('page', 1),
+            6
         );
         return $this->render('boutique/index.html.twig', [
+            "ratis"=>$ratis,
             'produits' => $produits,
             'categories' => $categoriesRepository->findAll(),
             'formSearch'=>$formSearch->createView(),
+            "haut"=>$haut,
+             "bas"=>$bas,
+             'ratis'=>$ratis,
+             
             
         ]);
     } 
@@ -74,6 +93,7 @@ class BoutiqueController extends AbstractController
      */
     public function show($id,CommentairesRepository $commentairesRepository, ProduitsRepository $produitsRepository,Request $request): Response{
         $produit= $this->getDoctrine()->getRepository(Produits::class)->find($id);
+        $ratis= $this->getDoctrine()->getRepository(Rating::class)->findAll();
         $produits= $this->getDoctrine()->getRepository(Produits::class)->findAll();
         $user=$this->getUser();
         $produitf= $this->getDoctrine()->getRepository(Produits::class)->find($id);
@@ -100,6 +120,7 @@ class BoutiqueController extends AbstractController
             "produit"=>$produit,
             "produits"=>$produits,
             'comment' => $comment,
+            'ratis'=>$ratis,
             'form1' => $form->createView(),
         ]);  
     }
@@ -110,18 +131,45 @@ class BoutiqueController extends AbstractController
     public function listProduitsByCategories(ProduitsRepository $produitsRepository,CategoriesRepository $categoriesRepository,$id, PaginatorInterface $paginator,Request $request ): Response
     {
         $donnees= $produitsRepository->listProduitsByCategories($id);
+        $ratis= $this->getDoctrine()->getRepository(Rating::class)->findAll();
+        $formSearch= $this->createForm(RechercheProduitType::class, null, [
+            'attr' => [
+                'class' => 'search-form'
+            ]
+            ]);
+         $formSearch->handleRequest($request);
+         if($formSearch->isSubmitted()){
+             $titre= $formSearch->getData()->getTitre();
+             $result= $this->getDoctrine()->getRepository(Produits::class)->RechercheProduit($titre);
+             $produits = $paginator->paginate(
+                $result,
+                $request->query->getInt('page', 1),
+            );
+             return $this->render("boutique/index.html.twig",array(
+             "produits"=>$produits,
+             'ratis'=>$ratis,
+             'categories' => $categoriesRepository->findAll(),
+             'formSearch'=>$formSearch->createView()
+             
+             
+             
+            ));
+         }
+        $donnees= $this->getDoctrine()->getRepository(Produits::class)->findAll();
         $produits = $paginator->paginate(
-            $donnees, // Requête contenant les données à paginer (ici nos articles)
-            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
-            6 // Nombre de résultats par page
+            $donnees,
+            $request->query->getInt('page', 1),
+            6
         );
-        
-       
-        return $this->render("boutique/index.html.twig",[
+        return $this->render('boutique/index.html.twig', [
+            "ratis"=>$ratis,
             'produits' => $produits,
             'categories' => $categoriesRepository->findAll(),
-        ]);
-    }
+            'formSearch'=>$formSearch->createView(),
+             'ratis'=>$ratis,
+             
+            
+        ]);}
      
      /**
      * @Route("/ajout/{id}", name="ajout_commentaire", methods={"GET","POST"}))
@@ -130,6 +178,7 @@ class BoutiqueController extends AbstractController
     {
         $user=$this->getUser();
         $produitf= $this->getDoctrine()->getRepository(Produits::class)->find($id);
+        $ratis= $this->getDoctrine()->getRepository(Rating::class)->findAll();
         $comment = new Commentaires();
         $comment->setDate(new \DateTime('now'));
         $comment->setUser($user);
@@ -149,7 +198,9 @@ class BoutiqueController extends AbstractController
 
         return $this->render('boutique/ajout.html.twig', [
             'comment' => $comment,
+            'ratis'=>$ratis,
             'form' => $form->createView(),
+            
         ]);
     }
 
@@ -161,16 +212,147 @@ class BoutiqueController extends AbstractController
     {
         $ref=$request->get('ref');
         $rat=$request->get('rating');
-        $user=$request->get('rating');
+        $user=$request->get('user');
         $rating =new Rating($ref,$rat,$user);
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($rating);
         $entityManager->flush();
     }
+
+
+     /**
+     * @Route("/ASC", name="ASC")
+     */
+    public function ASC(ProduitsRepository $produitsRepository,CategoriesRepository $categoriesRepository, Request $request, PaginatorInterface $paginator ): Response
+    {   
+        $ratis= $this->getDoctrine()->getRepository(Rating::class)->findAll();
+         $formSearch= $this->createForm(RechercheProduitType::class, null, [
+            'attr' => [
+                'class' => 'search-form'
+            ]
+            ]);
+         $formSearch->handleRequest($request);
+         if($formSearch->isSubmitted()){
+             $titre= $formSearch->getData()->getTitre();
+             $result= $this->getDoctrine()->getRepository(Produits::class)->RechercheProduit($titre);
+             $produits = $paginator->paginate(
+                $result,
+                $request->query->getInt('page', 1),
+            );
+             return $this->render("boutique/asc.html.twig",array(
+             "produits"=>$produits,
+             'ratis'=>$ratis,
+             'categories' => $categoriesRepository->findAll(),
+             'formSearch'=>$formSearch->createView()
+             
+            ));
+         }
+        $donnees= $this->getDoctrine()->getRepository(Produits::class)->orderByPrixHaut();
+        $produits = $paginator->paginate(
+            $donnees,
+            $request->query->getInt('page', 1),
+            6
+        );
+        return $this->render('boutique/asc.html.twig', [
+            'produits' => $produits,
+            'categories' => $categoriesRepository->findAll(),
+            'ratis'=>$ratis,
+            'formSearch'=>$formSearch->createView(),
+            
+            
+        ]);
+    } 
+
+     /**
+     * @Route("/DESC", name="DESC")
+     */
+    public function DESC(ProduitsRepository $produitsRepository,CategoriesRepository $categoriesRepository, Request $request, PaginatorInterface $paginator ): Response
+    {   
+        $ratis= $this->getDoctrine()->getRepository(Rating::class)->findAll();
+        $bas= $this->getDoctrine()->getRepository(Produits::class)->orderByPrixBas();
+         $formSearch= $this->createForm(RechercheProduitType::class, null, [
+            'attr' => [
+                'class' => 'search-form'
+            ]
+            ]);
+         $formSearch->handleRequest($request);
+         if($formSearch->isSubmitted()){
+             $titre= $formSearch->getData()->getTitre();
+             $result= $this->getDoctrine()->getRepository(Produits::class)->RechercheProduit($titre);
+             $produits = $paginator->paginate(
+                $result,
+                $request->query->getInt('page', 1),
+            );
+             return $this->render("boutique/desc.html.twig",array(
+             "produits"=>$produits,
+             'categories' => $categoriesRepository->findAll(),
+             'ratis'=>$ratis,
+             'formSearch'=>$formSearch->createView()
+             
+            ));
+         }
+        $donnees= $this->getDoctrine()->getRepository(Produits::class)->orderByPrixBas();
+        $produits = $paginator->paginate(
+            $donnees,
+            $request->query->getInt('page', 1),
+            6
+        );
+        return $this->render('boutique/desc.html.twig', [
+            'produits' => $produits,
+            'ratis'=>$ratis,
+            'categories' => $categoriesRepository->findAll(),
+            'formSearch'=>$formSearch->createView(),
+            
+            
+        ]);
+    } 
+
+          /**
+     * @Route("/FLASH", name="FLASH")
+     */
+    public function FLASH(ProduitsRepository $produitsRepository,CategoriesRepository $categoriesRepository, Request $request, PaginatorInterface $paginator ): Response
+    {   
+        $bas= $this->getDoctrine()->getRepository(Produits::class)->orderByPrixBas();
+        $ratis= $this->getDoctrine()->getRepository(Rating::class)->findAll();
+         $formSearch= $this->createForm(RechercheProduitType::class, null, [
+            'attr' => [
+                'class' => 'search-form'
+            ]
+            ]);
+         $formSearch->handleRequest($request);
+         if($formSearch->isSubmitted()){
+             $titre= $formSearch->getData()->getTitre();
+             $result= $this->getDoctrine()->getRepository(Produits::class)->RechercheProduit($titre);
+             $produits = $paginator->paginate(
+                $result,
+                $request->query->getInt('page', 1),
+            );
+             return $this->render("boutique/flash.html.twig",array(
+             "produits"=>$produits,
+             'ratis'=>$ratis,
+             'categories' => $categoriesRepository->findAll(),
+             'formSearch'=>$formSearch->createView()
+             
+            ));
+         }
+        $donnees= $this->getDoctrine()->getRepository(Produits::class)->orderByFlash();
+        $produits = $paginator->paginate(
+            $donnees,
+            $request->query->getInt('page', 1),
+            6
+        );
+        return $this->render('boutique/flash.html.twig', [
+            'produits' => $produits,
+            'ratis'=>$ratis,
+            'categories' => $categoriesRepository->findAll(),
+            'formSearch'=>$formSearch->createView(),
+            
+        ]);
+    } 
     
 
 
-     ////////////////////JASON/////////////////
+     ////////////////////JSON/////////////////
     
     /**
     * @Route("/api/", name="boutiqueJSON" , methods={"GET"})
@@ -182,7 +364,19 @@ class BoutiqueController extends AbstractController
         return $response;
     }
     
+    /**
+     * @Route("/supprimer/{id}", name="supprimer_commentaires1", methods={"POST"})
+     */
+    public function delete(Request $request, Commentaires $commentaire): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$commentaire->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($commentaire);
+            $entityManager->flush();
+        }
 
+        return $this->redirectToRoute('boutique', [], Response::HTTP_SEE_OTHER);
+    }
 
 
 }

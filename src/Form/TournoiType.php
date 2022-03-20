@@ -41,9 +41,15 @@ class TournoiType extends AbstractType
                     )))
             ->add('nbr_joueur_eq', ChoiceType::class,
                 array(
-                     'choices' => range(1,10)
+                    'choices' => array(
+                        1 => 1,
+                        2 => 2,
+                        3 => 3,
+                        4 => 4,
+                        5 => 5,
+                        6 => 6,
 
-                    ))
+                    )))
             ->add('prix' ,MoneyType::class, [
                 'divisor' => 100,
             ])

@@ -73,10 +73,10 @@ class Rating
         return $this;
     }
 
-    public function __construct($ref,$rating)
+    public function __construct($ref,$rating,$user)
     {
         $this->rating=$rating;
         $this->entity_code=$ref;
-        $this->user_code=$ref;
+        $this->user_code=$user;
     }
 }

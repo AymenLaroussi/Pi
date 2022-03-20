@@ -80,4 +80,28 @@ class ProduitsRepository extends ServiceEntityRepository
             ->execute();
     }
 
+
+    public function orderByPrixBas()
+    {
+        return $this->createQueryBuilder('s')
+            ->orderBy('s.prix', 'ASC')
+            ->getQuery()->getResult();
+    }
+
+    public function orderByPrixHaut()
+    {
+        return $this->createQueryBuilder('s')
+            ->orderBy('s.prix', 'DESC')
+            ->getQuery()->getResult();
+    }
+
+    public function orderByFlash()
+    {
+        $qb = $this->createQueryBuilder('s');
+        $qb->where('s.flash=:flash');
+        $qb->setParameter('flash', true);
+        return $qb->getQuery()->getResult();
+    }
+    
+
 }
