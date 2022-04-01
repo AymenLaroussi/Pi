@@ -61,18 +61,14 @@ class UserCtrlController extends AbstractController
     }
 
     /**
-     * @Route("/updatetournoiAPI/{id}", name="updatetournoiAPI")
+     * @Route("/updateUser/{usernamex}", name="updateUser")
      */
-    public function updateTournoiAPI(Request $request, NormalizerInterface $Normalizer,$id)
+    public function updateUserAPI(Request $request, NormalizerInterface $Normalizer,$usernamex)
     {
         $em = $this->getDoctrine()->getManager();
-        $tournoi = $em->getRepository(Tournoi::class)->find($id);
-
-        $tournoi->setNom($request->get("nom"));
-        $tournoi->setNbrEquipes($request->get("nbr_equipes"));
-        $tournoi->setNbrJoueurEq($request->get("nbr_joueur_eq"));
-        $tournoi->setPrix($request->get("prix"));
-        $tournoi->setDiscordChannel($request->get("discord_channel"));
+        $tournoi = $em->getRepository(User::class)->find($usernamex);
+        $tournoi->setUsername($request->get("username"));
+        $tournoi->setPassword($request->get("password"));
         $em->flush();
         $jsonContent = $Normalizer->normalize($tournoi, 'json',['groups'=>'post:read']);
         return new Response("Information updated successfully".json_encode($jsonContent));
