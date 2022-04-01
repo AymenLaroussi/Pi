@@ -15,30 +15,31 @@ class Commentaires
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups("post:read")
+     * @Groups("post:commentaire")
      */
     private $id;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="commentaires")
-     * @Groups("post:read")
+     * @Groups("post:commentaire")
      */
     private $user;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("post:read")
+     * @Groups("post:commentaire")
      */
     private $message;
 
     /**
      * @ORM\ManyToOne(targetEntity=Produits::class, inversedBy="commentaires")
+     * @Groups("post:commentaire")
      */
     private $produit;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups("post:read")
+     * @Groups("post:commentaire")
      */
     private $date;
 

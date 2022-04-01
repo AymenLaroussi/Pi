@@ -18,17 +18,21 @@ class Produits
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("post:read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotNull (message="Titre du produit est obligatoire.")
+     * @Groups("post:read")
+     * @Groups("post:commentaire")
      */
     private $titre;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("post:read")
      */
     private $description;
 
@@ -42,19 +46,16 @@ class Produits
     /**
      * @ORM\Column(type="integer")
      * @Assert\Positive(message="Quantité du produit est doit étre positive.")
-     * @Groups("post:read")
      */
     private $stock;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
-     * @Groups("post:read")
      */
     private $flash;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("post:read")
      */
     private $image;
 
@@ -84,13 +85,12 @@ class Produits
     /**
      * @ORM\ManyToOne(targetEntity=Categories::class, inversedBy="produits")
      * @ORM\JoinColumn(nullable=false)
-     *
      */
     private $categories;
 
     /**
      * @ORM\OneToMany(targetEntity=Commentaires::class, mappedBy="produit" ,cascade={"remove"})
-     * @Groups("post:read")
+     * 
      */
     private $commentaires;
 

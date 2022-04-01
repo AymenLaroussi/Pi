@@ -80,7 +80,6 @@
   font-size: 38px;
   vertical-align: middle;
 }
-
 </style>
 <link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-star-rating@4.1.2/css/star-rating.min.css" media="all" rel="stylesheet" type="text/css" />
 
@@ -126,7 +125,7 @@
       <div class="row">
         <div class="col-lg-6">
           <div class="product-main-img text-center pt-30 pt-lg-60">
-            <div class="social-btns">
+            <div class="social-btns" style="position: relative;top: -120px;/* width: 141px; */font-size: 1000px;">
     <a class="btn facebook" href="#"><i class="fa fa-facebook"></i></a>
     <a class="btn twitter" href="#"><i class="fa fa-twitter"></i></a>
 
@@ -144,13 +143,17 @@
             {% set et = 0 %}
             {% set j = 0 %}
              {% for etoile in ratis %}
-              {% set et = et + etoile.rating %}
-              {% set j=j+1 %}
-
+              {% set et =  etoile.rating %}
+              {% if et == 0 %}
+                 <i class="fas fa-star"></i>
+                 <i class="fas fa-star"></i>
+                 <i class="fas fa-star"></i>
+                 <i class="fas fa-star"></i>
+                 <i class="fas fa-star"></i>
+              {% endif %}
             {% endfor %}
-            {% set et= et / j %}
             <p>{% set et= et|round %}</p>
-
+            
             {% if et ==5 %}          
               {% for b in 1..et %}
                  <i class="fas fa-star"></i>
@@ -188,7 +191,6 @@
             }
             function lessClick() {
                 
-
                 document.getElementById('qty').value = --i;
                  if (i <=0 ) {
     document.getElementById('qty').value = ++i;
@@ -208,15 +210,7 @@
                 </button>
 
                 <div class="cart-btn-group">
-                  <div class="quantity-box me-2 d-flex d-md-inline-flex d-lg-flex d-xl-inline-flex mb-3 mb-xl-0">
-                    <button class="quantity-minus qut-btn">
-                      <i class="far fa-minus"></i>
-                    </button>
-                    <input type="text" value="1" class="qty-input">
-                    <button class="quantity-plus qut-btn">
-                      <i class="far fa-plus"></i>
-                    </button>
-                  </div>
+                  
                   <a href="/panier" class="vs-btn">Ajouter au panier</a>
                   <a href="#" class="icon-btn3">
                     <i class="far fa-heart"></i>
@@ -226,13 +220,7 @@
                   </a>
                 </div>
               </div>
-              <a href="#" class="vs-btn">Ajouter au panier</a>
-              <a href="#" class="icon-btn3">
-                <i class="far fa-heart"></i>
-              </a>
-              <a href="#" class="icon-btn3">
-                <i class="far fa-search"></i>
-              </a>
+              
             </div>
           </div>
         </div>
@@ -271,7 +259,7 @@
                       <div class="comment-author">
                         <h4 class="name">{{komm.user.getUsername()}}</h4>
                         <h6 class="name">{{komm.date |date('d-m-Y h:i:s')}}</h6> 
-                        <a href={{ path('supprimer_commentaires1', {'id': komm.id}) }}"   onclick="return confirm('vous etes sure de vouloir supprimer ?');" <i class="material-icons" style="
+                        <a href={{ path('supprimer_commentaires1', {'id': komm.id, 'id1': produit.id}) }}"   onclick="return confirm('vous etes sure de vouloir supprimer ?');" <i class="material-icons" style="
     color: red;
     font-size: 32px;
     width: 53px;
@@ -298,7 +286,6 @@
                  <i class="fas fa-star" style ="font-weight: inherit;"></i>
               {% endfor %}
               {% endif %}
-
             
             
             
@@ -326,7 +313,6 @@
           {% set use = app.user.getId() %}
            
       
-
    <div class="vs-comment-form comment-form-layout1 bg-smoke px-40 py-40 mb-30 mt-lg-30">
                 <div class="form-title">
                   <h3 class="h4 font-theme text-normal mt-n2">Laisser votre avis</h3>
@@ -346,7 +332,6 @@
                     {{ form_end(form1) }}
                   </div>
                 </div>
-
         </div>
       </div>
     </div>
@@ -356,12 +341,6 @@
                   <h3 class="h4 font-theme text-normal mt-n2">Pour pouvoir laisser votre avis vous devez <a href ="/connexion">se connecter</a></h3>
                 </div>
                 
-
-
-
-
-
-
                   
                       
                   </div>
@@ -399,13 +378,17 @@
               {% set et = 0 %}
             {% set j = 0 %}
              {% for etoile in ratis %}
-              {% set et = et + etoile.rating %}
-              {% set j=j+1 %}
-
+              {% set et =  etoile.rating %}
+              {% if et == 0 %}
+                 <i class="fas fa-star"></i>
+                 <i class="fas fa-star"></i>
+                 <i class="fas fa-star"></i>
+                 <i class="fas fa-star"></i>
+                 <i class="fas fa-star"></i>
+              {% endif %}
             {% endfor %}
-            {% set et= et / j %}
             <p>{% set et= et|round %}</p>
-
+            
             {% if et ==5 %}          
               {% for b in 1..et %}
                  <i class="fas fa-star"></i>
@@ -431,8 +414,6 @@
   </div>
   </div>
 </section>
-
-
 <section class="vs-newsletter-wrapper bg-dark z-index-step1">
   <div class="container">
     <div class="position-relative">
@@ -453,7 +434,6 @@
     </div>
   </div>
 </section>
-
 {% if app.user %}
 {% set use = app.user.getId() %}
 {% else %}
@@ -840,26 +820,26 @@
 });
  </script> 
  <script>
- var text = encodeURIComponent("Profiter de {{produit.promo}} % sur ce le produit {{produit.titre}} de {{produit.prix}}");
+ var text = encodeURIComponent("Profiter de {{produit.promo}} % sur le produit {{produit.titre}} de {{produit.prix}}TND  seulement prix imbattable");
 var url = "{{ app.request.uri }}"; 
 var user_id = "jagathish1123";
+var description= text;
+var picture="http://127.0.0.1:8000/uploads/{{produit.image}}";
+var caption=text;
 var hash_tags = "JS,JavaScript,100DaysOfCode,Programming";
 var params = "menubar=no,toolbar=no,status=no,width=570,height=570"; // for window
-
 var facebook = document.querySelector('.facebook');
 var twitter = document.querySelector('.twitter');
-
 facebook.addEventListener('click', function(ev) {
   console.log("hi");
     
-    let shareUrl = `http://www.facebook.com/sharer/sharer.php?u=${url}`;
+    let shareUrl = `http://www.facebook.com/sharer/sharer.php?u=${url}&caption={caption}&description={description}`;
     window.open(shareUrl,"NewWindow" , params);  
 });
 twitter.addEventListener('click', function(ev) {
   let shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}&via=${user_id}&hashtags=${hash_tags}`;
    window.open(shareUrl,"NewWindow" , params);
 });
-
  </script>
 
  <script>
