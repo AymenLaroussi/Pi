@@ -296,6 +296,9 @@ foreach ($events as $event) {
         $tournoi->setJeu($jeu);
         $em->persist($tournoi);
         $em->flush();
+        $date = new \DateTime('@'.strtotime('now'));
+       $tournoi->setTime($date);
+
 
 
         $em = $this->getDoctrine()->getManager();
@@ -320,16 +323,17 @@ foreach ($events as $event) {
         $jsonContent = $Normalizer->normalize($tournoi, 'json',['groups'=>'post:read']);
         return new Response(json_encode($jsonContent));
     }
+
     /**
-     * @Route("/updatetournoiAPI/{id}", name="updatetournoiAPI")
+     * @Route("/updateTournoiAPI/{id}", name="updateTournoiAPI")
      */
+
     public function updateTournoiAPI(Request $request, NormalizerInterface $Normalizer,$id)
     {
         $em = $this->getDoctrine()->getManager();
+
         $tournoi = $em->getRepository(Tournoi::class)->find($id);
         $tournoi->setNom($request->get("nom"));
-        $tournoi->setNbrEquipes($request->get("nbr_equipes"));
-        $tournoi->setNbrJoueurEq($request->get("nbr_joueur_eq"));
         $tournoi->setPrix($request->get("prix"));
         $tournoi->setDiscordChannel($request->get("discord_channel"));
         $em->flush();
@@ -349,5 +353,18 @@ foreach ($events as $event) {
         $em->flush();
         return new Response("removed successfully");
     }
+    /**
+     * @Route("/getTournoiAPI/{id}",name="getTournoi")
+     *
+     */
+    public function getTournoi(Request $request,NormalizerInterface $Normalizer)
+    {
+        $id=$request->get("id");
+        $tournoi = $this->getDoctrine()->getRepository(Tournoi::class)->find($id);
+        $jsonContent = $Normalizer->normalize($tournoi, 'json',['groups'=>'post:read']);
+        return new Response("Information updated successfully".json_encode($jsonContent));
+
+    }
+
 
 }
