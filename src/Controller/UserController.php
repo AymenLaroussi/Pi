@@ -59,5 +59,15 @@ class UserController extends AbstractController
         $em->flush();
         return $this->redirectToRoute("liste_utilisateurs");
     }
+    
+
+
+
+
+
+
+
+
+    
 
 }

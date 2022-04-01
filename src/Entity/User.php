@@ -36,6 +36,7 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=64, unique=true)
      * @Assert\NotBlank()
      * @Groups("post:read")
+     * @Groups("post:commentaire")
      */
     private $username;
 

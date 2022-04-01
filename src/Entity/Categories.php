@@ -6,6 +6,7 @@ use App\Repository\CategoriesRepository;
 use App\Repository\ProduitsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -18,17 +19,20 @@ class Categories
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("cat")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotNull (message="Nom obligatoire.")
+     * @Groups("cat")
      */
     private $nom;
 
     /**
      * @ORM\OneToMany(targetEntity=Produits::class, mappedBy="categories" ,cascade={"remove"})
+     * @Groups("post:reads")
      */
     private $produits;
 

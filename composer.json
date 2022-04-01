@@ -17,6 +17,7 @@
         "doctrine/orm": "^2.11",
         "dompdf/dompdf": "^1.2",
         "gedmo/doctrine-extensions": "^3.5",
+        "jms/serializer-bundle": "^1.0 | ^2.4",
         "knplabs/knp-paginator-bundle": "^5.8",
         "mbezhanov/faker-provider-collection": "^2.0",
         "phpdocumentor/reflection-docblock": "^5.3",

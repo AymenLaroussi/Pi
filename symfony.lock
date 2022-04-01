@@ -118,22 +118,23 @@
     "gedmo/doctrine-extensions": {
         "version": "v3.5.0"
     },
-
+    "jms/metadata": {
+        "version": "2.6.1"
+    },
+    "jms/serializer": {
+        "version": "3.17.1"
+    },
     "knplabs/knp-components": {
         "version": "v3.4.0"
     },
     "knplabs/knp-paginator-bundle": {
         "version": "v5.8.0"
     },
-
     "laminas/laminas-code": {
         "version": "4.5.1"
     },
     "mbezhanov/faker-provider-collection": {
         "version": "2.0.1"
-    },
-    "mgilet/notification-bundle": {
-        "version": "4.0"
     },
     "monolog/monolog": {
         "version": "1.26.1"
@@ -167,6 +168,9 @@
     },
     "phpspec/prophecy": {
         "version": "v1.15.0"
+    },
+    "phpstan/phpdoc-parser": {
+        "version": "1.2.0"
     },
     "phpunit/php-code-coverage": {
         "version": "9.2.10"

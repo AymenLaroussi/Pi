@@ -365,17 +365,32 @@ class BoutiqueController extends AbstractController
     }
     
     /**
-     * @Route("/supprimer/{id}", name="supprimer_commentaires1", methods={"POST"})
+     * @Route("/supprimer/{id}/{id1}", name="supprimer_commentaires1")
      */
-    public function delete(Request $request, Commentaires $commentaire): Response
+    public function delete(Request $request, Commentaires $commentaire,$id,$id1): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$commentaire->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($commentaire);
-            $entityManager->flush();
-        }
+        $commentaire= $this->getDoctrine()->getRepository(Commentaires::class)->find($id);
+        $em= $this->getDoctrine()->getManager();
+        $em->remove($commentaire);
+        $em->flush();
+        return $this->redirectToRoute("show" ,['id' => $id1]);
+    }
 
-        return $this->redirectToRoute('boutique', [], Response::HTTP_SEE_OTHER);
+    /*
+    * @Route("/detailProduit1", name="detailproduit")
+    * @Method("GET")
+    */
+
+    public function detailProduit1(Request $request)
+    {
+        $id = $request->get("id");
+        $em = $this->getDoctrine()->getManager();
+        $produit= $this->getDoctrine()->getRepository(Produits::class)->find($id);
+        $encoder = new JsonEncoder();
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setCircularReferencesHandler(function ($object){
+            return $object->getTitre();
+        });
     }
 
 
