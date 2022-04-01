@@ -8,16 +8,23 @@ use App\Entity\Jeu;
 use App\Entity\User;
 use App\Repository\TournoiRepository;
 use App\Repository\JeuRepository;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Gedmo\Sluggable\Util\Urlizer;
+
+use phpDocumentor\Reflection\DocBlock\Serializer;
+use phpDocumentor\Reflection\Types\Object_;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\TournoiType;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\SerializerInterface;
 
 
 class TournoiController extends AbstractController
@@ -25,34 +32,40 @@ class TournoiController extends AbstractController
     /**
      * @Route("/tournoi", name="tournoi")
      */
-    public function index(): Response
+    public function index(SerializerInterface $serializerInterface): Response
     {
         /* return $this->render('tournoi/index.html.twig', [
              'controller_name' => 'TournoiController',
          ]);*/
-        if ($this->getUser()) {
-            $tournois = $this->getDoctrine()
-                ->getRepository(Tournoi::class)->findAll();
+
+        $tournois = $this->getDoctrine()
+            ->getRepository(Tournoi::class)->findAll();
+        if($this->getUser()->getUsername()!=null) {
             $mestournois = $this->getDoctrine()
                 ->getRepository(Tournoi::class)->listTournoiByUser($this->getUser()->getUsername());
-            $jeux = $this->getDoctrine()
-                ->getRepository(Jeu::class)->findAll();
+        }
+        $jeux = $this->getDoctrine()
+            ->getRepository(Jeu::class)->findAll();
+
+
+//            $tournoisJson=$serializerInterface->serialize($tournois,'json',['groups'=>'tournoi']);
+//return New JsonResponse($tournoisJson) ;
+
+
             return $this->render("tournoi/index.html.twig",
                 array("tournois" => $tournois, "mestournois" => $mestournois, "jeux" => $jeux));
-        }
-        return $this->redirectToRoute("connexion");
     }
+
+
+
 
     /**
      * @Route("/addtournoi", name="addtournoi")
      */
-    public function addTournoi(Request $request)
+    public function addTournoi(Request $request,SerializerInterface $serializer)
     {
         $tournoi = new Tournoi();
         $user2 = $this->getUser();
-//
-//
-//
 
         $form = $this->createForm(TournoiType::class, $tournoi);
         $tournoi->setOrganisteur($user2);
@@ -101,19 +114,9 @@ class TournoiController extends AbstractController
     {
         $tournoi = $this->getDoctrine()->getRepository(Tournoi::class)->find($id);
         return $this->render("tournoi/tournament-details.html.twig", array("tournoi" => $tournoi));
+
     }
 
-    /**
-     * @Route("/removeTournoi{id}",name="removeTournoi")
-     */
-    public function delete($id)
-    {
-        $tournoi = $this->getDoctrine()->getRepository(Tournoi::class)->find($id);
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($tournoi);
-        $em->flush();
-        return $this->redirectToRoute("tournoi");
-    }
 
     /**
      * @Route("/tournoiUpdate/{id}",name="tournoiUpdate")
@@ -121,7 +124,6 @@ class TournoiController extends AbstractController
     public function updateTournoi(TournoiRepository $s, $id, Request $request)
     {
         $tournoi = $s->find($id);
-        //var_dump($student).die();
         $formTournoi = $this->createForm(TournoiType::class, $tournoi);
         $formTournoi->handleRequest($request);
         $type = "modifier";
@@ -249,7 +251,103 @@ foreach ($events as $event) {
 
             return new Response('Ok');
 
-
-
     }
+    /**
+     * @Route("/allTournoiAPI",name="allTournoiAPI", methods={"GET","POST"})
+     */
+    public function showAll(Request $request): Response{
+
+
+        $tournoi= $this->getDoctrine()->getRepository(Tournoi::class)->findAll();
+        $response = $this->json($tournoi, 200, [], ['groups' => 'post:read']);
+        return $response;
+    }
+//    /**
+//     * @Route("/mesTournoiAPI",name="allTournoiAPI", methods={"GET","POST"})
+//     */
+//    public function showMytournaments(Request $request): Response{
+//
+//        $mestournois = $this->getDoctrine()
+//            ->getRepository(Tournoi::class)->listTournoiByUser($this->getUser()->getUsername());
+//
+//        $response = $this->json($mestournois, 200, [], ['groups' => 'post:read']);
+//        return $response;
+//    }
+
+
+    /**
+     * @Route("/addtournoiAPI", name="addtournoiAPI")
+     */
+    public function addUserJSON(Request $request, NormalizerInterface $Normalizer)
+    {
+        $tournoi = new Tournoi();
+        $em = $this->getDoctrine()->getManager();
+        $tournoi->setNom($request->query->get("nom"));
+        $tournoi->setNbrEquipes($request->query->get("nbr_equipes"));
+        $tournoi->setNbrJoueurEq($request->query->get("nbr_joueur_eq"));
+        $tournoi->setPrix($request->query->get("prix"));
+        $tournoi->setImage($request->query->get("image"));
+        $tournoi->setDiscordChannel($request->query->get("discord_channel"));
+        $nomj=$request->query->get("jeu");
+        echo "*******" ;
+        echo $nomj;
+        $jeu =$em->getRepository(Jeu::class)->findOneBy(['nom' => $nomj]);
+
+        $tournoi->setJeu($jeu);
+        $em->persist($tournoi);
+        $em->flush();
+
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($tournoi);
+        $em->flush();
+
+        for ($i = 1; $i <= $tournoi->getNbrEquipes(); $i++) {
+            $equipe{$i} = new Equipe;
+            $equipe{$i}->setLabel("equipe{$i}");
+            $equipe{$i}->setTournoi($tournoi);
+            $chaine = '';
+
+            for ($j = 1; $j <= $tournoi->getNbrJoueurEq(); $j++) {
+                $chaine.='vide-';
+            }
+
+            $equipe{$i}->setJoueurs($chaine);
+            $em->persist($equipe{$i});
+            $em->flush();
+
+        }
+        $jsonContent = $Normalizer->normalize($tournoi, 'json',['groups'=>'post:read']);
+        return new Response(json_encode($jsonContent));
+    }
+    /**
+     * @Route("/updatetournoiAPI/{id}", name="updatetournoiAPI")
+     */
+    public function updateTournoiAPI(Request $request, NormalizerInterface $Normalizer,$id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $tournoi = $em->getRepository(Tournoi::class)->find($id);
+        $tournoi->setNom($request->get("nom"));
+        $tournoi->setNbrEquipes($request->get("nbr_equipes"));
+        $tournoi->setNbrJoueurEq($request->get("nbr_joueur_eq"));
+        $tournoi->setPrix($request->get("prix"));
+        $tournoi->setDiscordChannel($request->get("discord_channel"));
+        $em->flush();
+        $jsonContent = $Normalizer->normalize($tournoi, 'json',['groups'=>'post:read']);
+        return new Response("Information updated successfully".json_encode($jsonContent));
+    }
+    /**
+     * @Route("/removeTournoiAPI",name="removeTournoi")
+     *
+     */
+    public function delete(Request $request)
+    {
+        $id=$request->get("id");
+        $tournoi = $this->getDoctrine()->getRepository(Tournoi::class)->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($tournoi);
+        $em->flush();
+        return new Response("removed successfully");
+    }
+
 }

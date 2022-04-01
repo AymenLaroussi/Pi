@@ -3,8 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\TournoiRepository;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -17,45 +19,50 @@ class Tournoi
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups ("post:read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
+     * @Groups ("post:read")
      */
     private $nom;
 
     /**
      * @ORM\Column(type="integer")
      * @Assert\NotBlank()
+     * @Groups ("post:read")
      */
     private $nbr_equipes;
 
     /**
      * @ORM\Column(type="integer")
      * @Assert\NotBlank()
+     * @Groups ("post:read")
      */
     private $nbr_joueur_eq;
 
     /**
      * @ORM\Column(type="float", nullable=true)
-     * * @Assert\NotBlank()
-     *
+     * @Assert\NotBlank()
+     * @Groups ("post:read")
      *
      */
     private $prix;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     *
-     */
+     * @Groups ("post:read")
+     **/
     private $image;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      * @Assert\Url(message = "The url '{{ value }}' is not a valid url",)
+     * @Groups ("post:read")
      */
     private $discord_channel;
 
@@ -63,11 +70,13 @@ class Tournoi
      * @ORM\Column(type="datetime", nullable=true)
      * @Assert\DateTime
      * @var string A "Y-m-d H:i:s" formatted value
+     *
      */
     private $time;
 
     /**
      * @ORM\OneToMany(targetEntity=Equipe::class, mappedBy="tournoi", orphanRemoval=true)
+     *
      */
     private $equipes;
 
@@ -76,17 +85,21 @@ class Tournoi
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="tournois")
      * @ORM\JoinColumn(name="organisateur_id", referencedColumnName="id",onDelete="SET NULL")
+     *
      */
     private $organisateur;
 
     /**
      * @ORM\ManyToOne(targetEntity=Jeu::class, inversedBy="tournois")
      * @ORM\JoinColumn(name="jeu_id", referencedColumnName="id",onDelete="SET NULL")
+     * @Groups ("post:read")
+
      */
     private $jeu;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
      */
     private $textColor;
 
@@ -94,6 +107,7 @@ class Tournoi
      * @ORM\Column(type="datetime", nullable=true)
      *  @Assert\DateTime
      * @var string A "Y-m-d H:i:s" formatted value
+     *
      */
     private $timeEnd;
 
