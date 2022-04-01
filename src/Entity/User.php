@@ -28,6 +28,7 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=64, unique=true)
      * @Assert\NotBlank()
      * @Assert\Email()
+     * @Groups("post:read")
      */
     private $email;
 
@@ -46,6 +47,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=64)
+     * @Groups("post:read")
      */
     private $password;
 
