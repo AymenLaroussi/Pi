@@ -10,13 +10,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Gedmo\Sluggable\Util\Urlizer;
 
-/**
- * @Route("admin/jeu")
- */
+
 class JeuController extends AbstractController
 {
     /**
-     * @Route("/", name="list_jeu", methods={"GET"})
+     * @Route("/admin/jeu", name="list_jeu", methods={"GET"})
      */
     public function index(JeuRepository $jeuRepository): Response
     {
@@ -25,7 +23,7 @@ class JeuController extends AbstractController
         ]);
     }
     /**
-     * @Route("/ajout", name="ajout_jeu", methods={"GET","POST"})
+     * @Route("/admin/jeu/ajout", name="ajout_jeu", methods={"GET","POST"})
      */
     public function ajout(Request $request): Response
     {
@@ -58,7 +56,7 @@ class JeuController extends AbstractController
         ]);
     }
     /**
-     * @Route("/{id}", name="voir_jeu", methods={"GET"})
+     * @Route("/admin/jeu/{id}", name="voir_jeu", methods={"GET"})
      */
     public function voir(Jeu $jeu): Response
     {
@@ -68,7 +66,7 @@ class JeuController extends AbstractController
     }
 
     /**
-     * @Route("/modifier/{id}", name="modifier_jeu", methods={"GET","POST"})
+     * @Route("/admin/jeu/modifier/{id}", name="modifier_jeu", methods={"GET","POST"})
      */
     public function modifier(Request $request, Jeu $jeu): Response
     {
@@ -90,7 +88,7 @@ class JeuController extends AbstractController
 
 
     /**
-     * @Route("/supprimer/{id}", name="supprimer_jeu")
+     * @Route("/admin/jeu/supprimer/{id}", name="supprimer_jeu")
      */
     public function delete($id){
         $em= $this->getDoctrine()->getManager();
@@ -100,6 +98,14 @@ class JeuController extends AbstractController
         $em->flush();
         return $this->redirectToRoute("list_jeu");
     }
+    /**
+     * @Route("/allJeuAPI",name="allJeuAPI", methods={"GET","POST"})
+     */
+    public function showAllJeu(Request $request): Response{
 
 
+        $jeux= $this->getDoctrine()->getRepository(Jeu::class)->findAll();
+        $response = $this->json($jeux, 200, [], ['groups' => 'read']);
+        return $response;
+    }
 }

@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Controller;
-
+use App\Repository\UserRepository;
+use App\Entity\User;
 use App\Entity\Evenement;
 use App\Form\EvenetType;
 use App\Repository\EvenementRepository;
@@ -11,6 +12,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Gedmo\Sluggable\Util\Urlizer;
 use Symfony\Component\HttpFoundation\UploadedFile;
+use Symfony\Component\Mime\Email;
+use Symfony\Component\Mailer\MailerInterface;
 
 
 /**
@@ -19,12 +22,16 @@ use Symfony\Component\HttpFoundation\UploadedFile;
 class EvenementController extends AbstractController
 {
     /**
-     * @Route("/", name="list_evenements", methods={"GET"})
+     * @Route("/", name="list_evenements", methods={"GET", "POST"})
      */
-    public function index(EvenementRepository $evenementsRepository): Response
-    {
+    public function index(Request $request, EvenementRepository $evenementsRepository): Response
+    {   
+        $keyWord = $request->query->get('keyWord', null);
+        
+        /** name mta3 l search buttonn lezm tsamih keyWord */
+          $keyWord = $request->request->get('keyWord', null); 
         return $this->render('evenement/index.html.twig', [
-            'evenements' => $evenementsRepository->findAll(),
+            'evenements' => $evenementsRepository->getAll($keyWord),
            
         ]);
     }
@@ -102,11 +109,23 @@ class EvenementController extends AbstractController
     /**
      * @Route("/supprimer/{id}", name="supprimer_evenements")
      */
-    public function delete($id){
+    public function delete($id, MailerInterface $mailer){
         $event= $this->getDoctrine()->getRepository(Evenement::class)->find($id);
+        $user= $this->getDoctrine()->getRepository(User::class)->findAll(); 
         $em= $this->getDoctrine()->getManager();
         $em->remove($event);
         $em->flush();
+        foreach($user as $utilisateur)
+        {
+        $email = (new Email()) 
+                ->from('aicha.salhi@esprit.tn')
+                ->to($utilisateur->getEmail())
+                ->subject('A propos un evenement')
+                ->text('Bonjour , Nous voulons , l administration de l equipe Azerty Crew , vous informé qu un evenement a ete supprimer et non plus disponible.  Cordialement Admin. ');
+
+                $mailer->send($email);
+            }
+
         return $this->redirectToRoute("list_evenements");
     }
 }

@@ -40,7 +40,7 @@ class EvenetType extends AbstractType
                 'label' => 'Les Sponsors de l\'évenement',
                 'class' => Sponsors::class,
                 'choice_label' => function ($sponsor) {
-                    return $sponsor->getNom() . ' ' . $sponsor->getPrenom();
+                    return $sponsor->getNom();
                 },
                'multiple' => true,
                'required' => false
