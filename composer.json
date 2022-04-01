@@ -5,6 +5,7 @@
         "php": ">=7.1.3",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-json": "*",
         "captcha-com/symfony-captcha-bundle": "4.*",
         "doctrine/annotations": "^1.0",
         "doctrine/doctrine-bundle": "^2.5",
@@ -13,6 +14,7 @@
         "doctrine/orm": "^2.11",
         "dompdf/dompdf": "^1.2",
         "gedmo/doctrine-extensions": "^3.5",
+        "jms/serializer-bundle": "^1.0 | ^2.4",
         "knplabs/knp-paginator-bundle": "^5.8",
         "mbezhanov/faker-provider-collection": "^2.0",
         "phpdocumentor/reflection-docblock": "^5.3",
@@ -46,8 +48,7 @@
         "symfonycasts/reset-password-bundle": "^1.13",
         "twig/extra-bundle": "^3.3",
         "twig/intl-extra": "^3.3",
-        "twig/twig": "^2.12|^3.0",
-      "ext-json": "*"
+        "twig/twig": "^2.12|^3.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
