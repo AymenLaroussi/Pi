@@ -213,16 +213,15 @@ class WebServiceController extends AbstractController
 
         # Retrive liste des catégories #
         /**
-        * @Route("/categories", name="commenatires" )
+        * @Route("/categories", name="categories" )
         * @Method("GET")
         */
         public function getCategories( SerializerInterface $SerializerInterface,CommentairesRepository $commentaireRepository, NormalizerInterface $normalizer)
         {
-            $repository = $this->getDoctrine()->getRepository(Categories::class);
-            $categorie = $repository->findAll();
+            $repository = $this->getDoctrine()->getRepository(Categories::class)->findAll();
             
 
-            $jsonContent = $normalizer->normalize($categorie, 'json',['groups'=>'cat']);
+            $jsonContent = $normalizer->normalize($repository, 'json',['groups'=>'cat']);
             
             return new Response(json_encode($jsonContent));
         }
@@ -255,7 +254,87 @@ class WebServiceController extends AbstractController
         }
 
 
+         # C Commentaire #
+         /**
+         * @Route("/commentaires/ajout", name="ajout_commentaire")
+         */
+        public function AjoutCommentaire1 (Request $request)
+        {
+            $id = $request->get("id");
+            $produitf= $this->getDoctrine()->getRepository(Produits::class)->find($id);
+            $commentaire = new Commentaires();
+            $user=$this->getUser();
+            $message = $request->query->get("message");
+            $em = $this->getDoctrine()->getManager();
+            $commentaire->setMessage($message);
+            $commentaire->setDate(new DateTime('now'));
+            $commentaire->setUser($user);
+            $commentaire->setProduit($produitf);
 
+            $em->persist($commentaire);
+            $em->flush();
+            $serializer = new Serializer([new ObjectNormalizer()]);
+            $formatted = $serializer->normalize($commentaire);
+            return new JsonResponse ($formatted);
+        }
+
+         # DELETE Commentaires #
+      /**
+      * @Route("/categorie/supprimer", name="supprimer_categorie")
+      * @Method("DELETE")
+      */
+    public function SupprimerCategorie(Request $request){
+        $id = $request->get("id");
+        $em = $this->getDoctrine()->getManager();
+        $categorie = $em->getRepository(Categories::class)->find($id);
+        if($categorie!=null ){
+            $em->remove($categorie);
+            $em->flush();
+
+            return new JsonResponse("Commentaire supprimer avec succes");
+
+        }
+        return new JsonResponse("id non valide");
+    }
+
+
+       # DELETE Commentaires #
+      /**
+      * @Route("/produit/supprimer", name="supprimer_produit")
+      * @Method("DELETE")
+      */
+      public function SupprimerProduit(Request $request){
+        $id = $request->get("id");
+        $em = $this->getDoctrine()->getManager();
+        $produit = $em->getRepository(Produits::class)->find($id);
+        if($produit!=null ){
+            $em->remove($produit);
+            $em->flush();
+
+            return new JsonResponse("produit supprimer avec succes");
+
+        }
+        return new JsonResponse("id non valide");
+    }
+
+     # DELETE Commentaires #
+      /**
+      * @Route("/categorie/supprimer", name="supprimer_commenataire1")
+      * @Method("DELETE")
+      */
+      public function SupprimerCommentaire(Request $request){
+        $id = $request->get("id");
+        $em = $this->getDoctrine()->getManager();
+        $comment = $em->getRepository(Commentaires::class)->find($id);
+        if($comment!=null ){
+            $em->remove($comment);
+            $em->flush();
+
+            return new JsonResponse("produit supprimer avec succes");
+
+        }
+        return new JsonResponse("id non valide");
+    }
         
 
 }
