@@ -310,7 +310,7 @@ class WebServiceController extends AbstractController
         if($produit!=null ){
             $em->remove($produit);
             $em->flush();
-
+ 
             return new JsonResponse("produit supprimer avec succes");
 
         }
