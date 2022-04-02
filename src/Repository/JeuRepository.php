@@ -35,7 +35,15 @@ class JeuRepository extends ServiceEntityRepository
         ;
     }
     */
-
+    public function findOneByNom($value): ?Jeu
+    {
+        return $this->createQueryBuilder('j')
+            ->andWhere('j.nom = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+    }
     /*
     public function findOneBySomeField($value): ?Jeu
     {

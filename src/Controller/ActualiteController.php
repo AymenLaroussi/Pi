@@ -12,31 +12,29 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ActualiteController extends AbstractController
 {
-    /**
+     /**
      * @Route("/actualite", name="actualite")
      */
-    public function index(EvenementRepository $evenementsRepository): Response
+    public function index(EvenementRepository $evenementsRepository,SponsorsRepository $sponsorsRepository): Response
     {
-       
-        return $this->render('actualite/index.html.twig', 
-            [
-                'evenements' => $evenementsRepository->findAll(),
-            ]);
-
-           
-            
-
-      function indexx(SponsorsRepository $sponsorsRepository): Response
-     {
-       
-        return $this->render('actualite/index.html.twig', 
-            [
-                'sponsors' => $sponsorsRepository->findAll(),
-            ]);
-        
-        
-
+        $evenements =$evenementsRepository->findAll();
+        $sponsors =$sponsorsRepository->findAll();
+        return $this->render('actualite/index.html.twig',array("evenements"=> $evenements,"sponsors"=> $sponsors));
      }
+   
+           
+     /**
+     * @Route("/actualite/{id}", name="voir_details", methods={"GET"})
+     */
+    public function voir(int $id): Response
+    {
+        $evenements = $this->getDoctrine()->getRepository(Evenement::class)->find($id);
+        return $this->render('actualite/event.html.twig', [
+            'evenements' => $evenements,
+            'sponsors' => $evenements->getSponsors()
+        ]);
     }
+
+    
  
 }
