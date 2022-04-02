@@ -335,6 +335,44 @@ class WebServiceController extends AbstractController
         }
         return new JsonResponse("id non valide");
     }
+
+
+    /**
+     * @Route("/produit/DESC", name="DESC")
+     */
+    public function DESC(ProduitsRepository $produitsRepository,CategoriesRepository $categoriesRepository, Request $request, PaginatorInterface $paginator, NormalizerInterface $normalizer ): Response
+    {   
+        
+        $bas= $this->getDoctrine()->getRepository(Produits::class)->orderByPrixBas();
+        $jsonContent = $normalizer->normalize($bas,  'json',['groups'=>'post:read']);
+            
+        return new Response(json_encode($jsonContent));
+    } 
+
+      /**
+     * @Route("/produit/ASEC", name="ASEC")
+     */
+    public function SEC(ProduitsRepository $produitsRepository,CategoriesRepository $categoriesRepository, Request $request, PaginatorInterface $paginator, NormalizerInterface $normalizer ): Response
+    {   
+        
+        $bas= $this->getDoctrine()->getRepository(Produits::class)->orderByPrixHaut();
+        $jsonContent = $normalizer->normalize($bas,  'json',['groups'=>'post:read']);
+            
+        return new Response(json_encode($jsonContent));
+    } 
+
+
+     /**
+     * @Route("/produit/FLASH", name="FLASH")
+     */
+    public function FLASH(ProduitsRepository $produitsRepository,CategoriesRepository $categoriesRepository, Request $request, PaginatorInterface $paginator, NormalizerInterface $normalizer  ): Response
+    {   
+        $bas= $this->getDoctrine()->getRepository(Produits::class)->orderByPrixBas();
+        $jsonContent = $normalizer->normalize($bas,  'json',['groups'=>'post:read']);
+            
+        return new Response(json_encode($jsonContent));
+        
+    } 
         
 
 }
