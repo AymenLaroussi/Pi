@@ -69,7 +69,7 @@ class User implements UserInterface
 
 
     /**
-     * @ORM\OneToMany(targetEntity=Commentaires::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Commentaires::class, mappedBy="user",orphanRemoval=true)
      */
     private $commentaires;
 
