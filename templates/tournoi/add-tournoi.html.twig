@@ -267,15 +267,15 @@
                         </div>
                     </div>
                 </div>
-
+                {% do formTournoi.prix.setRendered() %}
+                {% do formTournoi.imageFile.setRendered() %}
                 <div>
 
                     <div style="margin-top: 50px" class="col6" id="some-custom-id" >
                         {{ form_widget(formTournoi.submit, { 'attr': {'style': 'width: 250px'} }) }}
                     </div>
                 </div>
-                {% do formTournoi.prix.setRendered() %}
-                {% do formTournoi.imageFile.setRendered() %}
+
             </div>
 
 

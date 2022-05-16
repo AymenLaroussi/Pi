@@ -29,6 +29,21 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class TournoiController extends AbstractController
 {
+
+    /**
+     * @Route("/removeTour/{id}",name="removeTour")
+     *
+     */
+    public function delete(Request $request,$id)
+    {
+
+        $tournoi = $this->getDoctrine()->getRepository(Tournoi::class)->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($tournoi);
+        $em->flush();
+        return $this->redirectToRoute("tournoi");
+
+    }
     /**
      * @Route("/tournoi", name="tournoi")
      */
@@ -127,8 +142,9 @@ class TournoiController extends AbstractController
         $formTournoi = $this->createForm(TournoiType::class, $tournoi);
         $formTournoi->handleRequest($request);
         $type = "modifier";
-        if ($formTournoi->isSubmitted() && $formTournoi->isValid()) {
+        if ($formTournoi->isSubmitted() ) {
             $em = $this->getDoctrine()->getManager();
+            $this->getDoctrine()->getManager()->persist($tournoi);
             $em->flush();
             return $this->redirectToRoute("tournoi");
         }
@@ -340,11 +356,13 @@ foreach ($events as $event) {
         $jsonContent = $Normalizer->normalize($tournoi, 'json',['groups'=>'post:read']);
         return new Response("Information updated successfully".json_encode($jsonContent));
     }
+
+
     /**
      * @Route("/removeTournoiAPI",name="removeTournoi")
      *
      */
-    public function delete(Request $request)
+    public function deleteAPI(Request $request)
     {
         $id=$request->get("id");
         $tournoi = $this->getDoctrine()->getRepository(Tournoi::class)->find($id);
@@ -353,6 +371,8 @@ foreach ($events as $event) {
         $em->flush();
         return new Response("removed successfully");
     }
+
+
     /**
      * @Route("/getTournoiAPI/{id}",name="getTournoi")
      *
