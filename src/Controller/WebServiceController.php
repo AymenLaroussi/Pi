@@ -85,7 +85,7 @@ class WebServiceController extends AbstractController
 
     # DELETE Commentaires #
       /**
-      * @Route("/supprimer", name="supprimer_commentaire")
+      * @Route("/commentaire/supprimer", name="supprimer_commentaire")
       * @Method("DELETE")
       */
     public function supprimer(Request $request){
@@ -102,19 +102,61 @@ class WebServiceController extends AbstractController
         return new JsonResponse("id reclamtion non valide");
     }
 
+    # DELETE Produit #
+      /**
+      * @Route("/produit/supprimer", name="supprimer_produit")
+      * @Method("DELETE")
+      */
+    public function supprimerProduit(Request $request){
+        $id = $request->get("id");
+        $em = $this->getDoctrine()->getManager();
+        $produit = $em->getRepository(Produits::class)->find($id);
+        if($produit!=null ){
+            $em->remove($produit);
+            $em->flush();
+
+            return new JsonResponse("Produit supprimer avec succes");
+
+        }
+        return new JsonResponse("id reclamtion non valide");
+    }
+
+
+    # DELETE Categorie #
+      /**
+      * @Route("/categorie/supprimer", name="supprimer_categorie")
+      * @Method("DELETE")
+      */
+    public function supprimerCategorie(Request $request){
+        $id = $request->get("id");
+        $em = $this->getDoctrine()->getManager();
+        $categorie = $em->getRepository(Categories::class)->find($id);
+        if($categorie!=null ){
+            $em->remove($categorie);
+            $em->flush();
+
+            return new JsonResponse("Produit supprimer avec succes");
+
+        }
+        return new JsonResponse("id reclamtion non valide");
+    }
+
 
 
          # C Commentaire #
          /**
          * @Route("/commentaires/ajout", name="ajout_commentaire")
          */
-        public function AjoutCommentaire (Request $request)
+        public function AjoutCommentaire (Request $request,NormalizerInterface $Normalizer)
         {
-            $id = $request->get("id");
+            $id = "1";
+            $user1="7";
             $produitf= $this->getDoctrine()->getRepository(Produits::class)->find($id);
+            $user= $this->getDoctrine()->getRepository(User::class)->find($user1);
             $commentaire = new Commentaires();
-            $user=$this->getUser();
+            
             $message = $request->query->get("message");
+           
             $em = $this->getDoctrine()->getManager();
             $commentaire->setMessage($message);
             $commentaire->setDate(new DateTime('now'));
@@ -123,9 +165,8 @@ class WebServiceController extends AbstractController
 
             $em->persist($commentaire);
             $em->flush();
-            $serializer = new Serializer([new ObjectNormalizer()]);
-            $formatted = $serializer->normalize($commentaire);
-            return new JsonResponse ($formatted);
+            $jsonContent = $Normalizer->normalize($commentaire, 'json', ['groups'=>'post:commentaire']);
+            return new Response(json_encode($jsonContent));
         }
 
         # C Commentaire #
@@ -192,7 +233,7 @@ class WebServiceController extends AbstractController
             $produit->setPromo($promo);
             $produit->setStock($stock);
             $produit->setFlash("0");
-            $produit->setImage("test.png");
+            $produit->setImage("test.jpg");
             $produit->setRef($ref);
             $produit->setLongdescription($longdescription);
             $produit->setprix(floatval($prix));
@@ -213,7 +254,7 @@ class WebServiceController extends AbstractController
 
         # Retrive liste des catégories #
         /**
-        * @Route("/categories", name="commenatires" )
+        * @Route("/categories", name="categories" )
         * @Method("GET")
         */
         public function getCategories( SerializerInterface $SerializerInterface,CommentairesRepository $commentaireRepository, NormalizerInterface $normalizer)
