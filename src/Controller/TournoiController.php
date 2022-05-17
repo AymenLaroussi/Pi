@@ -365,6 +365,7 @@ foreach ($events as $event) {
     public function deleteAPI(Request $request)
     {
         $id=$request->get("id");
+        echo $id;
         $tournoi = $this->getDoctrine()->getRepository(Tournoi::class)->find($id);
         $em = $this->getDoctrine()->getManager();
         $em->remove($tournoi);
